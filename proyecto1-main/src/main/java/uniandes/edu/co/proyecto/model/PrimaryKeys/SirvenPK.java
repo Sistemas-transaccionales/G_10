@@ -12,8 +12,8 @@ import uniandes.edu.co.proyecto.model.servicios.RestauranteBar;
 public class SirvenPK implements Serializable {
 
     @ManyToOne
-    @JoinColumn(name = "id_restaurante_bar", referencedColumnName = "id")
-    private RestauranteBar id_restaurante_bar;
+    @JoinColumn(name = "id_rest_bar", referencedColumnName = "id")
+    private RestauranteBar id_rest_bar;
 
     @ManyToOne
     @JoinColumn(name = "id_producto", referencedColumnName = "id")
@@ -25,22 +25,22 @@ public class SirvenPK implements Serializable {
 
     public SirvenPK(RestauranteBar id_restaurante_bar, ProductoMenu id_producto) {
         super();
-        this.id_restaurante_bar = id_restaurante_bar;
+        this.id_rest_bar = id_restaurante_bar;
         this.id_producto = id_producto;
     }
 
     /**
      * @return the id_restaurante_bar
      */
-    public RestauranteBar getId_restaurante_bar() {
-        return id_restaurante_bar;
+    public RestauranteBar getId_rest_bar() {
+        return id_rest_bar;
     }
 
     /**
-     * @param id_restaurante_bar the id_restaurante_bar to set
+     * @param id_rest_bar the id_restaurante_bar to set
      */
-    public void setId_restaurante_bar(RestauranteBar id_restaurante_bar) {
-        this.id_restaurante_bar = id_restaurante_bar;
+    public void setId_rest_bar(RestauranteBar id_rest_bar) {
+        this.id_rest_bar = id_rest_bar;
     }
 
     /**

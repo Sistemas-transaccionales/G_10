@@ -16,8 +16,8 @@ public class Sirven {
         ;
     }
 
-    public Sirven(RestauranteBar id_restaurante_bar, ProductoMenu id_producto) {
-        this.pk = new SirvenPK(id_restaurante_bar, id_producto);
+    public Sirven(RestauranteBar id_rest_bar, ProductoMenu id_producto) {
+        this.pk = new SirvenPK(id_rest_bar, id_producto);
     }
 
     /**
