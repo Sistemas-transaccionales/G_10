@@ -1,0 +1,116 @@
+package uniandes.edu.co.proyecto.model;
+
+import java.sql.Date;
+
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import uniandes.edu.co.proyecto.model.primaryKeys.ReservaHabitacionPK;
+
+@Entity
+@Table(name = "reservas_habitacion")
+public class ReservaHabitacion {
+
+    @EmbeddedId
+    private ReservaHabitacionPK pk;
+
+    @ManyToOne
+    @JoinColumn(name = "plan_consumo", referencedColumnName = "id")
+    private PlanConsumo plan_consumo;
+
+    private Integer num_personas;
+    private Integer costo;
+
+    @OneToOne
+    @JoinColumn(name = "cuenta", referencedColumnName = "id")
+    private CuentaEstadia id_cuenta;
+
+    public ReservaHabitacion() {
+        ;
+    }
+
+    public ReservaHabitacion(Habitacion id_habitacion, Usuario id_usuario, Date fecha_entrada, Date fecha_salida,
+            PlanConsumo plan_consumo, Integer num_personas, Integer costo, CuentaEstadia id_cuenta) {
+
+        this.pk = new ReservaHabitacionPK(id_habitacion, id_usuario, fecha_entrada, fecha_salida);
+
+        this.plan_consumo = plan_consumo;
+        this.num_personas = num_personas;
+        this.costo = costo;
+        this.id_cuenta = id_cuenta;
+    }
+
+    /**
+     * @return the pk
+     */
+    public ReservaHabitacionPK getPk() {
+        return pk;
+    }
+
+    /**
+     * @param pk the pk to set
+     */
+    public void setPk(ReservaHabitacionPK pk) {
+        this.pk = pk;
+    }
+
+    /**
+     * @return the plan_consumo
+     */
+    public PlanConsumo getPlan_consumo() {
+        return plan_consumo;
+    }
+
+    /**
+     * @param plan_consumo the plan_consumo to set
+     */
+    public void setPlan_consumo(PlanConsumo plan_consumo) {
+        this.plan_consumo = plan_consumo;
+    }
+
+    /**
+     * @return the num_personas
+     */
+    public Integer getNum_personas() {
+        return num_personas;
+    }
+
+    /**
+     * @param num_personas the num_personas to set
+     */
+    public void setNum_personas(Integer num_personas) {
+        this.num_personas = num_personas;
+    }
+
+    /**
+     * @return the costo
+     */
+    public Integer getCosto() {
+        return costo;
+    }
+
+    /**
+     * @param costo the costo to set
+     */
+    public void setCosto(Integer costo) {
+        this.costo = costo;
+    }
+
+    /**
+     * @return the id_cuenta
+     */
+    public CuentaEstadia getId_cuenta() {
+        return id_cuenta;
+    }
+
+    /**
+     * @param id_cuenta the id_cuenta to set
+     */
+    public void setId_cuenta(CuentaEstadia id_cuenta) {
+        this.id_cuenta = id_cuenta;
+    }
+
+}
