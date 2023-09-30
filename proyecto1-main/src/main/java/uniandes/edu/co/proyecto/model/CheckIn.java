@@ -19,13 +19,18 @@ public class CheckIn {
 
     private Time hora_llegada;
 
+    @OneToOne
+    @JoinColumn(name = "id_cuenta", referencedColumnName = "id")
+    private CuentaEstadia id_cuenta;
+
     public CheckIn() {
         ;
     }
 
-    public CheckIn(ReservaHabitacion id_reserva, Time hora_llegada) {
+    public CheckIn(ReservaHabitacion id_reserva, Time hora_llegada, CuentaEstadia id_cuenta) {
         this.id_reserva = id_reserva;
         this.hora_llegada = hora_llegada;
+        this.id_cuenta = id_cuenta;
     }
 
     /**
@@ -56,4 +61,17 @@ public class CheckIn {
         this.hora_llegada = hora_llegada;
     }
 
+    /**
+     * @return the id_cuenta
+     */
+    public CuentaEstadia getId_cuenta() {
+        return id_cuenta;
+    }
+
+    /**
+     * @param id_cuenta the id_cuenta to set
+     */
+    public void setId_cuenta(CuentaEstadia id_cuenta) {
+        this.id_cuenta = id_cuenta;
+    }
 }

@@ -6,7 +6,6 @@ import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import uniandes.edu.co.proyecto.model.primaryKeys.ReservaHabitacionPK;
 
@@ -24,23 +23,18 @@ public class ReservaHabitacion {
     private Integer num_personas;
     private Integer costo;
 
-    @OneToOne
-    @JoinColumn(name = "cuenta", referencedColumnName = "id")
-    private CuentaEstadia id_cuenta;
-
     public ReservaHabitacion() {
         ;
     }
 
     public ReservaHabitacion(Habitacion id_habitacion, Usuario id_usuario, Date fecha_entrada, Date fecha_salida,
-            PlanConsumo plan_consumo, Integer num_personas, Integer costo, CuentaEstadia id_cuenta) {
+            PlanConsumo plan_consumo, Integer num_personas, Integer costo) {
 
         this.pk = new ReservaHabitacionPK(id_habitacion, id_usuario, fecha_entrada, fecha_salida);
 
         this.plan_consumo = plan_consumo;
         this.num_personas = num_personas;
         this.costo = costo;
-        this.id_cuenta = id_cuenta;
     }
 
     /**
@@ -97,20 +91,6 @@ public class ReservaHabitacion {
      */
     public void setCosto(Integer costo) {
         this.costo = costo;
-    }
-
-    /**
-     * @return the id_cuenta
-     */
-    public CuentaEstadia getId_cuenta() {
-        return id_cuenta;
-    }
-
-    /**
-     * @param id_cuenta the id_cuenta to set
-     */
-    public void setId_cuenta(CuentaEstadia id_cuenta) {
-        this.id_cuenta = id_cuenta;
     }
 
 }
