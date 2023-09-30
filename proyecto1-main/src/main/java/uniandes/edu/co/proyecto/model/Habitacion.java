@@ -1,8 +1,6 @@
 package uniandes.edu.co.proyecto.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -13,8 +11,7 @@ import jakarta.persistence.Table;
 public class Habitacion {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private String id;
 
     @ManyToOne
     @JoinColumn(name = "tipo", referencedColumnName = "id")
@@ -24,21 +21,22 @@ public class Habitacion {
         ;
     }
 
-    public Habitacion(TipoHabitacion tipo) {
+    public Habitacion(String id, TipoHabitacion tipo) {
+        this.id = id;
         this.tipo = tipo;
     }
 
     /**
      * @return the id
      */
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

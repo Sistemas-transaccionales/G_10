@@ -1,16 +1,9 @@
 package uniandes.edu.co.proyecto.model.servicios;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 
 @Entity
 public class PrestamoUtensilio extends Servicio {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
 
     private String utensilio;
     private Integer costo_danio;
@@ -24,20 +17,6 @@ public class PrestamoUtensilio extends Servicio {
         super(tipo, nombre);
         this.utensilio = utensilio;
         this.costo_danio = costo_danio;
-    }
-
-    /**
-     * @return the id
-     */
-    public Integer getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     /**

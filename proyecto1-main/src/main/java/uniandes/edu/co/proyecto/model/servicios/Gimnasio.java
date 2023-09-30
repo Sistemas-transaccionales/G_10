@@ -3,16 +3,9 @@ package uniandes.edu.co.proyecto.model.servicios;
 import java.sql.Time;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 
 @Entity
 public class Gimnasio extends Servicio {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer Id;
 
     private Time hora_apertura;
     private Time hora_clausura;
@@ -28,20 +21,6 @@ public class Gimnasio extends Servicio {
         this.hora_apertura = hora_apertura;
         this.hora_clausura = hora_clausura;
         this.capacidad = capacidad;
-    }
-
-    /**
-     * @return the id
-     */
-    public Integer getId() {
-        return Id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(Integer id) {
-        Id = id;
     }
 
     /**

@@ -1,16 +1,9 @@
 package uniandes.edu.co.proyecto.model.servicios;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 
 @Entity
 public class Lavanderia extends Servicio {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
 
     private String tipo_prenda;
     private Integer num_prendas;
@@ -26,20 +19,6 @@ public class Lavanderia extends Servicio {
         this.tipo_prenda = tipo_prenda;
         this.num_prendas = num_prendas;
         this.costo = costo;
-    }
-
-    /**
-     * @return the id
-     */
-    public Integer getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     /**

@@ -1,16 +1,9 @@
 package uniandes.edu.co.proyecto.model.servicios;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 
 @Entity
 public class Internet extends Servicio {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
 
     private Integer capacidad;
 
@@ -22,20 +15,6 @@ public class Internet extends Servicio {
 
         super(tipo, nombre);
         this.capacidad = capacidad;
-    }
-
-    /**
-     * @return the id
-     */
-    public Integer getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     /**

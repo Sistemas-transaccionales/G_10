@@ -1,16 +1,9 @@
 package uniandes.edu.co.proyecto.model.servicios;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 
 @Entity
 public class Salon extends Servicio {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
 
     private String tipo_salon;
     private Integer capacidad;
@@ -36,20 +29,6 @@ public class Salon extends Servicio {
         this.capacidad = capacidad;
         this.costo_por_hora = costo_por_hora;
         this.costo_extra = costo_extra;
-    }
-
-    /**
-     * @return the id
-     */
-    public Integer getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     /**
