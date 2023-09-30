@@ -1,7 +1,5 @@
 package uniandes.edu.co.proyecto.model.servicios;
 
-import java.sql.Time;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,7 +14,6 @@ public class Spa extends Servicio {
 
     private Integer costo;
     private String duracion;
-    private Time hora_inicio;
 
     public Spa() {
         super();
@@ -29,11 +26,10 @@ public class Spa extends Servicio {
      * @param duracion
      * @param hora_inicio
      */
-    public Spa(TipoServicio tipo, String nombre, Integer costo, String duracion, Time hora_inicio) {
+    public Spa(TipoServicio tipo, String nombre, Integer costo, String duracion) {
         super(tipo, nombre);
         this.costo = costo;
         this.duracion = duracion;
-        this.hora_inicio = hora_inicio;
     }
 
     /**
@@ -76,20 +72,6 @@ public class Spa extends Servicio {
      */
     public void setDuracion(String duracion) {
         this.duracion = duracion;
-    }
-
-    /**
-     * @return the hora_inicio
-     */
-    public Time getHora_inicio() {
-        return hora_inicio;
-    }
-
-    /**
-     * @param hora_inicio the hora_inicio to set
-     */
-    public void setHora_inicio(Time hora_inicio) {
-        this.hora_inicio = hora_inicio;
     }
 
 }
