@@ -18,7 +18,7 @@ public interface ReservaServicioRepository extends JpaRepository<ReservaServicio
 
         // Método para buscar una reserva de servicio por su clave primaria (pk)
         @Query(value = "SELECT * FROM reservas_servicio WHERE id_habitacion = :idHabitacion AND id_servicio = :idServicio AND fecha = :fecha AND hora_inicio = :horaInicio AND hora_fin = :horaFin AND costo = :costo", nativeQuery = true)
-        ReservaServicio buscarReservaServicioPorPK(@Param("idHabitacion") int idHabitacion,
+        ReservaServicio buscarReservaServicioPorPK(@Param("idHabitacion") String idHabitacion,
                         @Param("idServicio") int idServicio, @Param("fecha") Date fecha,
                         @Param("horaInicio") String horaInicio,
                         @Param("horaFin") String horaFin, @Param("costo") int costo);
@@ -27,7 +27,7 @@ public interface ReservaServicioRepository extends JpaRepository<ReservaServicio
         @Modifying
         @Transactional
         @Query(value = "INSERT INTO reservas_servicio (id_habitacion, id_servicio, fecha, hora_inicio, hora_fin, costo) VALUES (:idHabitacion, :idServicio, :fecha, :horaInicio, :horaFin, :costo)", nativeQuery = true)
-        void insertarReservaServicio(@Param("idHabitacion") int idHabitacion, @Param("idServicio") int idServicio,
+        void insertarReservaServicio(@Param("idHabitacion") String idHabitacion, @Param("idServicio") int idServicio,
                         @Param("fecha") Date fecha, @Param("horaInicio") String horaInicio,
                         @Param("horaFin") String horaFin, @Param("costo") int costo);
 
@@ -35,7 +35,7 @@ public interface ReservaServicioRepository extends JpaRepository<ReservaServicio
         @Modifying
         @Transactional
         @Query(value = "UPDATE reservas_servicio SET fecha = :fecha, hora_inicio = :horaInicio, hora_fin = :horaFin, costo = :costo WHERE id_habitacion = :idHabitacion AND id_servicio = :idServicio AND fecha = :fecha, hora_inicio = :horaInicio, hora_fin = :horaFin", nativeQuery = true)
-        void actualizarReservaServicio(@Param("idHabitacion") int idHabitacion, @Param("idServicio") int idServicio,
+        void actualizarReservaServicio(@Param("idHabitacion") String idHabitacion, @Param("idServicio") int idServicio,
                         @Param("fecha") Date fecha, @Param("horaInicio") String horaInicio,
                         @Param("horaFin") String horaFin,
                         @Param("costo") int costo);
@@ -44,7 +44,8 @@ public interface ReservaServicioRepository extends JpaRepository<ReservaServicio
         @Modifying
         @Transactional
         @Query(value = "DELETE FROM reservas_servicio WHERE id_habitacion = :idHabitacion AND id_servicio = :idServicio AND fecha = :fecha AND hora_inicio = :horaInicio AND hora_fin = :horaFin AND costo = :costo", nativeQuery = true)
-        void eliminarReservaServicioPorPK(@Param("idHabitacion") int idHabitacion, @Param("idServicio") int idServicio,
+        void eliminarReservaServicioPorPK(@Param("idHabitacion") String idHabitacion,
+                        @Param("idServicio") int idServicio,
                         @Param("fecha") Date fecha, @Param("horaInicio") String horaInicio,
                         @Param("horaFin") String horaFin, @Param("costo") int costo);
 }

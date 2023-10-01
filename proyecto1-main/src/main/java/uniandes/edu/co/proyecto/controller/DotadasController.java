@@ -29,7 +29,7 @@ public class DotadasController {
 
     @GetMapping("/dotadas/new")
     public String dotadasForm(Model model) {
-        model.addAttribute("dotadas", dotadasRepository.listarDotadas());
+        model.addAttribute("dotadas", new Dotadas());
         model.addAttribute("habitaciones", tipoHabitacionRepository.listarTiposHabitacion());
         return "dotadas_nuevo";
     }

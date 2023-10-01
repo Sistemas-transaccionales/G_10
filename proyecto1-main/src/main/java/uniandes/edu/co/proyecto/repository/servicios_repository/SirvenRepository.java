@@ -1,5 +1,7 @@
 package uniandes.edu.co.proyecto.repository.servicios_repository;
 
+import java.util.Collection;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -10,6 +12,9 @@ import uniandes.edu.co.proyecto.model.primaryKeys.SirvenPK;
 import uniandes.edu.co.proyecto.model.servicios.Sirven;
 
 public interface SirvenRepository extends JpaRepository<Sirven, SirvenPK> {
+
+    @Query("SELECT * FROM sirven")
+    Collection<Sirven> listarSirven();
 
     // Método para buscar una relación Sirven por su clave compuesta
     @Query("SELECT * FROM sirven WHERE id_restaurante_bar = :id_restaurante_bar AND id_producto = :id_producto_menu")
