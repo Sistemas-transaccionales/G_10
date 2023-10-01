@@ -1,7 +1,6 @@
 package uniandes.edu.co.proyecto.repository.servicios_repository;
 
 import java.sql.Date;
-import java.sql.Time;
 import java.util.Collection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -21,24 +20,24 @@ public interface ReservaServicioRepository extends JpaRepository<ReservaServicio
         @Query(value = "SELECT * FROM reservas_servicio WHERE id_habitacion = :idHabitacion AND id_servicio = :idServicio AND fecha = :fecha AND hora_inicio = :horaInicio AND hora_fin = :horaFin AND costo = :costo", nativeQuery = true)
         ReservaServicio buscarReservaServicioPorPK(@Param("idHabitacion") int idHabitacion,
                         @Param("idServicio") int idServicio, @Param("fecha") Date fecha,
-                        @Param("horaInicio") Time horaInicio,
-                        @Param("horaFin") Time horaFin, @Param("costo") int costo);
+                        @Param("horaInicio") String horaInicio,
+                        @Param("horaFin") String horaFin, @Param("costo") int costo);
 
         // Método para insertar una nueva reserva de servicio
         @Modifying
         @Transactional
         @Query(value = "INSERT INTO reservas_servicio (id_habitacion, id_servicio, fecha, hora_inicio, hora_fin, costo) VALUES (:idHabitacion, :idServicio, :fecha, :horaInicio, :horaFin, :costo)", nativeQuery = true)
         void insertarReservaServicio(@Param("idHabitacion") int idHabitacion, @Param("idServicio") int idServicio,
-                        @Param("fecha") Date fecha, @Param("horaInicio") Time horaInicio,
-                        @Param("horaFin") Time horaFin, @Param("costo") int costo);
+                        @Param("fecha") Date fecha, @Param("horaInicio") String horaInicio,
+                        @Param("horaFin") String horaFin, @Param("costo") int costo);
 
         // Método para actualizar una reserva de servicio
         @Modifying
         @Transactional
         @Query(value = "UPDATE reservas_servicio SET fecha = :fecha, hora_inicio = :horaInicio, hora_fin = :horaFin, costo = :costo WHERE id_habitacion = :idHabitacion AND id_servicio = :idServicio AND fecha = :fecha, hora_inicio = :horaInicio, hora_fin = :horaFin", nativeQuery = true)
         void actualizarReservaServicio(@Param("idHabitacion") int idHabitacion, @Param("idServicio") int idServicio,
-                        @Param("fecha") Date fecha, @Param("horaInicio") Time horaInicio,
-                        @Param("horaFin") Time horaFin,
+                        @Param("fecha") Date fecha, @Param("horaInicio") String horaInicio,
+                        @Param("horaFin") String horaFin,
                         @Param("costo") int costo);
 
         // Método para eliminar una reserva de servicio por su clave primaria (pk)
@@ -46,6 +45,6 @@ public interface ReservaServicioRepository extends JpaRepository<ReservaServicio
         @Transactional
         @Query(value = "DELETE FROM reservas_servicio WHERE id_habitacion = :idHabitacion AND id_servicio = :idServicio AND fecha = :fecha AND hora_inicio = :horaInicio AND hora_fin = :horaFin AND costo = :costo", nativeQuery = true)
         void eliminarReservaServicioPorPK(@Param("idHabitacion") int idHabitacion, @Param("idServicio") int idServicio,
-                        @Param("fecha") Date fecha, @Param("horaInicio") Time horaInicio,
-                        @Param("horaFin") Time horaFin, @Param("costo") int costo);
+                        @Param("fecha") Date fecha, @Param("horaInicio") String horaInicio,
+                        @Param("horaFin") String horaFin, @Param("costo") int costo);
 }

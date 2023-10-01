@@ -1,7 +1,5 @@
 package uniandes.edu.co.proyecto.repository.servicios_repository;
 
-import java.sql.Time;
-
 import java.util.Collection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -25,7 +23,7 @@ public interface GimnasioRepository extends JpaRepository<Gimnasio, Integer> {
         @Transactional
         @Query(value = "INSERT INTO servicios (id, tipo, nombre) VALUES (id_servicios.NEXTVAL, :tipo, :nombre); INSERT INTO gimnasios (id, hora_apertura, hora_clausura, capacidad) VALUES (id_servicios.CURRVAL, :horaApertura, :horaClausura, :capacidad)", nativeQuery = true)
         void insertarGimnasio(@Param("tipo") int tipo, @Param("nombre") String nombre,
-                        @Param("horaApertura") Time horaApertura, @Param("horaClausura") Time horaClausura,
+                        @Param("horaApertura") String horaApertura, @Param("horaClausura") String horaClausura,
                         @Param("capacidad") Integer capacidad);
 
         // Método para actualizar un gimnasio
@@ -33,7 +31,7 @@ public interface GimnasioRepository extends JpaRepository<Gimnasio, Integer> {
         @Transactional
         @Query(value = "UPDATE servicios SET nombre = :nombre WHERE id = :id; UPDATE gimnasios SET hora_apertura = :horaApertura, hora_clausura = :horaClausura, capacidad = :capacidad WHERE id=:id", nativeQuery = true)
         void actualizarGimnasio(@Param("id") int id, @Param("nombre") String nombre,
-                        @Param("horaApertura") Time horaApertura, @Param("horaClausura") Time horaClausura,
+                        @Param("horaApertura") String horaApertura, @Param("horaClausura") String horaClausura,
                         @Param("capacidad") Integer capacidad);
 
         // Método para eliminar un gimnasio por su id

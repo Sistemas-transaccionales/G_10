@@ -1,7 +1,6 @@
 package uniandes.edu.co.proyecto.model;
 
 import java.sql.Date;
-import java.sql.Time;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,7 +27,7 @@ public class CheckIn {
     private Usuario id_usuario;
 
     private Date fecha;
-    private Time hora;
+    private String hora;
 
     public CheckIn() {
         ;
@@ -40,7 +39,7 @@ public class CheckIn {
      * @param fecha
      * @param hora
      */
-    public CheckIn(Habitacion id_habitacion, Usuario id_usuario, Date fecha, Time hora) {
+    public CheckIn(Habitacion id_habitacion, Usuario id_usuario, Date fecha, String hora) {
         this.id_habitacion = id_habitacion;
         this.id_usuario = id_usuario;
         this.fecha = fecha;
@@ -106,14 +105,14 @@ public class CheckIn {
     /**
      * @return the hora
      */
-    public Time getHora() {
+    public String getHora() {
         return hora;
     }
 
     /**
      * @param hora the hora to set
      */
-    public void setHora(Time hora) {
+    public void setHora(String hora) {
         this.hora = hora;
     }
 

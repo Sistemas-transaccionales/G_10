@@ -2,7 +2,6 @@ package uniandes.edu.co.proyecto.model.primaryKeys;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.sql.Time;
 
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
@@ -22,8 +21,8 @@ public class ReservaServicioPK implements Serializable {
     private Servicio id_servicio;
 
     private Date fecha;
-    private Time hora_inicio;
-    private Time hora_fin;
+    private String hora_inicio;
+    private String hora_fin;
     private Integer costo;
 
     public ReservaServicioPK() {
@@ -38,8 +37,8 @@ public class ReservaServicioPK implements Serializable {
      * @param hora_fin
      * @param costo
      */
-    public ReservaServicioPK(Habitacion id_habitacion, Servicio id_servicio, Date fecha, Time hora_inicio,
-            Time hora_fin, Integer costo) {
+    public ReservaServicioPK(Habitacion id_habitacion, Servicio id_servicio, Date fecha, String hora_inicio,
+            String hora_fin, Integer costo) {
         this.id_habitacion = id_habitacion;
         this.id_servicio = id_servicio;
         this.fecha = fecha;
@@ -93,28 +92,28 @@ public class ReservaServicioPK implements Serializable {
     /**
      * @return the hora_inicio
      */
-    public Time getHora_inicio() {
+    public String getHora_inicio() {
         return hora_inicio;
     }
 
     /**
      * @param hora_inicio the hora_inicio to set
      */
-    public void setHora_inicio(Time hora_inicio) {
+    public void setHora_inicio(String hora_inicio) {
         this.hora_inicio = hora_inicio;
     }
 
     /**
      * @return the hora_fin
      */
-    public Time getHora_fin() {
+    public String getHora_fin() {
         return hora_fin;
     }
 
     /**
      * @param hora_fin the hora_fin to set
      */
-    public void setHora_fin(Time hora_fin) {
+    public void setHora_fin(String hora_fin) {
         this.hora_fin = hora_fin;
     }
 

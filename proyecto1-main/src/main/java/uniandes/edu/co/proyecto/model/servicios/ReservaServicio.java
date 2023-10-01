@@ -1,7 +1,6 @@
 package uniandes.edu.co.proyecto.model.servicios;
 
 import java.sql.Date;
-import java.sql.Time;
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -20,7 +19,8 @@ public class ReservaServicio {
         ;
     }
 
-    public ReservaServicio(Habitacion id_habitacion, Servicio id_servicio, Date fecha, Time hora_inicio, Time hora_fin,
+    public ReservaServicio(Habitacion id_habitacion, Servicio id_servicio, Date fecha, String hora_inicio,
+            String hora_fin,
             Integer costo) {
         this.pk = new ReservaServicioPK(id_habitacion, id_servicio, fecha, hora_inicio, hora_fin, costo);
     }

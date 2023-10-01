@@ -1,7 +1,6 @@
 package uniandes.edu.co.proyecto.controller;
 
 import java.sql.Date;
-import java.sql.Time;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,7 +40,7 @@ public class CheckInController {
     @PostMapping("/check_ins/new/save")
     public String checkInGuardar(@ModelAttribute("id_habitacion") int id_habitacion,
             @ModelAttribute("id_usuario") Usuario usuario, @ModelAttribute("fecha_entrada") Date fecha_entrada,
-            @ModelAttribute("fecha_salida") Date fecha_salida, @ModelAttribute("hora_salida") Time hora_salida,
+            @ModelAttribute("fecha_salida") Date fecha_salida, @ModelAttribute("hora_salida") String hora_salida,
             @ModelAttribute("ingresos") int ingresos) {
 
         ReservaHabitacion reservaHabitacion = reservaHabitacionRepository.buscarReservaHabitacionPorPK(id_habitacion,
