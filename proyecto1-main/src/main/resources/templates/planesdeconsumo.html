@@ -20,18 +20,18 @@
                     <th>Número máximo de noches</th>
                 </tr>
             </thead>
-            <th:block th:each="plan_consumo:${planes_consumo}">
+            <th:block th:each="planconsumo:${plan_consumo}">
                 <tr>
-                    <td th:text="${plan_consumo.id}"></td>
-                    <td th:text="${plan_consumo.tipo_plan}"></td>
-                    <td th:text="${plan_consumo.tasa}"></td>
-                    <td th:text="${plan_consumo.min_noches}"></td>
-                    <td th:text="${plan_consumo.max_noches}"></td>
+                    <td th:text="${planconsumo.id}"></td>
+                    <td th:text="${planconsumo.tipo_plan}"></td>
+                    <td th:text="${planconsumo.tasa}"></td>
+                    <td th:text="${planconsumo.min_noches}"></td>
+                    <td th:text="${planconsumo.max_noches}"></td>
                     <td>
-                        <a th:href="@{planes_consumo/{id}/edit(id=${plan_consumo.id})}">
+                        <a th:href="@{planconsumo/{id}/edit(id=${planconsumo.id})}">
                             Editar
                         </a>
-                        <a th:href="@{planes_consumo/{id}/delete(id=${plan_consumo.id})}"
+                        <a th:href="@{planconsumo/{id}/delete(id=${planconsumo.id})}"
                         onclick="return confirm('¿Estas seguro de borrar este plan?')">
                             Borrar
                         </a>

@@ -14,28 +14,28 @@ import uniandes.edu.co.proyecto.model.CuentaEstadia;
 public interface CheckInRepository extends JpaRepository<CheckIn, ReservaHabitacion> {
 
     // Método para listar todos los check-ins
-    @Query(value = "SELECT * FROM check_ins", nativeQuery = true)
+    @Query(value = "SELECT * FROM check_in", nativeQuery = true)
     Collection<CheckIn> listarCheckIns();
 
     // Método para buscar un check-in por su reserva de habitación asociada
-    @Query(value = "SELECT * FROM check_ins WHERE id_reserva = :reserva", nativeQuery = true)
+    @Query(value = "SELECT * FROM check_in WHERE id_reserva = :reserva", nativeQuery = true)
     CheckIn buscarCheckInPorReserva(@Param("reserva") ReservaHabitacion reserva);
 
     // Método para insertar un nuevo check-in
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO check_ins (id_reserva, hora_llegada, id_cuenta) VALUES (:reserva, :horaLlegada, :cuenta)", nativeQuery = true)
+    @Query(value = "INSERT INTO check_in (id_reserva, hora_llegada, id_cuenta) VALUES (:reserva, :horaLlegada, :cuenta)", nativeQuery = true)
     void insertarCheckIn(@Param("reserva") ReservaHabitacion reserva, @Param("horaLlegada") Time horaLlegada, @Param("cuenta") CuentaEstadia cuenta);
 
     // Método para actualizar un check-in
     @Modifying
     @Transactional
-    @Query(value = "UPDATE check_ins SET hora_llegada = :horaLlegada, id_cuenta = :cuenta WHERE id_reserva = :reserva", nativeQuery = true)
+    @Query(value = "UPDATE check_in SET hora_llegada = :horaLlegada, id_cuenta = :cuenta WHERE id_reserva = :reserva", nativeQuery = true)
     void actualizarCheckIn(@Param("reserva") ReservaHabitacion reserva, @Param("horaLlegada") Time horaLlegada, @Param("cuenta") CuentaEstadia cuenta);
 
     // Método para eliminar un check-in por su reserva de habitación asociada
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM check_ins WHERE id_reserva = :reserva", nativeQuery = true)
+    @Query(value = "DELETE FROM check_in WHERE id_reserva = :reserva", nativeQuery = true)
     void eliminarCheckInPorReserva(@Param("reserva") ReservaHabitacion reserva);
 }

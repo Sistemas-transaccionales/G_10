@@ -13,28 +13,28 @@ import uniandes.edu.co.proyecto.model.ReservaHabitacion;
 public interface CheckOutRepository extends JpaRepository<CheckOut, ReservaHabitacion> {
 
     // Método para listar todos los check-outs
-    @Query(value = "SELECT * FROM check_outs", nativeQuery = true)
+    @Query(value = "SELECT * FROM check_out", nativeQuery = true)
     Collection<CheckOut> listarCheckOuts();
 
     // Método para buscar un check-out por su reserva de habitación asociada
-    @Query(value = "SELECT * FROM check_outs WHERE id_reserva = :reserva", nativeQuery = true)
+    @Query(value = "SELECT * FROM check_out WHERE id_reserva = :reserva", nativeQuery = true)
     CheckOut buscarCheckOutPorReserva(@Param("reserva") ReservaHabitacion reserva);
 
     // Método para insertar un nuevo check-out
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO check_outs (id_reserva, hora_salida, ingresos_totales) VALUES (:reserva, :horaSalida, :ingresosTotales)", nativeQuery = true)
+    @Query(value = "INSERT INTO check_out (id_reserva, hora_salida, ingresos_totales) VALUES (:reserva, :horaSalida, :ingresosTotales)", nativeQuery = true)
     void insertarCheckOut(@Param("reserva") ReservaHabitacion reserva, @Param("horaSalida") Time horaSalida, @Param("ingresosTotales") Integer ingresosTotales);
 
     // Método para actualizar un check-out
     @Modifying
     @Transactional
-    @Query(value = "UPDATE check_outs SET hora_salida = :horaSalida, ingresos_totales = :ingresosTotales WHERE id_reserva = :reserva", nativeQuery = true)
+    @Query(value = "UPDATE check_out SET hora_salida = :horaSalida, ingresos_totales = :ingresosTotales WHERE id_reserva = :reserva", nativeQuery = true)
     void actualizarCheckOut(@Param("reserva") ReservaHabitacion reserva, @Param("horaSalida") Time horaSalida, @Param("ingresosTotales") Integer ingresosTotales);
 
     // Método para eliminar un check-out por su reserva de habitación asociada
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM check_outs WHERE id_reserva = :reserva", nativeQuery = true)
+    @Query(value = "DELETE FROM check_out WHERE id_reserva = :reserva", nativeQuery = true)
     void eliminarCheckOutPorReserva(@Param("reserva") ReservaHabitacion reserva);
 }
