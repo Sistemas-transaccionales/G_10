@@ -1,6 +1,5 @@
 package uniandes.edu.co.proyecto.repository.servicios_repository;
 
-
 import java.util.Collection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -23,13 +22,17 @@ public interface LavanderiaRepository extends JpaRepository<Lavanderia, Integer>
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO lavanderia (tipo, nombre, tipo_prenda, num_prendas, costo) VALUES (:tipo, :nombre, :tipoPrenda, :numPrendas, :costo)", nativeQuery = true)
-    void insertarServicioLavanderia(@Param("tipo") String tipo, @Param("nombre") String nombre, @Param("tipoPrenda") String tipoPrenda, @Param("numPrendas") Integer numPrendas, @Param("costo") Integer costo);
+    void insertarServicioLavanderia(@Param("tipo") int tipo, @Param("nombre") String nombre,
+            @Param("tipoPrenda") String tipoPrenda, @Param("numPrendas") Integer numPrendas,
+            @Param("costo") Integer costo);
 
     // Método para actualizar un servicio de lavandería
     @Modifying
     @Transactional
-    @Query(value = "UPDATE lavanderia SET tipo = :tipo, nombre = :nombre, tipo_prenda = :tipoPrenda, num_prendas = :numPrendas, costo = :costo WHERE id = :id", nativeQuery = true)
-    void actualizarServicioLavanderia(@Param("id") int id, @Param("tipo") String tipo, @Param("nombre") String nombre, @Param("tipoPrenda") String tipoPrenda, @Param("numPrendas") Integer numPrendas, @Param("costo") Integer costo);
+    @Query(value = "UPDATE lavanderia SET id = :id, nombre = :nombre, tipo_prenda = :tipoPrenda, num_prendas = :numPrendas, costo = :costo WHERE id = :id", nativeQuery = true)
+    void actualizarServicioLavanderia(@Param("id") int id, @Param("nombre") String nombre,
+            @Param("tipoPrenda") String tipoPrenda, @Param("numPrendas") Integer numPrendas,
+            @Param("costo") Integer costo);
 
     // Método para eliminar un servicio de lavandería por su id
     @Modifying

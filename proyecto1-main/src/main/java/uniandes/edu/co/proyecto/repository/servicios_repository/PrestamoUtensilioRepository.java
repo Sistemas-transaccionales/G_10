@@ -23,13 +23,15 @@ public interface PrestamoUtensilioRepository extends JpaRepository<PrestamoUtens
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO prestamo_utensilio (tipo, nombre, utensilio, costo_danio) VALUES (:tipo, :nombre, :utensilio, :costo_danio)", nativeQuery = true)
-    void insertarPrestamoUtensilio(@Param("tipo") String tipo, @Param("nombre") String nombre, @Param("utensilio") String utensilio, @Param("costo_danio") Integer costo_danio);
+    void insertarPrestamoUtensilio(@Param("tipo") int tipo, @Param("nombre") String nombre,
+            @Param("utensilio") String utensilio, @Param("costo_danio") Integer costo_danio);
 
     // Método para actualizar un préstamo de utensilio
     @Modifying
     @Transactional
-    @Query(value = "UPDATE prestamo_utensilio SET tipo = :tipo, nombre = :nombre, utensilio = :utensilio, costo_danio = :costo_danio WHERE id = :id", nativeQuery = true)
-    void actualizarPrestamoUtensilio(@Param("id") int id, @Param("tipo") String tipo, @Param("nombre") String nombre, @Param("utensilio") String utensilio, @Param("costo_danio") Integer costo_danio);
+    @Query(value = "UPDATE prestamo_utensilio SET nombre = :nombre, utensilio = :utensilio, costo_danio = :costo_danio WHERE id = :id", nativeQuery = true)
+    void actualizarPrestamoUtensilio(@Param("id") int id, @Param("nombre") String nombre,
+            @Param("utensilio") String utensilio, @Param("costo_danio") Integer costo_danio);
 
     // Método para eliminar un préstamo de utensilio por su id
     @Modifying

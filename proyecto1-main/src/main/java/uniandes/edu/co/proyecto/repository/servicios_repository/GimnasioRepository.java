@@ -24,13 +24,17 @@ public interface GimnasioRepository extends JpaRepository<Gimnasio, Integer> {
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO gimnasios (tipo, nombre, hora_apertura, hora_clausura, capacidad) VALUES (:tipo, :nombre, :horaApertura, :horaClausura, :capacidad)", nativeQuery = true)
-    void insertarGimnasio(@Param("tipo") String tipo, @Param("nombre") String nombre, @Param("horaApertura") Time horaApertura, @Param("horaClausura") Time horaClausura, @Param("capacidad") Integer capacidad);
+    void insertarGimnasio(@Param("tipo") int tipo, @Param("nombre") String nombre,
+            @Param("horaApertura") Time horaApertura, @Param("horaClausura") Time horaClausura,
+            @Param("capacidad") Integer capacidad);
 
     // Método para actualizar un gimnasio
     @Modifying
     @Transactional
     @Query(value = "UPDATE gimnasios SET tipo = :tipo, nombre = :nombre, hora_apertura = :horaApertura, hora_clausura = :horaClausura, capacidad = :capacidad WHERE id = :id", nativeQuery = true)
-    void actualizarGimnasio(@Param("id") int id, @Param("tipo") String tipo, @Param("nombre") String nombre, @Param("horaApertura") Time horaApertura, @Param("horaClausura") Time horaClausura, @Param("capacidad") Integer capacidad);
+    void actualizarGimnasio(@Param("id") int id, @Param("tipo") String tipo, @Param("nombre") String nombre,
+            @Param("horaApertura") Time horaApertura, @Param("horaClausura") Time horaClausura,
+            @Param("capacidad") Integer capacidad);
 
     // Método para eliminar un gimnasio por su id
     @Modifying

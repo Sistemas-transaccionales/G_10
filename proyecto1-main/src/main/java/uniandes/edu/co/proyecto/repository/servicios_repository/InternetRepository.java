@@ -1,4 +1,5 @@
 package uniandes.edu.co.proyecto.repository.servicios_repository;
+
 import java.util.Collection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -21,13 +22,15 @@ public interface InternetRepository extends JpaRepository<Internet, Integer> {
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO internet (tipo, nombre, capacidad) VALUES (:tipo, :nombre, :capacidad)", nativeQuery = true)
-    void insertarServicioInternet(@Param("tipo") String tipo, @Param("nombre") String nombre, @Param("capacidad") Integer capacidad);
+    void insertarServicioInternet(@Param("tipo") int tipo, @Param("nombre") String nombre,
+            @Param("capacidad") Integer capacidad);
 
     // Método para actualizar un servicio de Internet
     @Modifying
     @Transactional
-    @Query(value = "UPDATE internet SET tipo = :tipo, nombre = :nombre, capacidad = :capacidad WHERE id = :id", nativeQuery = true)
-    void actualizarServicioInternet(@Param("id") int id, @Param("tipo") String tipo, @Param("nombre") String nombre, @Param("capacidad") Integer capacidad);
+    @Query(value = "UPDATE internet SET nombre = :nombre, capacidad = :capacidad WHERE id = :id", nativeQuery = true)
+    void actualizarServicioInternet(@Param("id") int id, @Param("nombre") String nombre,
+            @Param("capacidad") Integer capacidad);
 
     // Método para eliminar un servicio de Internet por su id
     @Modifying

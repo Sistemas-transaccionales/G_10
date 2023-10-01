@@ -22,13 +22,15 @@ public interface PiscinaRepository extends JpaRepository<Piscina, Integer> {
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO piscina (tipo, nombre, capacidad, area, profundidad) VALUES (:tipo, :nombre, :capacidad, :area, :profundidad)", nativeQuery = true)
-    void insertarPiscina(@Param("tipo") String tipo, @Param("nombre") String nombre, @Param("capacidad") Integer capacidad, @Param("area") Float area, @Param("profundidad") Float profundidad);
+    void insertarPiscina(@Param("tipo") int tipo, @Param("nombre") String nombre, @Param("capacidad") Integer capacidad,
+            @Param("area") Float area, @Param("profundidad") Float profundidad);
 
     // Método para actualizar una piscina
     @Modifying
     @Transactional
-    @Query(value = "UPDATE piscina SET tipo = :tipo, nombre = :nombre, capacidad = :capacidad, area = :area, profundidad = :profundidad WHERE id = :id", nativeQuery = true)
-    void actualizarPiscina(@Param("id") int id, @Param("tipo") String tipo, @Param("nombre") String nombre, @Param("capacidad") Integer capacidad, @Param("area") Float area, @Param("profundidad") Float profundidad);
+    @Query(value = "UPDATE piscina SET nombre = :nombre, capacidad = :capacidad, area = :area, profundidad = :profundidad WHERE id = :id", nativeQuery = true)
+    void actualizarPiscina(@Param("id") int id, @Param("nombre") String nombre,
+            @Param("capacidad") Integer capacidad, @Param("area") Float area, @Param("profundidad") Float profundidad);
 
     // Método para eliminar una piscina por su id
     @Modifying
