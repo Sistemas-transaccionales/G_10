@@ -6,6 +6,7 @@ import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import uniandes.edu.co.proyecto.model.primaryKeys.ReservaHabitacionPK;
 
@@ -23,18 +24,23 @@ public class ReservaHabitacion {
     private Integer num_personas;
     private Integer costo;
 
+    @OneToOne
+    @JoinColumn(name = "id_cuenta_estadia", referencedColumnName = "id")
+    private CuentaEstadia id_cuenta_estadia;
+
     public ReservaHabitacion() {
         ;
     }
 
     public ReservaHabitacion(Habitacion id_habitacion, Usuario id_usuario, Date fecha_entrada, Date fecha_salida,
-            PlanConsumo plan_consumo, Integer num_personas, Integer costo) {
+            PlanConsumo plan_consumo, Integer num_personas, Integer costo, CuentaEstadia id_cuenta_estadia) {
 
         this.pk = new ReservaHabitacionPK(id_habitacion, id_usuario, fecha_entrada, fecha_salida);
 
         this.plan_consumo = plan_consumo;
         this.num_personas = num_personas;
         this.costo = costo;
+        this.id_cuenta_estadia = id_cuenta_estadia;
     }
 
     /**
@@ -91,6 +97,20 @@ public class ReservaHabitacion {
      */
     public void setCosto(Integer costo) {
         this.costo = costo;
+    }
+
+    /**
+     * @return the id_cuenta_estadia
+     */
+    public CuentaEstadia getId_cuenta_estadia() {
+        return id_cuenta_estadia;
+    }
+
+    /**
+     * @param id_cuenta_estadia the id_cuenta_estadia to set
+     */
+    public void setId_cuenta_estadia(CuentaEstadia id_cuenta_estadia) {
+        this.id_cuenta_estadia = id_cuenta_estadia;
     }
 
 }

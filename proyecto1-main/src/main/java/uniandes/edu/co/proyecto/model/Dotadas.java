@@ -16,8 +16,8 @@ public class Dotadas {
         ;
     }
 
-    public Dotadas(Habitacion id_habtacion, Dotacion id_dotacion) {
-        this.pk = new DotadasPK(id_habtacion, id_dotacion);
+    public Dotadas(TipoHabitacion id_tipo_habitacion, Dotacion id_dotacion) {
+        this.pk = new DotadasPK(id_tipo_habitacion, id_dotacion);
     }
 
     /**

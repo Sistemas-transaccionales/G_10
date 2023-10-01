@@ -71,7 +71,7 @@ public class CheckInController {
             @PathVariable("fin") Date fin, @PathVariable("fin") Date fout, @ModelAttribute CheckIn checkIn) {
         ReservaHabitacion reserva = reservaHabitacionRepository.buscarReservaHabitacionPorPK(hab, numDoc, tipoDoc, fin,
                 fin);
-        checkInRepository.actualizarCheckIn(reserva, checkIn.getHora_llegada(),
+        checkInRepository.actualizarCheckIn(reserva, checkIn.getHora(),
                 checkIn.getId_cuenta());
         return "redirect:/check_ins";
     }

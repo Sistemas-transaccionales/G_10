@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -14,6 +16,9 @@ public class CuentaEstadia {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @OneToOne
+    @JoinColumn(name = "id_habitacion", referencedColumnName = "id")
+    private Habitacion id_habitacion;
     private Integer monto;
     private Boolean abierta;
 
@@ -21,7 +26,8 @@ public class CuentaEstadia {
         ;
     }
 
-    public CuentaEstadia(Integer monto, Boolean abierta) {
+    public CuentaEstadia(Habitacion id_habitacion, Integer monto, Boolean abierta) {
+        this.id_habitacion = id_habitacion;
         this.monto = monto;
         this.abierta = abierta;
     }
@@ -66,6 +72,20 @@ public class CuentaEstadia {
      */
     public void setAbierta(Boolean abierta) {
         this.abierta = abierta;
+    }
+
+    /**
+     * @return the id_habitacion
+     */
+    public Habitacion getId_habitacion() {
+        return id_habitacion;
+    }
+
+    /**
+     * @param id_habitacion the id_habitacion to set
+     */
+    public void setId_habitacion(Habitacion id_habitacion) {
+        this.id_habitacion = id_habitacion;
     }
 
 }

@@ -1,8 +1,11 @@
 package uniandes.edu.co.proyecto.model;
 
+import java.sql.Date;
 import java.sql.Time;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
@@ -13,65 +16,105 @@ import jakarta.persistence.Table;
 public class CheckIn {
 
     @Id
-    @OneToOne
-    @JoinColumn(name = "id_reserva", referencedColumnName = "id")
-    private ReservaHabitacion id_reserva;
-
-    private Time hora_llegada;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
     @OneToOne
-    @JoinColumn(name = "id_cuenta", referencedColumnName = "id")
-    private CuentaEstadia id_cuenta;
+    @JoinColumn(name = "id_habitacion", referencedColumnName = "id")
+    private Habitacion id_habitacion;
+
+    @OneToOne
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id")
+    private Usuario id_usuario;
+
+    private Date fecha;
+    private Time hora;
 
     public CheckIn() {
         ;
     }
 
-    public CheckIn(ReservaHabitacion id_reserva, Time hora_llegada, CuentaEstadia id_cuenta) {
-        this.id_reserva = id_reserva;
-        this.hora_llegada = hora_llegada;
-        this.id_cuenta = id_cuenta;
+    /**
+     * @param id_habitacion
+     * @param id_usuario
+     * @param fecha
+     * @param hora
+     */
+    public CheckIn(Habitacion id_habitacion, Usuario id_usuario, Date fecha, Time hora) {
+        this.id_habitacion = id_habitacion;
+        this.id_usuario = id_usuario;
+        this.fecha = fecha;
+        this.hora = hora;
     }
 
     /**
-     * @return the id_reserva
+     * @return the id
      */
-    public ReservaHabitacion getId_reserva() {
-        return id_reserva;
+    public Integer getId() {
+        return id;
     }
 
     /**
-     * @param id_reserva the id_reserva to set
+     * @param id the id to set
      */
-    public void setId_reserva(ReservaHabitacion id_reserva) {
-        this.id_reserva = id_reserva;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     /**
-     * @return the hora_llegada
+     * @return the id_habitacion
      */
-    public Time getHora_llegada() {
-        return hora_llegada;
+    public Habitacion getId_habitacion() {
+        return id_habitacion;
     }
 
     /**
-     * @param hora_llegada the hora_llegada to set
+     * @param id_habitacion the id_habitacion to set
      */
-    public void setHora_llegada(Time hora_llegada) {
-        this.hora_llegada = hora_llegada;
+    public void setId_habitacion(Habitacion id_habitacion) {
+        this.id_habitacion = id_habitacion;
     }
 
     /**
-     * @return the id_cuenta
+     * @return the id_usuario
      */
-    public CuentaEstadia getId_cuenta() {
-        return id_cuenta;
+    public Usuario getId_usuario() {
+        return id_usuario;
     }
 
     /**
-     * @param id_cuenta the id_cuenta to set
+     * @param id_usuario the id_usuario to set
      */
-    public void setId_cuenta(CuentaEstadia id_cuenta) {
-        this.id_cuenta = id_cuenta;
+    public void setId_usuario(Usuario id_usuario) {
+        this.id_usuario = id_usuario;
     }
+
+    /**
+     * @return the fecha
+     */
+    public Date getFecha() {
+        return fecha;
+    }
+
+    /**
+     * @param fecha the fecha to set
+     */
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    /**
+     * @return the hora
+     */
+    public Time getHora() {
+        return hora;
+    }
+
+    /**
+     * @param hora the hora to set
+     */
+    public void setHora(Time hora) {
+        this.hora = hora;
+    }
+
 }

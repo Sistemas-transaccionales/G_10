@@ -1,5 +1,6 @@
 package uniandes.edu.co.proyecto.model;
 
+import java.sql.Date;
 import java.sql.Time;
 
 import jakarta.persistence.Entity;
@@ -14,48 +15,70 @@ public class CheckOut {
 
     @Id
     @OneToOne
-    @JoinColumn(name = "id_reserva", referencedColumnName = "id")
-    private ReservaHabitacion id_reserva;
+    @JoinColumn(name = "id_check_in", referencedColumnName = "id")
+    private CheckIn id_check_in;
 
-    private Time hora_salida;
+    private Date fecha;
+    private Time hora;
     private Integer ingresos_totales;
 
     public CheckOut() {
         ;
     }
 
-    public CheckOut(ReservaHabitacion id_reserva, Time hora_salida, Integer ingresos_totales_hotel) {
-        this.id_reserva = id_reserva;
-        this.hora_salida = hora_salida;
-        this.ingresos_totales = ingresos_totales_hotel;
+    /**
+     * @param id_check_in
+     * @param fecha
+     * @param hora
+     * @param ingresos_totales
+     */
+    public CheckOut(CheckIn id_check_in, Date fecha, Time hora, Integer ingresos_totales) {
+        this.id_check_in = id_check_in;
+        this.fecha = fecha;
+        this.hora = hora;
+        this.ingresos_totales = ingresos_totales;
     }
 
     /**
-     * @return the id_reserva
+     * @return the id_check_in
      */
-    public ReservaHabitacion getId_reserva() {
-        return id_reserva;
+    public CheckIn getId_check_in() {
+        return id_check_in;
     }
 
     /**
-     * @param id_reserva the id_reserva to set
+     * @param id_check_in the id_check_in to set
      */
-    public void setId_reserva(ReservaHabitacion id_reserva) {
-        this.id_reserva = id_reserva;
+    public void setId_check_in(CheckIn id_check_in) {
+        this.id_check_in = id_check_in;
     }
 
     /**
-     * @return the hora_salida
+     * @return the fecha
      */
-    public Time getHora_salida() {
-        return hora_salida;
+    public Date getFecha() {
+        return fecha;
     }
 
     /**
-     * @param hora_salida the hora_salida to set
+     * @param fecha the fecha to set
      */
-    public void setHora_salida(Time hora_salida) {
-        this.hora_salida = hora_salida;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    /**
+     * @return the hora
+     */
+    public Time getHora() {
+        return hora;
+    }
+
+    /**
+     * @param hora the hora to set
+     */
+    public void setHora(Time hora) {
+        this.hora = hora;
     }
 
     /**
