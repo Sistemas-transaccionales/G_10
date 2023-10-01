@@ -7,8 +7,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
-
-import uniandes.edu.co.proyecto.model.servicios.Internet;
 import uniandes.edu.co.proyecto.model.servicios.Spa;
 
 public interface SpaRepository extends JpaRepository<Spa, Integer> {
