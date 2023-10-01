@@ -21,14 +21,16 @@ public interface TipoHabitacionRepository extends JpaRepository<TipoHabitacion, 
     // Método para insertar un nuevo tipo de habitación
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO tipos_habitacion (nombre, costo_por_noche, capacidad) VALUES (:nombre, :costoPorNoche, :capacidad)", nativeQuery = true)
-    void insertarTipoHabitacion(@Param("nombre") String nombre, @Param("costoPorNoche") int costoPorNoche, @Param("capacidad") int capacidad);
+    @Query(value = "INSERT INTO tipos_habitacion (id, nombre, costo_por_noche, capacidad) VALUES (id_tipos_habitacion.NEXTVAL, :nombre, :costo_por_noche, :capacidad)", nativeQuery = true)
+    void insertarTipoHabitacion(@Param("nombre") String nombre, @Param("costo_por_noche") int costo_por_noche,
+            @Param("capacidad") int capacidad);
 
     // Método para actualizar un tipo de habitación
     @Modifying
     @Transactional
-    @Query(value = "UPDATE tipos_habitacion SET nombre = :nombre, costo_por_noche = :costoPorNoche, capacidad = :capacidad WHERE id = :id", nativeQuery = true)
-    void actualizarTipoHabitacion(@Param("id") int id, @Param("nombre") String nombre, @Param("costoPorNoche") int costoPorNoche, @Param("capacidad") int capacidad);
+    @Query(value = "UPDATE tipos_habitacion SET nombre = :nombre, costo_por_noche = :costo_por_noche, capacidad = :capacidad WHERE id = :id", nativeQuery = true)
+    void actualizarTipoHabitacion(@Param("id") int id, @Param("nombre") String nombre,
+            @Param("costo_por_noche") int costoPorNoche, @Param("capacidad") int capacidad);
 
     // Método para eliminar un tipo de habitación por su id
     @Modifying

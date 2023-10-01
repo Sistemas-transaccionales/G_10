@@ -15,24 +15,29 @@ public interface DotadasRepository extends JpaRepository<Dotadas, Integer> {
     Collection<Dotadas> listarDotadas();
 
     // Método para buscar una relación Dotadas por su id
-    @Query(value = "SELECT * FROM dotadas WHERE id_habitacion = :id_habitacion AND id_dotacion = :id_dotacion", nativeQuery = true)
-    Dotadas buscarDotadasPorId(@Param("id_habitacion") int idHabitacion, @Param("id_dotacion") int idDotacion);
+    @Query(value = "SELECT * FROM dotadas WHERE id_tipo_habitacion = :id_tipo_habitacion AND id_dotacion = :id_dotacion", nativeQuery = true)
+    Dotadas buscarDotadasPorId(@Param("id_tipo_habitacion") int id_tipo_habitacion,
+            @Param("id_dotacion") int id_dotacion);
 
     // Método para insertar una relación Dotadas
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO dotadas (id_habitacion, id_dotacion) VALUES (:id_habitacion, :id_dotacion)", nativeQuery = true)
-    void insertarDotadas(@Param("id_habitacion") int idHabitacion, @Param("id_dotacion") int idDotacion);
+    @Query(value = "INSERT INTO dotadas (id_tipo_habitacion, id_dotacion) VALUES (:id_tipo_habitacion, :id_dotacion)", nativeQuery = true)
+    void insertarDotadas(@Param("id_tipo_habitacion") int id_tipo_habitacion, @Param("id_dotacion") int id_dotacion);
 
-    // Método para actualizar una relación Dotadas
-    @Modifying
-    @Transactional
-    @Query(value = "UPDATE dotadas SET id_habitacion = :id_habitacion, id_dotacion = :id_dotacion WHERE id = :id", nativeQuery = true)
-    void actualizarDotadas(@Param("id") int id, @Param("id_habitacion") int idHabitacion, @Param("id_dotacion") int idDotacion);
+    // // Método para actualizar una relación Dotadas
+    // @Modifying
+    // @Transactional
+    // @Query(value = "UPDATE dotadas SET id_habitacion = :id_habitacion,
+    // id_dotacion = :id_dotacion WHERE id = :id", nativeQuery = true)
+    // void actualizarDotadas(@Param("id") int id, @Param("id_habitacion") int
+    // idHabitacion,
+    // @Param("id_dotacion") int idDotacion);
 
     // Método para eliminar una relación Dotadas por su id
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM dotadas WHERE id = :id", nativeQuery = true)
-    void eliminarDotadasPorId(@Param("id") int id);
+    @Query(value = "DELETE FROM dotadas WHERE id_tipo_habitacion = :id_tipo_habitacion AND id_dotacion = :id_dotacion", nativeQuery = true)
+    void eliminarDotadasPorId(@Param("id_tipo_habitacion") int id_tipo_habitacion,
+            @Param("id_dotacion") int id_dotacion);
 }
