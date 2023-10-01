@@ -11,29 +11,30 @@ import uniandes.edu.co.proyecto.model.servicios.Spa;
 
 public interface SpaRepository extends JpaRepository<Spa, Integer> {
 
-    @Query(value = "SELECT * FROM spa", nativeQuery = true)
+    @Query(value = "SELECT * FROM spas", nativeQuery = true)
     Collection<Spa> listarSpas();
 
     // Método para buscar un servicio de Spa por su nombre
-    @Query("SELECT s FROM Spa s WHERE s.id = :id")
+    @Query("SELECT * FROM spas WHERE id = :id")
     Spa buscarSpaPorId(@Param("id") int id);
 
     // Método para insertar un nuevo servicio de Spa
     @Modifying
     @Transactional
-    @Query("INSERT INTO Spa (nombre, costo, duracion) VALUES (:nombre, :costo, :duracion)")
-    void insertarSpa(@Param("nombre") String nombre, @Param("costo") Integer costo, @Param("duracion") String duracion);
+    @Query("INSERT INTO servicios (id, tipo, nombre) VALUES (id_servicios.NEXTVAL, :tipo, :nombre); NSERT INTO spas (id, costo, duracion) VALUES (id_servicios.CURRVAL, :costo, :duracion)")
+    void insertarSpa(@Param("tipo") int tipo, @Param("nombre") String nombre, @Param("costo") Integer costo,
+            @Param("duracion") String duracion);
 
     // Método para actualizar un servicio de Spa por su nombre
     @Modifying
     @Transactional
-    @Query("UPDATE Spa s SET s.nombre = :nombre, s.costo = :costo, s.duracion = :duracion WHERE s.id = :id")
+    @Query("UPDATE servicios SET nombre = :nombre WHERE id = :id; UPDATE spas SET nombre = :nombre, costo = :costo, duracion = :duracion WHERE id = :id")
     void actualizarSpa(@Param("id") int id, @Param("nombre") String nombre, @Param("costo") Integer costo,
             @Param("duracion") String duracion);
 
     // Método para eliminar un servicio de Spa por su nombre
     @Modifying
     @Transactional
-    @Query("DELETE FROM Spa s WHERE s.id = :id")
+    @Query("DELETE FROM spas WHERE id = :id")
     void eliminarSpaPorId(@Param("id") int id);
 }

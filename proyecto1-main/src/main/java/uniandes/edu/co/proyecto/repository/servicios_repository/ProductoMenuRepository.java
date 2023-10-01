@@ -1,6 +1,5 @@
 package uniandes.edu.co.proyecto.repository.servicios_repository;
 
-
 import java.util.Collection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -23,7 +22,7 @@ public interface ProductoMenuRepository extends JpaRepository<ProductoMenu, Inte
     // Método para insertar un nuevo producto del menú
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO productos_menu (nombre, costo) VALUES (:nombre, :costo)", nativeQuery = true)
+    @Query(value = "INSERT INTO productos_menu (id, nombre, costo) VALUES (id_productos_menu.NEXTVAL, :nombre, :costo)", nativeQuery = true)
     void insertarProductoMenu(@Param("nombre") String nombre, @Param("costo") String costo);
 
     // Método para actualizar un producto del menú

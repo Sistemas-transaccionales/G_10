@@ -17,24 +17,24 @@ public interface TipoServicioRepository extends JpaRepository<TipoServicio, Inte
     Collection<TipoHabitacion> listarTiposServicio();
 
     // Método para buscar un tipo de servicio por su nombre
-    @Query("SELECT ts FROM TipoServicio ts WHERE ts.id = :id")
+    @Query("SELECT * FROM tipos_servicio WHERE id = :id")
     TipoServicio buscarTipoServicioPorId(@Param("id") Integer id);
 
     // Método para insertar un nuevo tipo de servicio
     @Modifying
     @Transactional
-    @Query("INSERT INTO TipoServicio (nombre) VALUES (:nombre)")
+    @Query("INSERT INTO tipos_servicio (id, nombre) VALUES (id_tipos_servicio.NEXTVAL, :nombre)")
     void insertarTipoServicio(@Param("nombre") String nombre);
 
     // Método para actualizar un tipo de servicio por su nombre
     @Modifying
     @Transactional
-    @Query("UPDATE TipoServicio ts SET ts.nombre = :nombreNuevo WHERE ts.id = :id")
-    void actualizarTipoServicio(@Param("id") Integer id, @Param("nombreNuevo") String nombreNuevo);
+    @Query("UPDATE tipos_servicio SET nombre = :new_name WHERE id = :id")
+    void actualizarTipoServicio(@Param("id") Integer id, @Param("new_name") String new_name);
 
     // Método para eliminar un tipo de servicio por su nombre
     @Modifying
     @Transactional
-    @Query("DELETE FROM TipoServicio ts WHERE ts.id = :id")
+    @Query("DELETE FROM tipos_servicio WHERE id = :id")
     void eliminarTipoServicioPorId(@Param("id") Integer id);
 }

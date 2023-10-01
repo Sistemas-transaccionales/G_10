@@ -8,40 +8,37 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import uniandes.edu.co.proyecto.model.servicios.Salon;
-import uniandes.edu.co.proyecto.model.servicios.TipoServicio;
 
 public interface SalonRepository extends JpaRepository<Salon, Integer> {
 
-    // Método para listar todos los salones
-    @Query("SELECT s FROM Salon s")
-    Collection<Salon> listarSalones();
+        // Método para listar todos los salones
+        @Query("SELECT * FROM salones")
+        Collection<Salon> listarSalones();
 
-    // Método para buscar un salón por su ID
-    @Query("SELECT s FROM Salon s WHERE s.id = :id")
-    Salon buscarSalonPorID(@Param("id") Integer id);
+        // Método para buscar un salón por su ID
+        @Query("SELECT * FROM salones WHERE id = :id")
+        Salon buscarSalonPorID(@Param("id") Integer id);
 
-    // Método para insertar un nuevo salón
-    @Modifying
-    @Transactional
-    @Query("INSERT INTO Salon (tipo, nombre, tipo_salon, capacidad, costo_por_hora, costo_extra) "
-            + "VALUES (:tipo, :nombre, :tipoSalon, :capacidad, :costoPorHora, :costoExtra)")
-    void insertarSalon(@Param("tipo") TipoServicio tipo, @Param("nombre") String nombre,
-            @Param("tipoSalon") String tipoSalon, @Param("capacidad") Integer capacidad,
-            @Param("costoPorHora") Integer costoPorHora, @Param("costoExtra") Integer costoExtra);
+        // Método para insertar un nuevo salón
+        @Modifying
+        @Transactional
+        @Query("INSERT INTO servicios (id, tipo, nombre) VALUES (id_servicios.NEXTVAL, :tipo, :nombre); INSERT INTO salones (id, tipo_salon, capacidad, costo_por_hora, costo_extra) "
+                        + "VALUES (id_servicios.CURRVAL, :tipoSalon, :capacidad, :costoPorHora, :costoExtra)")
+        void insertarSalon(@Param("tipo") int tipo, @Param("nombre") String nombre,
+                        @Param("tipoSalon") String tipoSalon, @Param("capacidad") Integer capacidad,
+                        @Param("costoPorHora") Integer costoPorHora, @Param("costoExtra") Integer costoExtra);
 
-    // Método para actualizar un salón
-    @Modifying
-    @Transactional
-    @Query("UPDATE Salon s SET s.tipo = :tipo, s.nombre = :nombre, s.tipo_salon = :tipoSalon, "
-            + "s.capacidad = :capacidad, s.costo_por_hora = :costoPorHora, s.costo_extra = :costoExtra "
-            + "WHERE s.id = :id")
-    void actualizarSalon(@Param("id") Integer id, @Param("tipo") TipoServicio tipo, @Param("nombre") String nombre,
-            @Param("tipoSalon") String tipoSalon, @Param("capacidad") Integer capacidad,
-            @Param("costoPorHora") Integer costoPorHora, @Param("costoExtra") Integer costoExtra);
+        // Método para actualizar un salón
+        @Modifying
+        @Transactional
+        @Query("UPDATE servicios SET nombre = :nombre WHERE id = :id; UPDATE salones SET tipo_salon = :tipoSalon, capacidad = :capacidad, costo_por_hora = :costoPorHora, costo_extra = :costoExtra WHERE id = :id")
+        void actualizarSalon(@Param("id") int id, @Param("nombre") String nombre,
+                        @Param("tipoSalon") String tipoSalon, @Param("capacidad") Integer capacidad,
+                        @Param("costoPorHora") Integer costoPorHora, @Param("costoExtra") Integer costoExtra);
 
-    // Método para eliminar un salón por su ID
-    @Modifying
-    @Transactional
-    @Query("DELETE FROM Salon s WHERE s.id = :id")
-    void eliminarSalonPorID(@Param("id") Integer id);
+        // Método para eliminar un salón por su ID
+        @Modifying
+        @Transactional
+        @Query("DELETE FROM salones WHERE id = :id")
+        void eliminarSalonPorID(@Param("id") int id);
 }

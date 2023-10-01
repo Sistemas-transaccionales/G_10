@@ -11,31 +11,31 @@ import uniandes.edu.co.proyecto.model.servicios.PrestamoUtensilio;
 
 public interface PrestamoUtensilioRepository extends JpaRepository<PrestamoUtensilio, Integer> {
 
-    // Método para listar todos los préstamos de utensilios
-    @Query(value = "SELECT * FROM prestamo_utensilio", nativeQuery = true)
-    Collection<PrestamoUtensilio> listarPrestamosUtensilios();
+        // Método para listar todos los préstamos de utensilios
+        @Query(value = "SELECT * FROM prestamos_utensilios", nativeQuery = true)
+        Collection<PrestamoUtensilio> listarPrestamosUtensilios();
 
-    // Método para buscar un préstamo de utensilio por su id
-    @Query(value = "SELECT * FROM prestamo_utensilio WHERE id = :id", nativeQuery = true)
-    PrestamoUtensilio buscarPrestamoUtensilioPorId(@Param("id") int id);
+        // Método para buscar un préstamo de utensilio por su id
+        @Query(value = "SELECT * FROM prestamos_utensilios WHERE id = :id", nativeQuery = true)
+        PrestamoUtensilio buscarPrestamoUtensilioPorId(@Param("id") int id);
 
-    // Método para insertar un nuevo préstamo de utensilio
-    @Modifying
-    @Transactional
-    @Query(value = "INSERT INTO prestamo_utensilio (tipo, nombre, utensilio, costo_danio) VALUES (:tipo, :nombre, :utensilio, :costo_danio)", nativeQuery = true)
-    void insertarPrestamoUtensilio(@Param("tipo") int tipo, @Param("nombre") String nombre,
-            @Param("utensilio") String utensilio, @Param("costo_danio") Integer costo_danio);
+        // Método para insertar un nuevo préstamo de utensilio
+        @Modifying
+        @Transactional
+        @Query(value = "INSERT INTO servicios (id, tipo, nombre) VALUES (id_servicios.NEXTVAL, :tipo, :nombre); INSERT INTO prestamos_utensilios (id, utensilio, costo_danio) VALUES (id_servicios.CURRVAL, :utensilio, :costo_danio)", nativeQuery = true)
+        void insertarPrestamoUtensilio(@Param("tipo") int tipo, @Param("nombre") String nombre,
+                        @Param("utensilio") String utensilio, @Param("costo_danio") Integer costo_danio);
 
-    // Método para actualizar un préstamo de utensilio
-    @Modifying
-    @Transactional
-    @Query(value = "UPDATE prestamo_utensilio SET nombre = :nombre, utensilio = :utensilio, costo_danio = :costo_danio WHERE id = :id", nativeQuery = true)
-    void actualizarPrestamoUtensilio(@Param("id") int id, @Param("nombre") String nombre,
-            @Param("utensilio") String utensilio, @Param("costo_danio") Integer costo_danio);
+        // Método para actualizar un préstamo de utensilio
+        @Modifying
+        @Transactional
+        @Query(value = "UPDATE servicios SET nombre = :nombre WHERE id = :id; UPDATE prestamos_utensilios SET utensilio = :utensilio, costo_danio = :costo_danio WHERE id = :id", nativeQuery = true)
+        void actualizarPrestamoUtensilio(@Param("id") int id, @Param("nombre") String nombre,
+                        @Param("utensilio") String utensilio, @Param("costo_danio") Integer costo_danio);
 
-    // Método para eliminar un préstamo de utensilio por su id
-    @Modifying
-    @Transactional
-    @Query(value = "DELETE FROM prestamo_utensilio WHERE id = :id", nativeQuery = true)
-    void eliminarPrestamoUtensilioPorId(@Param("id") int id);
+        // Método para eliminar un préstamo de utensilio por su id
+        @Modifying
+        @Transactional
+        @Query(value = "DELETE FROM prestamos_utensilios WHERE id = :id", nativeQuery = true)
+        void eliminarPrestamoUtensilioPorId(@Param("id") int id);
 }

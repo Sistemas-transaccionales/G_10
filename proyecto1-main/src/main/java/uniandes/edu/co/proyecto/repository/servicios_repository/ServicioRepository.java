@@ -8,33 +8,32 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import uniandes.edu.co.proyecto.model.servicios.Servicio;
-import uniandes.edu.co.proyecto.model.servicios.TipoServicio;
 
 public interface ServicioRepository extends JpaRepository<Servicio, Integer> {
 
     // Método para listar todos los servicios
-    @Query("SELECT s FROM Servicio s")
+    @Query("SELECT * FROM servicios")
     Collection<Servicio> listarServicios();
 
     // Método para buscar un servicio por su ID
-    @Query("SELECT s FROM Servicio s WHERE s.id = :id")
+    @Query("SELECT * FROM servicios WHERE id = :id")
     Servicio buscarServicioPorID(@Param("id") Integer id);
 
     // Método para insertar un nuevo servicio
     @Modifying
     @Transactional
-    @Query("INSERT INTO Servicio (tipo, nombre) VALUES (:tipo, :nombre)")
-    void insertarServicio(@Param("tipo") TipoServicio tipo, @Param("nombre") String nombre);
+    @Query("INSERT INTO servicios (id, tipo, nombre) VALUES (id_servicios.NEXTVAL, :tipo, :nombre)")
+    void insertarServicio(@Param("tipo") int tipo, @Param("nombre") String nombre);
 
     // Método para actualizar un servicio
     @Modifying
     @Transactional
-    @Query("UPDATE Servicio s SET s.tipo = :tipo, s.nombre = :nombre WHERE s.id = :id")
-    void actualizarServicio(@Param("id") Integer id, @Param("tipo") TipoServicio tipo, @Param("nombre") String nombre);
+    @Query("UPDATE servicios SET tipo = :tipo, nombre = :nombre WHERE id = :id")
+    void actualizarServicio(@Param("id") Integer id, @Param("tipo") int tipo, @Param("nombre") String nombre);
 
     // Método para eliminar un servicio por su ID
     @Modifying
     @Transactional
-    @Query("DELETE FROM Servicio s WHERE s.id = :id")
+    @Query("DELETE FROM servicios WHERE id = :id")
     void eliminarServicioPorID(@Param("id") Integer id);
 }

@@ -12,29 +12,30 @@ import uniandes.edu.co.proyecto.model.servicios.Tienda;
 
 public interface TiendaRepository extends JpaRepository<Tienda, Integer> {
 
-    @Query(value = "SELECT * FROM tienda")
+    @Query(value = "SELECT * FROM tiendas")
     Collection<Tienda> listarTiendas();
 
     // Método para buscar una tienda por su nombre
-    @Query("SELECT t FROM Tienda t WHERE t.id = :id")
+    @Query("SELECT * FROM tiendas WHERE id = :id")
     Tienda buscarTiendaPorId(@Param("id") int nombre);
 
     // Método para insertar una nueva tienda
     @Modifying
     @Transactional
-    @Query("INSERT INTO Tienda (nombre, tipo_productos) VALUES (:nombre, :tipo_productos)")
-    void insertarTienda(@Param("nombre") String nombre, @Param("tipo_productos") String tipo_productos);
+    @Query("INSERT INTO servicios (id, tipo, nombre) VALUES (id_servicios.NEXTVAL, :tipo, :nombre); INSERT INTO tiendas (id, tipo_productos) VALUES (id_servicios.CURRVAL, :tipo_productos)")
+    void insertarTienda(@Param("tipo") int tipo, @Param("nombre") String nombre,
+            @Param("tipo_productos") String tipo_productos);
 
     // Método para actualizar una tienda por su nombre
     @Modifying
     @Transactional
-    @Query("UPDATE Tienda t SET t.tipo_productos = :tipo_productos, t.nombre = :nombre WHERE t.id = :id")
+    @Query("UPDATE servicios SET nombre = :nombre WHERE id = :id; UPDATE tiendas SET tipo_productos = :tipo_productos WHERE id = :id")
     void actualizarTienda(@Param("id") int id, @Param("nombre") String nombre,
             @Param("tipo_productos") String tipo_productos);
 
     // Método para eliminar una tienda por su nombre
     @Modifying
     @Transactional
-    @Query("DELETE FROM Tienda t WHERE t.id = :id")
+    @Query("DELETE FROM tiendas WHERE id = :id")
     void eliminarTiendaPorId(@Param("id") int id);
 }
