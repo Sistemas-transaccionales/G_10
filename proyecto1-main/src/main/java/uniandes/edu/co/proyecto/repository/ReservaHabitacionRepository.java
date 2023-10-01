@@ -18,24 +18,36 @@ public interface ReservaHabitacionRepository extends JpaRepository<ReservaHabita
     Collection<ReservaHabitacion> listarReservasHabitacion();
 
     // Método para buscar una reserva de habitación por su clave primaria compuesta
-    @Query(value = "SELECT * FROM reservas_habitacion WHERE id_habitacion = :idHabitacion AND id_usuario = :idUsuario AND fecha_entrada = :fechaEntrada AND fecha_salida = :fechaSalida", nativeQuery = true)
-    ReservaHabitacion buscarReservaHabitacionPorPK(@Param("idHabitacion") int idHabitacion, @Param("idUsuario") int idUsuario, @Param("fechaEntrada") Date fechaEntrada, @Param("fechaSalida") Date fechaSalida);
+    @Query(value = "SELECT * FROM reservas_habitacion WHERE id_habitacion = :idHabitacion AND numDoc = :numDoc AND tipoDoc = :tipoDoc AND fecha_entrada = :fechaEntrada AND fecha_salida = :fechaSalida", nativeQuery = true)
+    ReservaHabitacion buscarReservaHabitacionPorPK(@Param("idHabitacion") int idHabitacion, @Param("numDoc") int numDoc,
+            @Param("tipoDoc") String tipoDoc, @Param("fechaEntrada") Date fechaEntrada,
+            @Param("fechaSalida") Date fechaSalida);
 
     // Método para insertar una nueva reserva de habitación
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO reservas_habitacion (id_habitacion, id_usuario, fecha_entrada, fecha_salida, plan_consumo_id, num_personas, costo) VALUES (:idHabitacion, :idUsuario, :fechaEntrada, :fechaSalida, :planConsumoId, :numPersonas, :costo)", nativeQuery = true)
-    void insertarReservaHabitacion(@Param("idHabitacion") int idHabitacion, @Param("idUsuario") int idUsuario, @Param("fechaEntrada") Date fechaEntrada, @Param("fechaSalida") Date fechaSalida, @Param("planConsumoId") int planConsumoId, @Param("numPersonas") int numPersonas, @Param("costo") int costo);
+    void insertarReservaHabitacion(@Param("idHabitacion") int idHabitacion, @Param("idUsuario") int idUsuario,
+            @Param("fechaEntrada") Date fechaEntrada, @Param("fechaSalida") Date fechaSalida,
+            @Param("planConsumoId") int planConsumoId, @Param("numPersonas") int numPersonas,
+            @Param("costo") int costo);
 
     // Método para actualizar una reserva de habitación
     @Modifying
     @Transactional
-    @Query(value = "UPDATE reservas_habitacion SET plan_consumo_id = :planConsumoId, num_personas = :numPersonas, costo = :costo WHERE id_habitacion = :idHabitacion AND id_usuario = :idUsuario AND fecha_entrada = :fechaEntrada AND fecha_salida = :fechaSalida", nativeQuery = true)
-    void actualizarReservaHabitacion(@Param("idHabitacion") int idHabitacion, @Param("idUsuario") int idUsuario, @Param("fechaEntrada") Date fechaEntrada, @Param("fechaSalida") Date fechaSalida, @Param("planConsumoId") int planConsumoId, @Param("numPersonas") int numPersonas, @Param("costo") int costo);
+    @Query(value = "UPDATE reservas_habitacion SET plan_consumo_id = :planConsumoId, num_personas = :numPersonas, costo = :costo WHERE id_habitacion = :idHabitacion AND numDoc = :numDoc AND tipoDoc = :tipoDoc AND fecha_entrada = :fechaEntrada AND fecha_salida = :fechaSalida", nativeQuery = true)
+    void actualizarReservaHabitacion(@Param("idHabitacion") int idHabitacion, @Param("numDoc") int numDoc,
+            @Param("tipoDoc") String tipoDoc,
+            @Param("fechaEntrada") Date fechaEntrada, @Param("fechaSalida") Date fechaSalida,
+            @Param("planConsumoId") int planConsumoId, @Param("numPersonas") int numPersonas,
+            @Param("costo") int costo);
 
-    // Método para eliminar una reserva de habitación por su clave primaria compuesta
+    // Método para eliminar una reserva de habitación por su clave primaria
+    // compuesta
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM reservas_habitacion WHERE id_habitacion = :idHabitacion AND id_usuario = :idUsuario AND fecha_entrada = :fechaEntrada AND fecha_salida = :fechaSalida", nativeQuery = true)
-    void eliminarReservaHabitacionPorPK(@Param("idHabitacion") int idHabitacion, @Param("idUsuario") int idUsuario, @Param("fechaEntrada") Date fechaEntrada, @Param("fechaSalida") Date fechaSalida);
+    @Query(value = "DELETE FROM reservas_habitacion WHERE id_habitacion = :idHabitacion AND numDoc = :numDoc AND tipoDoc = :tipoDoc AND fecha_entrada = :fechaEntrada AND fecha_salida = :fechaSalida", nativeQuery = true)
+    void eliminarReservaHabitacionPorPK(@Param("idHabitacion") int idHabitacion, @Param("numDoc") int numDoc,
+            @Param("tipoDoc") String tipoDoc,
+            @Param("fechaEntrada") Date fechaEntrada, @Param("fechaSalida") Date fechaSalida);
 }
