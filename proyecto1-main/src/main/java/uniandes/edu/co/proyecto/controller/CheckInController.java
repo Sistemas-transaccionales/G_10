@@ -11,19 +11,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import uniandes.edu.co.proyecto.model.CheckIn;
-import uniandes.edu.co.proyecto.model.ReservaHabitacion;
 import uniandes.edu.co.proyecto.model.Usuario;
 import uniandes.edu.co.proyecto.repository.CheckInRepository;
-import uniandes.edu.co.proyecto.repository.ReservaHabitacionRepository;
 
 @Controller
 public class CheckInController {
 
     @Autowired
     private CheckInRepository checkInRepository;
-
-    @Autowired
-    private ReservaHabitacionRepository reservaHabitacionRepository;
 
     @GetMapping("/check_ins")
     public String checkIns(Model model) {
@@ -39,23 +34,18 @@ public class CheckInController {
 
     @PostMapping("/check_ins/new/save")
     public String checkInGuardar(@ModelAttribute("id_habitacion") int id_habitacion,
-            @ModelAttribute("id_usuario") Usuario usuario, @ModelAttribute("fecha_entrada") Date fecha_entrada,
-            @ModelAttribute("fecha_salida") Date fecha_salida, @ModelAttribute("hora_salida") String hora_salida,
-            @ModelAttribute("ingresos") int ingresos) {
+            @ModelAttribute("id_usuario") Usuario usuario, @ModelAttribute("fecha") Date fecha,
+            @ModelAttribute("hora") String hora_salida) {
 
-        ReservaHabitacion reservaHabitacion = reservaHabitacionRepository.buscarReservaHabitacionPorPK(id_habitacion,
-                usuario.getPk().getNum_doc(), usuario.getPk().getTipo_doc(), fecha_entrada, fecha_salida);
+        checkInRepository.insertarCheckIn(id_habitacion, usuario.getPk().getNum_doc(), usuario.getPk().getTipo_doc(),
+                fecha, hora_salida);
 
         return "redirect:/check_ins";
     }
 
-    @GetMapping("/check_ins/{hab}{numDoc}{tipoDoc}{fin}{fout}/edit")
-    public String checkInEditarForm(@PathVariable("hab") int hab, @PathVariable("numDoc") int numDoc,
-            @PathVariable("tipoDoc") String tipoDoc,
-            @PathVariable("fin") Date fin, @PathVariable("fin") Date fout, Model model) {
-        ReservaHabitacion reserva = reservaHabitacionRepository.buscarReservaHabitacionPorPK(hab, numDoc, tipoDoc, fin,
-                fout);
-        CheckIn checkIn = checkInRepository.buscarCheckInPorReserva(reserva);
+    @GetMapping("/check_ins/{id}/edit")
+    public String checkInEditarForm(@PathVariable("id") int id, Model model) {
+        CheckIn checkIn = checkInRepository.buscarCheckInPorId(id);
         if (checkIn != null) {
             model.addAttribute("check_in", checkIn);
             return "check_in_editar";
@@ -64,24 +54,15 @@ public class CheckInController {
         }
     }
 
-    @PostMapping("/check_ins/{hab}{numDoc}{tipoDoc}{fin}{fout}/edit/save")
-    public String checkInEditarGuardar(@PathVariable("hab") int hab, @PathVariable("numDoc") int numDoc,
-            @PathVariable("tipoDoc") String tipoDoc,
-            @PathVariable("fin") Date fin, @PathVariable("fin") Date fout, @ModelAttribute CheckIn checkIn) {
-        ReservaHabitacion reserva = reservaHabitacionRepository.buscarReservaHabitacionPorPK(hab, numDoc, tipoDoc, fin,
-                fin);
-        checkInRepository.actualizarCheckIn(reserva, checkIn.getHora(),
-                checkIn.getId_cuenta());
+    @PostMapping("/check_ins/{id}/edit/save")
+    public String checkInEditarGuardar(@PathVariable("id") int id, @ModelAttribute CheckIn checkIn) {
+        checkInRepository.actualizarCheckIn(id, checkIn.getFecha(), checkIn.getHora());
         return "redirect:/check_ins";
     }
 
-    @GetMapping("/check_ins/{hab}{numDoc}{tipoDoc}{fin}{fin}/delete")
-    public String checkInEliminar(@PathVariable("hab") int hab, @PathVariable("numDoc") int numDoc,
-            @PathVariable("tipoDoc") String tipoDoc,
-            @PathVariable("fin") Date fin, @PathVariable("fout") Date fout) {
-        ReservaHabitacion reserva = reservaHabitacionRepository.buscarReservaHabitacionPorPK(hab, numDoc, tipoDoc, fin,
-                fout);
-        checkInRepository.eliminarCheckInPorReserva(reserva);
+    @GetMapping("/check_ins/{id}/delete")
+    public String checkInEliminar(@PathVariable("id") int id) {
+        checkInRepository.eliminarCheckInPorId(id);
         return "redirect:/check_ins";
     }
 }

@@ -11,23 +11,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import uniandes.edu.co.proyecto.model.CheckOut;
-import uniandes.edu.co.proyecto.model.ReservaHabitacion;
-import uniandes.edu.co.proyecto.model.Usuario;
 import uniandes.edu.co.proyecto.repository.CheckOutRepository;
-import uniandes.edu.co.proyecto.repository.ReservaHabitacionRepository;
-import uniandes.edu.co.proyecto.repository.UsuarioRepository;
 
 @Controller
 public class CheckOutController {
 
     @Autowired
     private CheckOutRepository checkOutRepository;
-
-    @Autowired
-    private ReservaHabitacionRepository reservaHabitacionRepository;
-
-    @Autowired
-    private UsuarioRepository usuarioRepository;
 
     @GetMapping("/check_outs")
     public String checkOuts(Model model) {
@@ -42,24 +32,18 @@ public class CheckOutController {
     }
 
     @PostMapping("/check_outs/new/save")
-    public String checkOutGuardar(@ModelAttribute("id_habitacion") int id_habitacion,
-            @ModelAttribute("id_usuario") Usuario usuario, @ModelAttribute("fecha_entrada") Date fecha_entrada,
-            @ModelAttribute("fecha_salida") Date fecha_salida, @ModelAttribute("hora_salida") String hora_salida,
+    public String checkOutGuardar(@ModelAttribute("id_check_in") int id_check_in, @ModelAttribute("fecha") Date fecha,
+            @ModelAttribute("hora") String hora,
             @ModelAttribute("ingresos") int ingresos) {
 
-        ReservaHabitacion reservaHabitacion = reservaHabitacionRepository.buscarReservaHabitacionPorPK(id_habitacion,
-                usuario.getPk().getNum_doc(), usuario.getPk().getTipo_doc(), fecha_entrada, fecha_salida);
+        checkOutRepository.insertarCheckOut(id_check_in, fecha, hora, ingresos);
 
         return "redirect:/check_outs";
     }
 
-    @GetMapping("/check_outs/{hab}{numDoc}{tipoDoc}{fin}{fout}/edit")
-    public String checkOutEditarForm(@PathVariable("hab") int hab, @PathVariable("numDoc") int numDoc,
-            @PathVariable("tipoDoc") String tipoDoc,
-            @PathVariable("fin") Date fin, @PathVariable("fout") Date fout, Model model) {
-        ReservaHabitacion reserva = reservaHabitacionRepository.buscarReservaHabitacionPorPK(hab, numDoc, tipoDoc, fin,
-                fout);
-        CheckOut checkOut = checkOutRepository.buscarCheckOutPorReserva(reserva);
+    @GetMapping("/check_outs/{id}/edit")
+    public String checkOutEditarForm(@ModelAttribute("id_check_in") int id_check_in, Model model) {
+        CheckOut checkOut = checkOutRepository.buscarCheckOutPorId(id_check_in);
         if (checkOut != null) {
             model.addAttribute("check_out", checkOut);
             return "check_out_editar";
@@ -68,24 +52,16 @@ public class CheckOutController {
         }
     }
 
-    @PostMapping("/check_outs/{hab}{numDoc}{tipoDoc}{fin}{fout}/edit/save")
-    public String checkOutEditarGuardar(@PathVariable("hab") int hab, @PathVariable("numDoc") int numDoc,
-            @PathVariable("tipoDoc") String tipoDoc,
-            @PathVariable("fin") Date fin, @PathVariable("fout") Date fout, @ModelAttribute CheckOut checkOut) {
-        ReservaHabitacion reserva = reservaHabitacionRepository.buscarReservaHabitacionPorPK(hab, numDoc, tipoDoc, fin,
-                fout);
-        checkOutRepository.actualizarCheckOut(reserva, checkOut.getHora_salida(),
+    @PostMapping("/check_outs/{id}/edit/save")
+    public String checkOutEditarGuardar(@PathVariable("id") int id_check_in, @ModelAttribute CheckOut checkOut) {
+        checkOutRepository.actualizarCheckOut(id_check_in, checkOut.getFecha(), checkOut.getHora(),
                 checkOut.getIngresos_totales());
         return "redirect:/check_outs";
     }
 
-    @GetMapping("/check_outs/{hab}{numDoc}{tipoDoc}{fin}{fout}/delete")
-    public String checkOutEliminar(@PathVariable("hab") int hab, @PathVariable("numDoc") int numDoc,
-            @PathVariable("tipoDoc") String tipoDoc,
-            @PathVariable("fin") Date fin, @PathVariable("fout") Date fout) {
-        ReservaHabitacion reserva = reservaHabitacionRepository.buscarReservaHabitacionPorPK(hab, numDoc, tipoDoc, fin,
-                fout);
-        checkOutRepository.eliminarCheckOutPorReserva(reserva);
+    @GetMapping("/check_outs/{id}/delete")
+    public String checkOutEliminar(@PathVariable("id") int id_check_in) {
+        checkOutRepository.eliminarCheckOutPorid(id_check_in);
         return "redirect:/check_outs";
     }
 }

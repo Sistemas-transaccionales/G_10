@@ -31,7 +31,7 @@ public class SpaController {
 
     @PostMapping("/spas/new/save")
     public String spaGuardar(@ModelAttribute Spa spa) {
-        spaRepository.insertarSpa(spa.getNombre(), spa.getCosto(), spa.getDuracion());
+        spaRepository.insertarSpa(spa.getTipo().getId(), spa.getNombre(), spa.getCosto(), spa.getDuracion());
         return "redirect:/spas";
     }
 

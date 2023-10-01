@@ -31,7 +31,7 @@ public class TiendaController {
 
     @PostMapping("/tiendas/new/save")
     public String tiendaGuardar(@ModelAttribute Tienda tienda) {
-        tiendaRepository.insertarTienda(tienda.getNombre(), tienda.getTipo_productos());
+        tiendaRepository.insertarTienda(tienda.getTipo().getId(), tienda.getNombre(), tienda.getTipo_productos());
         return "redirect:/tiendas";
     }
 

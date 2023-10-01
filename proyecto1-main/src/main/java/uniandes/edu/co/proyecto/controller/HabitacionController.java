@@ -36,12 +36,12 @@ public class HabitacionController {
 
     @PostMapping("/habitaciones/new/save")
     public String habitacionGuardar(@ModelAttribute Habitacion habitacion) {
-        habitacionRepository.insertarHabitacion(habitacion.getTipo().getId());
+        habitacionRepository.insertarHabitacion(habitacion.getId(), habitacion.getTipo().getId());
         return "redirect:/habitaciones";
     }
 
     @GetMapping("/habitaciones/{id}/edit")
-    public String habitacionEditarForm(@PathVariable("id") int id, Model model) {
+    public String habitacionEditarForm(@PathVariable("id") String id, Model model) {
         Habitacion habitacion = habitacionRepository.buscarHabitacionPorId(id);
 
         if (habitacion != null) {
@@ -54,13 +54,13 @@ public class HabitacionController {
     }
 
     @PostMapping("/habitaciones/{id}/edit/save")
-    public String habitacionEditarGuardar(@PathVariable("id") int id, @ModelAttribute Habitacion habitacion) {
+    public String habitacionEditarGuardar(@PathVariable("id") String id, @ModelAttribute Habitacion habitacion) {
         habitacionRepository.actualizarHabitacion(id, habitacion.getTipo().getId());
         return "redirect:/habitaciones";
     }
 
     @GetMapping("/habitaciones/{id}/delete")
-    public String habitacionEliminar(@PathVariable("id") int id) {
+    public String habitacionEliminar(@PathVariable("id") String id) {
         habitacionRepository.eliminarHabitacionPorId(id);
         return "redirect:/habitaciones";
     }

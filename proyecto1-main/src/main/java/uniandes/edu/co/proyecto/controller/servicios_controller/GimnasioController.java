@@ -49,7 +49,7 @@ public class GimnasioController {
 
     @PostMapping("/gimnasios/{id}/edit/save")
     public String gimnasioEditarGuardar(@PathVariable("id") int id, @ModelAttribute Gimnasio gimnasio) {
-        gimnasioRepository.actualizarGimnasio(id, gimnasio.getTipo().getNombre(), gimnasio.getNombre(),
+        gimnasioRepository.actualizarGimnasio(id, gimnasio.getNombre(),
                 gimnasio.getHora_apertura(), gimnasio.getHora_clausura(), gimnasio.getCapacidad());
         return "redirect:/gimnasios";
     }

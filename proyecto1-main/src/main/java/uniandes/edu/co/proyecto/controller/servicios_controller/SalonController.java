@@ -30,7 +30,8 @@ public class SalonController {
 
     @PostMapping("/salones/new/save")
     public String salonGuardar(Salon salon) {
-        salonRepository.insertarSalon(salon.getTipo(), salon.getNombre(), salon.getTipo_salon(), salon.getCapacidad(),
+        salonRepository.insertarSalon(salon.getTipo().getId(), salon.getNombre(), salon.getTipo_salon(),
+                salon.getCapacidad(),
                 salon.getCosto_por_hora(), salon.getCosto_extra());
         return "redirect:/salones";
     }
@@ -48,7 +49,7 @@ public class SalonController {
 
     @PostMapping("/salones/{id}/edit/save")
     public String salonEditarGuardar(@PathVariable("id") int id, Salon salon) {
-        salonRepository.actualizarSalon(id, salon.getTipo(), salon.getNombre(), salon.getTipo_salon(),
+        salonRepository.actualizarSalon(id, salon.getNombre(), salon.getTipo_salon(),
                 salon.getCapacidad(), salon.getCosto_por_hora(), salon.getCosto_extra());
         return "redirect:/salones";
     }

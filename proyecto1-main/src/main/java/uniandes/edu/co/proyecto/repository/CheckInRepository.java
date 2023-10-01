@@ -18,7 +18,7 @@ public interface CheckInRepository extends JpaRepository<CheckIn, ReservaHabitac
 
     // Método para buscar un check-in por su reserva de habitación asociada
     @Query(value = "SELECT * FROM check_ins WHERE id = :id", nativeQuery = true)
-    CheckIn buscarCheckInPorReserva(@Param("id") int id);
+    CheckIn buscarCheckInPorId(@Param("id") int id);
 
     // Método para insertar un nuevo check-in
     @Modifying
@@ -37,5 +37,5 @@ public interface CheckInRepository extends JpaRepository<CheckIn, ReservaHabitac
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM check_ins WHERE id = :id", nativeQuery = true)
-    void eliminarCheckInPorReserva(@Param("id") int id);
+    void eliminarCheckInPorId(@Param("id") int id);
 }
