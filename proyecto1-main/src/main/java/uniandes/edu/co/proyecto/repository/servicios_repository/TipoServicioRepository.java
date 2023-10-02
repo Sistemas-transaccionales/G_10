@@ -8,13 +8,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import uniandes.edu.co.proyecto.model.TipoHabitacion;
 import uniandes.edu.co.proyecto.model.servicios.TipoServicio;
 
 public interface TipoServicioRepository extends JpaRepository<TipoServicio, Integer> {
     // Método para listar todos los tipos de servicio
     @Query(value = "SELECT * FROM tipos_servicio", nativeQuery = true)
-    Collection<TipoHabitacion> listarTiposServicio();
+    Collection<TipoServicio> listarTiposServicio();
 
     // Método para buscar un tipo de servicio por su nombre
     @Query("SELECT * FROM tipos_servicio WHERE id = :id")
