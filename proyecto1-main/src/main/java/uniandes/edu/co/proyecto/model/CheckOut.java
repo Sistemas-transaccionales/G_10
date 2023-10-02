@@ -4,8 +4,6 @@ import java.sql.Date;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -13,9 +11,7 @@ import jakarta.persistence.Table;
 public class CheckOut {
 
     @Id
-    @OneToOne
-    @JoinColumn(name = "id_check_in", referencedColumnName = "id")
-    private CheckIn id_check_in;
+    private Integer id;
 
     private Date fecha;
     private String hora;
@@ -32,24 +28,10 @@ public class CheckOut {
      * @param ingresos_totales
      */
     public CheckOut(CheckIn id_check_in, Date fecha, String hora, Integer ingresos_totales) {
-        this.id_check_in = id_check_in;
+        this.id = id_check_in.getId();
         this.fecha = fecha;
         this.hora = hora;
         this.ingresos_totales = ingresos_totales;
-    }
-
-    /**
-     * @return the id_check_in
-     */
-    public CheckIn getId_check_in() {
-        return id_check_in;
-    }
-
-    /**
-     * @param id_check_in the id_check_in to set
-     */
-    public void setId_check_in(CheckIn id_check_in) {
-        this.id_check_in = id_check_in;
     }
 
     /**
@@ -92,6 +74,20 @@ public class CheckOut {
      */
     public void setIngresos_totales(Integer ingresos_totales) {
         this.ingresos_totales = ingresos_totales;
+    }
+
+    /**
+     * @return the id
+     */
+    public Integer getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Integer id) {
+        this.id = id;
     }
 
 }
