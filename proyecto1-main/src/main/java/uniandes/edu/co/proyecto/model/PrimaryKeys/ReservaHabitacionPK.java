@@ -6,16 +6,19 @@ import java.sql.Date;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
 import uniandes.edu.co.proyecto.model.Habitacion;
 import uniandes.edu.co.proyecto.model.Usuario;
 
 @Embeddable
 public class ReservaHabitacionPK implements Serializable {
 
+    @MapsId("id")
     @ManyToOne
     @JoinColumn(name = "id_habitacion", referencedColumnName = "id")
     private Habitacion id_habitacion;
 
+    @MapsId("id")
     @ManyToOne
     @JoinColumn(name = "id_cliente", referencedColumnName = "id")
     private Usuario id_cliente;

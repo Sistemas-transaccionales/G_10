@@ -5,16 +5,19 @@ import java.io.Serializable;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
 import uniandes.edu.co.proyecto.model.TipoHabitacion;
 import uniandes.edu.co.proyecto.model.Dotacion;
 
 @Embeddable
 public class DotadasPK implements Serializable {
 
+    @MapsId("id")
     @ManyToOne
     @JoinColumn(name = "id_tipo_habitacion", referencedColumnName = "id")
     private TipoHabitacion id_tipo_habitacion;
 
+    @MapsId("id")
     @ManyToOne
     @JoinColumn(name = "id_dotacion", referencedColumnName = "id")
     private Dotacion id_dotacion;

@@ -8,6 +8,7 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,6 +20,7 @@ public class Servicio {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @MapsId("id")
     @ManyToOne
     @JoinColumn(name = "tipo", referencedColumnName = "id")
     private TipoServicio tipo;

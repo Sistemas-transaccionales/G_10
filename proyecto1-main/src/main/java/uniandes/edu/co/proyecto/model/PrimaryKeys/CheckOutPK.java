@@ -4,12 +4,14 @@ import java.io.Serializable;
 
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import uniandes.edu.co.proyecto.model.CheckIn;
 
 @Embeddable
 public class CheckOutPK implements Serializable {
 
+    @MapsId("id")
     @OneToOne
     @JoinColumn(name = "id_check_in", referencedColumnName = "id")
     private CheckIn id_check_in;

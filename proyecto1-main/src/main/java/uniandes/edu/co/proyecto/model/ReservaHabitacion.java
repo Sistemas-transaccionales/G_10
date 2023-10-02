@@ -6,6 +6,7 @@ import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import uniandes.edu.co.proyecto.model.primaryKeys.ReservaHabitacionPK;
@@ -17,6 +18,7 @@ public class ReservaHabitacion {
     @EmbeddedId
     private ReservaHabitacionPK pk;
 
+    @MapsId("id")
     @ManyToOne
     @JoinColumn(name = "plan_consumo", referencedColumnName = "id")
     private PlanConsumo plan_consumo;
@@ -24,7 +26,8 @@ public class ReservaHabitacion {
     private Integer num_personas;
     private Integer costo;
 
-    @OneToOne
+    @MapsId("id")
+    @ManyToOne
     @JoinColumn(name = "id_cuenta_estadia", referencedColumnName = "id")
     private CuentaEstadia id_cuenta_estadia;
 
