@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Check-in</title>
+    <link rel="stylesheet"type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+    <form th:action="@{'check_ins/'+${id}+'/edit/save'}" th:object="${check_ins"
+    method="post">
+    <div th:replace="~{fragments/check_inForm ::check_inForm(titulo='Editar Check_in',check_ins=${check_ins})}">
+        
+    </div>
+
+</form>
+</body>
+</html>
