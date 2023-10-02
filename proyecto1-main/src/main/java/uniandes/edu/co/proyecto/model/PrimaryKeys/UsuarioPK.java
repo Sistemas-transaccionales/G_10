@@ -10,12 +10,10 @@ import jakarta.persistence.MapsId;
 @Embeddable
 public class UsuarioPK implements Serializable {
 
-    @MapsId("id")
     @ManyToOne
     @JoinColumn(name = "num_doc", referencedColumnName = "id")
     private Integer num_doc;
 
-    @MapsId("id")
     @ManyToOne
     @JoinColumn(name = "tipo_doc", referencedColumnName = "id")
     private String tipo_doc;

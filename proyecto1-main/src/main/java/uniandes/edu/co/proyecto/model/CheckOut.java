@@ -4,6 +4,8 @@ import java.sql.Date;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.MapsId;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -12,6 +14,10 @@ public class CheckOut {
 
     @Id
     private Integer id;
+
+    @OneToOne
+    @MapsId
+    private CheckIn check_in;
 
     private Date fecha;
     private String hora;
@@ -27,8 +33,9 @@ public class CheckOut {
      * @param hora
      * @param ingresos_totales
      */
-    public CheckOut(CheckIn id_check_in, Date fecha, String hora, Integer ingresos_totales) {
-        this.id = id_check_in.getId();
+    public CheckOut(CheckIn check_in, Date fecha, String hora, Integer ingresos_totales) {
+        this.id = check_in.getId();
+        this.check_in = check_in;
         this.fecha = fecha;
         this.hora = hora;
         this.ingresos_totales = ingresos_totales;

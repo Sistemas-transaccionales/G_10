@@ -15,7 +15,6 @@ public class Usuario {
     @EmbeddedId
     private UsuarioPK pk;
 
-    @MapsId("id")
     @ManyToOne
     @JoinColumn(name = "tipo", referencedColumnName = "id")
     private TipoUsuario tipo;

@@ -13,12 +13,10 @@ import uniandes.edu.co.proyecto.model.servicios.Servicio;
 @Embeddable
 public class ReservaServicioPK implements Serializable {
 
-    @MapsId("id")
     @ManyToOne
     @JoinColumn(name = "id_habitacion", referencedColumnName = "id")
     private Habitacion id_habitacion;
 
-    @MapsId("id")
     @ManyToOne
     @JoinColumn(name = "id_servicio", referencedColumnName = "id")
     private Servicio id_servicio;

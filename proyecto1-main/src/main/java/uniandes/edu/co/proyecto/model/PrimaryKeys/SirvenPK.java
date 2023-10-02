@@ -12,12 +12,10 @@ import uniandes.edu.co.proyecto.model.servicios.RestauranteBar;
 @Embeddable
 public class SirvenPK implements Serializable {
 
-    @MapsId("id")
     @ManyToOne
     @JoinColumn(name = "id_rest_bar", referencedColumnName = "id")
     private RestauranteBar id_rest_bar;
 
-    @MapsId("id")
     @ManyToOne
     @JoinColumn(name = "id_producto", referencedColumnName = "id")
     private ProductoMenu id_producto;

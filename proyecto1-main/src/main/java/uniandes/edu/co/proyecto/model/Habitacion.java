@@ -14,7 +14,6 @@ public class Habitacion {
     @Id
     private String id;
 
-    @MapsId("id")
     @ManyToOne
     @JoinColumn(name = "tipo", referencedColumnName = "id")
     private TipoHabitacion tipo;

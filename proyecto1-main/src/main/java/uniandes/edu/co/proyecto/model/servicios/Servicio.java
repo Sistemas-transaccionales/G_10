@@ -20,7 +20,6 @@ public class Servicio {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @MapsId("id")
     @ManyToOne
     @JoinColumn(name = "tipo", referencedColumnName = "id")
     private TipoServicio tipo;

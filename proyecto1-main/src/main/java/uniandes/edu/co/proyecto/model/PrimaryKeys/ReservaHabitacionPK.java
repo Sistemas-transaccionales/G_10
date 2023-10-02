@@ -13,12 +13,10 @@ import uniandes.edu.co.proyecto.model.Usuario;
 @Embeddable
 public class ReservaHabitacionPK implements Serializable {
 
-    @MapsId("id")
     @ManyToOne
     @JoinColumn(name = "id_habitacion", referencedColumnName = "id")
     private Habitacion id_habitacion;
 
-    @MapsId("id")
     @ManyToOne
     @JoinColumn(name = "id_cliente", referencedColumnName = "id")
     private Usuario id_cliente;

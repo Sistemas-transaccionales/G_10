@@ -20,7 +20,6 @@ public class CuentaEstadia {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @MapsId("id")
     @ManyToOne
     @JoinColumn(name = "id_habitacion", referencedColumnName = "id")
     private Habitacion id_habitacion;

@@ -20,12 +20,10 @@ public class CheckIn {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @MapsId("id")
     @ManyToOne
     @JoinColumn(name = "id_habitacion", referencedColumnName = "id")
     private Habitacion id_habitacion;
 
-    @MapsId("id")
     @ManyToOne
     @JoinColumn(name = "id_usuario", referencedColumnName = "id")
     private Usuario id_usuario;
