@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fragment</title>
+</head>
+<body>
+   <div th:fragment="plan_consumoForm(titulo)" class="container border boder-2 w-25">
+        <h1 class="text-center" th:text="${titulo"></h1>
+        <form>
+            <label class="col-form.label">Id</label>
+            <input class="form-control" type="number" id="id"
+            name="id" required th:value="${planes_consumo.id}"/>
+
+            <label class="col-form.label">Tipo de Plan</label>
+            <input class="form-control" type="text" id="nombre"
+            name="tipo_plan" required th:value="${planes_consumo.tipo_plan}"/>
+
+            <label class="col-form.label">Tasa</label>
+            <input class="form-control" type="number" id="tasa"
+            name="tasa" required th:value="${planes_consumo.tasa}"/>
+
+            <label class="col-form.label">Minimo de Noches</label>
+            <input class="form-control" type="number" id="min_noches"
+            name="min_noches" required th:value="${planes_consumo.min_noches}"/>
+
+            <label class="col-form.label">Maximo de Noches</label>
+            <input class="form-control" type="number" id="max_noches"
+            name="max_noches" required th:value="${planes_consumo.max_noches}"/>
+            
+        </form>
+   </div>
+</body>
+</html>
