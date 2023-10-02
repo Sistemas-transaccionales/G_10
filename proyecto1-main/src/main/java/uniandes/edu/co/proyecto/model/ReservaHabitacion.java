@@ -24,8 +24,8 @@ public class ReservaHabitacion {
     private Integer costo;
 
     @ManyToOne
-    @JoinColumn(name = "id_cuenta_estadia", referencedColumnName = "id")
-    private CuentaEstadia id_cuenta_estadia;
+    @JoinColumn(name = "id_cuenta", referencedColumnName = "id")
+    private CuentaEstadia id_cuenta;
 
     public ReservaHabitacion() {
         ;
@@ -39,7 +39,7 @@ public class ReservaHabitacion {
         this.plan_consumo = plan_consumo;
         this.num_personas = num_personas;
         this.costo = costo;
-        this.id_cuenta_estadia = id_cuenta_estadia;
+        this.id_cuenta = id_cuenta_estadia;
     }
 
     /**
@@ -101,15 +101,15 @@ public class ReservaHabitacion {
     /**
      * @return the id_cuenta_estadia
      */
-    public CuentaEstadia getId_cuenta_estadia() {
-        return id_cuenta_estadia;
+    public CuentaEstadia getId_cuenta() {
+        return id_cuenta;
     }
 
     /**
      * @param id_cuenta_estadia the id_cuenta_estadia to set
      */
-    public void setId_cuenta_estadia(CuentaEstadia id_cuenta_estadia) {
-        this.id_cuenta_estadia = id_cuenta_estadia;
+    public void setId_cuenta(CuentaEstadia id_cuenta_estadia) {
+        this.id_cuenta = id_cuenta_estadia;
     }
 
 }

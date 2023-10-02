@@ -8,7 +8,7 @@
     <link rel="stylesheet"type="text/css" th:href="@{/css/bootstrap.min.css}"/>
 </head>
 <body>
-    <form th:action="@{'reservas_habitacion/'+${id}+'/edit/save'}" th:object="${reserva_habitacion"
+    <form th:action="@{'reservas_habitacion/'+${id}+'/edit/save'}" th:object="${reserva_habitacion}"
     method="post">
     <div th:replace="~{fragments/reserva_habitacionForm ::reserva_habitacionForm(titulo='Editar reserva habitacion',reserva_habitacion=${reserva_habitacion})}">
         
