@@ -20,19 +20,20 @@ public class Usuario {
 
     private String nombre;
     private String email;
-    private String password;
+    private String contrasenia;
 
     public Usuario() {
         ;
     }
 
-    public Usuario(Integer num_doc, String tipo_doc, TipoUsuario tipo, String nombre, String email, String password) {
+    public Usuario(Integer num_doc, String tipo_doc, TipoUsuario tipo, String nombre, String email,
+            String contrasenia) {
 
         this.pk = new UsuarioPK(num_doc, tipo_doc);
         this.tipo = tipo;
         this.nombre = nombre;
         this.email = email;
-        this.password = password;
+        this.contrasenia = contrasenia;
     }
 
     /**
@@ -92,17 +93,17 @@ public class Usuario {
     }
 
     /**
-     * @return the password
+     * @return the contrasenia
      */
     public String getPassword() {
-        return password;
+        return contrasenia;
     }
 
     /**
-     * @param password the password to set
+     * @param contrasenia the contrasenia to set
      */
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
 
 }
