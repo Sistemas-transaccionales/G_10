@@ -59,7 +59,7 @@ public class ReservaHabitacionController {
 
         ReservaHabitacionPK pk = new ReservaHabitacionPK(habitacion, usuario, fecha_entrada, fecha_salida);
         ReservaHabitacion reservaHabitacion = new ReservaHabitacion();
-        CuentaEstadia cuenta = new CuentaEstadia(habitacion, 0, false);
+        CuentaEstadia cuenta = new CuentaEstadia(habitacion, 0, 0);
         // cuentaEstadiaRepository.insertarCuentaEstadia(id_habitacion, costo, false);
         reservaHabitacion.setPk(pk);
         reservaHabitacionRepository.insertarReservaHabitacion(id_habitacion, usuarioPK.getNum_doc(),

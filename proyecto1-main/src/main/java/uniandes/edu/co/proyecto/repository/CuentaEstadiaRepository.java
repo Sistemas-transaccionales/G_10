@@ -23,13 +23,13 @@ public interface CuentaEstadiaRepository extends JpaRepository<CuentaEstadia, In
     @Transactional
     @Query(value = "INSERT INTO cuentas_estadia (id, id_habitacion, monto, abierta) VALUES (id_cuentas_estadia.NEXTVAL, :id_habitacion, :monto, :abierta)", nativeQuery = true)
     void insertarCuentaEstadia(@Param("id_habitacion") String id_habitacion, @Param("monto") int monto,
-            @Param("abierta") boolean abierta);
+            @Param("abierta") Integer abierta);
 
     // Método para actualizar una cuenta de estadía
     @Modifying
     @Transactional
     @Query(value = "UPDATE cuentas_estadia SET monto = :monto, abierta = :abierta WHERE id = :id", nativeQuery = true)
-    void actualizarCuentaEstadia(@Param("id") int id, @Param("monto") int monto, @Param("abierta") boolean abierta);
+    void actualizarCuentaEstadia(@Param("id") int id, @Param("monto") int monto, @Param("abierta") Integer abierta);
 
     // Método para eliminar una cuenta de estadía por su id
     @Modifying

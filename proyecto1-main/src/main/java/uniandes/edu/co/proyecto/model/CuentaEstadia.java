@@ -20,13 +20,13 @@ public class CuentaEstadia {
     @JoinColumn(name = "id_habitacion", referencedColumnName = "id")
     private Habitacion id_habitacion;
     private Integer monto;
-    private Boolean abierta;
+    private Integer abierta;
 
     public CuentaEstadia() {
         ;
     }
 
-    public CuentaEstadia(Habitacion id_habitacion, Integer monto, Boolean abierta) {
+    public CuentaEstadia(Habitacion id_habitacion, Integer monto, Integer abierta) {
         this.id_habitacion = id_habitacion;
         this.monto = monto;
         this.abierta = abierta;
@@ -63,14 +63,14 @@ public class CuentaEstadia {
     /**
      * @return the abierta
      */
-    public Boolean getAbierta() {
+    public Integer getAbierta() {
         return abierta;
     }
 
     /**
      * @param abierta the abierta to set
      */
-    public void setAbierta(Boolean abierta) {
+    public void setAbierta(Integer abierta) {
         this.abierta = abierta;
     }
 

@@ -6,7 +6,7 @@ import jakarta.persistence.Entity;
 public class RestauranteBar extends Servicio {
 
     private String estilo;
-    private Boolean es_bar;
+    private Integer es_bar;
     private String horario;
     private Integer capacidad;
 
@@ -22,7 +22,7 @@ public class RestauranteBar extends Servicio {
      * @param horario
      * @param capacidad
      */
-    public RestauranteBar(TipoServicio tipo, String nombre, String estilo, Boolean es_bar, String horario,
+    public RestauranteBar(TipoServicio tipo, String nombre, String estilo, Integer es_bar, String horario,
             Integer capacidad) {
         super(tipo, nombre);
         this.estilo = estilo;
@@ -48,14 +48,14 @@ public class RestauranteBar extends Servicio {
     /**
      * @return the es_bar
      */
-    public Boolean getEs_bar() {
+    public Integer getEs_bar() {
         return es_bar;
     }
 
     /**
      * @param es_bar the es_bar to set
      */
-    public void setEs_bar(Boolean es_bar) {
+    public void setEs_bar(Integer es_bar) {
         this.es_bar = es_bar;
     }
 

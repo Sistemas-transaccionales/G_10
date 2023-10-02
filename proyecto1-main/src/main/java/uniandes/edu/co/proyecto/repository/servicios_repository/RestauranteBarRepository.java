@@ -24,7 +24,7 @@ public interface RestauranteBarRepository extends JpaRepository<RestauranteBar, 
         @Transactional
         @Query("INSERT INTO servicios (id, tipo, nombre) VALUES (id_servicios.NEXTVAL, :tipo, :nombre); INSERT INTO restaurantes_bares (id, estilo, es_bar, horario, capacidad) VALUES (id_servicios.CURRVAL :estilo, :esBar, :horario, :capacidad)")
         void insertarRestauranteBar(@Param("tipo") int tipo, @Param("nombre") String nombre,
-                        @Param("estilo") String estilo, @Param("esBar") Boolean esBar, @Param("horario") String horario,
+                        @Param("estilo") String estilo, @Param("esBar") int esBar, @Param("horario") String horario,
                         @Param("capacidad") Integer capacidad);
 
         // Método para actualizar un restaurante/bar
@@ -32,7 +32,7 @@ public interface RestauranteBarRepository extends JpaRepository<RestauranteBar, 
         @Transactional
         @Query("UPDATE servicios SET nombre = :nombre WHERE id = :id; UPDATE restaurantes_bares SET estilo = :estilo, es_bar = :esBar, horario = :horario, capacidad = :capacidad WHERE id = :id")
         void actualizarRestauranteBar(@Param("id") Integer id, @Param("nombre") String nombre,
-                        @Param("estilo") String estilo, @Param("esBar") Boolean esBar,
+                        @Param("estilo") String estilo, @Param("esBar") int esBar,
                         @Param("horario") String horario, @Param("capacidad") Integer capacidad);
 
         // Método para eliminar un restaurante/bar por su ID
