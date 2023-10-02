@@ -42,7 +42,7 @@ public class ReservaHabitacionController {
         return "reservas_habitacion";
     }
 
-    @GetMapping("/reservas_habitacion")
+    @GetMapping("/reservas_habitacion/new")
     public String reservasHabitacionForm(Model model) {
         model.addAttribute("reserva_habitacion", new ReservaHabitacion());
         return "reserva_habitacion_nuevo";

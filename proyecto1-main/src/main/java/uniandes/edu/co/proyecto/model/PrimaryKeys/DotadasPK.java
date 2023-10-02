@@ -5,7 +5,6 @@ import java.io.Serializable;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.MapsId;
 import uniandes.edu.co.proyecto.model.TipoHabitacion;
 import uniandes.edu.co.proyecto.model.Dotacion;
 
