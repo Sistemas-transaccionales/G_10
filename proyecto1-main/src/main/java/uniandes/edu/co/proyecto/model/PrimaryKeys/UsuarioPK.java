@@ -3,19 +3,11 @@ package uniandes.edu.co.proyecto.model.primaryKeys;
 import java.io.Serializable;
 
 import jakarta.persistence.Embeddable;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.MapsId;
 
 @Embeddable
 public class UsuarioPK implements Serializable {
 
-    @ManyToOne
-    @JoinColumn(name = "num_doc", referencedColumnName = "id")
     private Integer num_doc;
-
-    @ManyToOne
-    @JoinColumn(name = "tipo_doc", referencedColumnName = "id")
     private String tipo_doc;
 
     public UsuarioPK() {

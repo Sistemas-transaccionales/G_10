@@ -15,7 +15,7 @@ public class Habitacion {
     private String id;
 
     @ManyToOne
-    @JoinColumn(name = "tipo", referencedColumnName = "id")
+    @JoinColumn(name = "tipo")
     private TipoHabitacion tipo;
 
     public Habitacion() {

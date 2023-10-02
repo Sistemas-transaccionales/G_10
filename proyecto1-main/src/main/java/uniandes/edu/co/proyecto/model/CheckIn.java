@@ -8,8 +8,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.MapsId;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -24,9 +22,8 @@ public class CheckIn {
     @JoinColumn(name = "id_habitacion", referencedColumnName = "id")
     private Habitacion id_habitacion;
 
-    @ManyToOne
-    @JoinColumn(name = "id_usuario", referencedColumnName = "id")
-    private Usuario id_usuario;
+    private Integer num_doc;
+    private String tipo_doc;
 
     private Date fecha;
     private String hora;
@@ -41,9 +38,10 @@ public class CheckIn {
      * @param fecha
      * @param hora
      */
-    public CheckIn(Habitacion id_habitacion, Usuario id_usuario, Date fecha, String hora) {
+    public CheckIn(Habitacion id_habitacion, Usuario cliente, Date fecha, String hora) {
         this.id_habitacion = id_habitacion;
-        this.id_usuario = id_usuario;
+        this.num_doc = cliente.getPk().getNum_doc();
+        this.tipo_doc = cliente.getPk().getTipo_doc();
         this.fecha = fecha;
         this.hora = hora;
     }
@@ -77,17 +75,31 @@ public class CheckIn {
     }
 
     /**
-     * @return the id_usuario
+     * @return the num_doc
      */
-    public Usuario getId_usuario() {
-        return id_usuario;
+    public Integer getNum_doc() {
+        return num_doc;
     }
 
     /**
-     * @param id_usuario the id_usuario to set
+     * @param num_doc the num_doc to set
      */
-    public void setId_usuario(Usuario id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setNum_doc(Integer num_doc) {
+        this.num_doc = num_doc;
+    }
+
+    /**
+     * @return the tipo_doc
+     */
+    public String getTipo_doc() {
+        return tipo_doc;
+    }
+
+    /**
+     * @param tipo_doc the tipo_doc to set
+     */
+    public void setTipo_doc(String tipo_doc) {
+        this.tipo_doc = tipo_doc;
     }
 
     /**

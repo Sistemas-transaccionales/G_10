@@ -6,7 +6,6 @@ import java.sql.Date;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.MapsId;
 import uniandes.edu.co.proyecto.model.Habitacion;
 import uniandes.edu.co.proyecto.model.Usuario;
 
@@ -17,9 +16,8 @@ public class ReservaHabitacionPK implements Serializable {
     @JoinColumn(name = "id_habitacion", referencedColumnName = "id")
     private Habitacion id_habitacion;
 
-    @ManyToOne
-    @JoinColumn(name = "id_cliente", referencedColumnName = "id")
-    private Usuario id_cliente;
+    private Integer num_doc;
+    private String tipo_doc;
 
     private Date fecha_entrada;
     private Date fecha_salida;
@@ -34,10 +32,11 @@ public class ReservaHabitacionPK implements Serializable {
      * @param fecha_entrada
      * @param fecha_salida
      */
-    public ReservaHabitacionPK(Habitacion id_habitacion, Usuario id_cliente, Date fecha_entrada, Date fecha_salida) {
+    public ReservaHabitacionPK(Habitacion id_habitacion, Usuario cliente, Date fecha_entrada, Date fecha_salida) {
         super();
         this.id_habitacion = id_habitacion;
-        this.id_cliente = id_cliente;
+        this.num_doc = cliente.getPk().getNum_doc();
+        this.tipo_doc = cliente.getPk().getTipo_doc();
         this.fecha_entrada = fecha_entrada;
         this.fecha_salida = fecha_salida;
     }
@@ -57,17 +56,31 @@ public class ReservaHabitacionPK implements Serializable {
     }
 
     /**
-     * @return the id_cliente
+     * @return the num_doc
      */
-    public Usuario getId_cliente() {
-        return id_cliente;
+    public Integer getNum_doc() {
+        return num_doc;
     }
 
     /**
-     * @param id_cliente the id_cliente to set
+     * @param num_doc the num_doc to set
      */
-    public void setId_cliente(Usuario id_cliente) {
-        this.id_cliente = id_cliente;
+    public void setNum_doc(Integer num_doc) {
+        this.num_doc = num_doc;
+    }
+
+    /**
+     * @return the tipo_doc
+     */
+    public String getTipo_doc() {
+        return tipo_doc;
+    }
+
+    /**
+     * @param tipo_doc the tipo_doc to set
+     */
+    public void setTipo_doc(String tipo_doc) {
+        this.tipo_doc = tipo_doc;
     }
 
     /**
