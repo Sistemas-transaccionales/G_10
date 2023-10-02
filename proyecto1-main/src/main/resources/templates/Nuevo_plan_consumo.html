@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Plan de Consumo</title>
+</head>
+<body>
+    <form action="#" th:action="@/planes_consumo/new/save" method="post">
+        <div th:replace="~{fragments/plan_consumoForm :: plan_consumoForm(titulo='Crear Plan de Consumo')}">
+
+        </div>
+    </form>
+</body>
+</html>
