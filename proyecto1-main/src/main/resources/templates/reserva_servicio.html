@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservas de Servicio</title>
+    <link rel="stylesheet"type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+    <div>
+        <h1>Lista de Reserva de Servicio</h1>
+        <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Id Habitacion</th>
+                    <th>Id Servicio</th>
+                    <th>Fecha</th>
+                    <th>Hora Inicio</th>
+                    <th>Hora Fin</th>
+                    <th>Costo</th>
+                    
+                </tr>
+            </thead>
+            <th:block th:each="reservas_servicio:${reservas_servicio}">
+                <tr>
+                    <td th:text="${reservas_servicio.id_habitacion}"></td>
+                    <td th:text="${reservas_servicio.id_servicio}"></td>
+                    <td th:text="${reservas_servicio.fecha}"></td>
+                    <td th:text="${reservas_servicio.hora_inicio}"></td>
+                    <td th:text="${reservas_servicio.hora_fin}"></td>
+                    <td th:text="${reservas_servicio.costo}"></td>
+       
+                    <td>
+                        <a th:href="@{reservas_servicio/{id_habitacion}/edit(id_habitacion=${reservas_habitacion.id_habitacion})}">
+                            Editar
+                        </a>
+                        <a th:href="@{reservas_servicio/{id_habitacion}/delete(id_habitacion=${reservas_servicio.id_habitacion})}"
+                        onclick="return confirm('¿Estas seguro de borrar esta reserva de servicio?')">
+                            Borrar
+                        </a>
+                    </td>
+                </tr>
+            </th:block>
+        </table>
+        <div>
+            <a th:href="@{/}"class="btn btn-primary">Volver atrás</a>
+            <a th:href="@{/reservas_servicio/new}"class="btn btn-primary">Añadir Reserva</a>
+        </div>
+    </div>
+</body>
+</html>

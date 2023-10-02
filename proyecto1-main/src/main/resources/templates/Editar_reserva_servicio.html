@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Reserva Servicio</title>
+    <link rel="stylesheet"type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+    <form th:action="@{'reservas_servicio/'+${id}+'/edit/save'}" th:object="${reserva_servicio"
+    method="post">
+    <div th:replace="~{fragments/reserva_servicioForm ::reserva_seervicioForm(titulo='Editar reserva servicio',reserva_servicio=${reserva_servicio})}">
+        
+    </div>
+
+</form>
+</body>
+</html>
