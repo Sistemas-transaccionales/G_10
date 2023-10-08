@@ -40,7 +40,7 @@ public class TipoUsuarioController {
         TipoUsuario tipoUsuario = tipoUsuarioRepository.buscarTipoUsuarioPorId(id);
         if (tipoUsuario != null) {
             model.addAttribute(("tipo_usuario"), tipoUsuario);
-            return "usuario_editar";
+            return "tipos_usuario_editar"; // Cambiar aquí
         } else {
             return "redirect:/tipos_usuario";
         }

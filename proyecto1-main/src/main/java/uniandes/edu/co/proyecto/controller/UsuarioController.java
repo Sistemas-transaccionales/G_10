@@ -37,7 +37,7 @@ public class UsuarioController {
         return "redirect:/usuarios";
     }
 
-    @GetMapping("/usuarios/{num_doc}{tipo_doc}/edit")
+    @GetMapping("/usuarios/{num_doc}/{tipo_doc}/edit")
     public String usuarioEditarForm(@PathVariable("num_doc") int num_doc, @PathVariable("tipo_doc") String tipo_doc,
             Model model) {
         Usuario usuario = usuarioRepository.buscarUsuarioPorId(num_doc, tipo_doc);
@@ -49,7 +49,7 @@ public class UsuarioController {
         }
     }
 
-    @PostMapping("/usuarios/{num_doc}{tipo_doc}/edit/save")
+    @PostMapping("/usuarios/{num_doc}/{tipo_doc}/edit/save")
     public String usuarioEditarGuardar(@PathVariable("num_doc") int num_doc, @PathVariable("tipo_doc") String tipo_doc,
             @ModelAttribute Usuario usuario) {
         usuarioRepository.actualizarUsuario(num_doc, tipo_doc, usuario.getTipo().getId(), usuario.getNombre(),
@@ -58,7 +58,7 @@ public class UsuarioController {
         return "redirect:/usuarios";
     }
 
-    @GetMapping("/usuarios/{num_doc}{tipo_doc}/delete")
+    @GetMapping("/usuarios/{num_doc}/{tipo_doc}/delete")
     public String usuarioEliminar(@PathVariable("num_doc") int num_doc, @PathVariable("tipo_doc") String tipo_doc) {
         usuarioRepository.eliminarUsuarioPorId(num_doc, tipo_doc);
         return "redirect:/usuarios";
