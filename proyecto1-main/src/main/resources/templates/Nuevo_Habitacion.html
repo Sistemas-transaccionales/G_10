@@ -7,9 +7,8 @@
     <title>Crear Habitacion</title>
 </head>
 <body>
-    <form action="#" th:action="@/habitaciones/new/save" method="post">
+    <form th:action="@{/habitaciones/new/save}" method="post">
         <div th:replace="~{fragments/habitacionForm :: habitacionForm(titulo='Crear Habitacion')}">
-
         </div>
     </form>
 </body>

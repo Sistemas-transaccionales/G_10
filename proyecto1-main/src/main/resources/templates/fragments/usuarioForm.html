@@ -12,11 +12,11 @@
         <form>
             <label class="col-form.label">Numero de Documento</label>
             <input class="form-control" type="number" id="num_doc"
-            name="num_doc" required th:value="${usuarios.num_doc}"/>
+            name="num_doc" required th:value="${usuarios.pk.num_doc}"/>
 
             <label class="col-form.label">Tipo de Documento</label>
             <input class="form-control" type="text" id="tipo"
-            name="tipo_doc" required th:value="${usuarios.tipo_doc}"/>
+            name="tipo_doc" required th:value="${usuarios.pk.tipo_doc}"/>
 
             <label class="col-form.label">Nombre</label>
             <input class="form-control" type="text" id="nombre"
