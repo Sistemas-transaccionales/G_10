@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Habitacion</title>
+    <title>Crear Usuario</title>
 </head>
 <body>
-    <form action="#" th:action="@/habitaciones/new/save" method="post">
-        <div th:replace="~{fragments/habitacionForm :: habitacionForm(titulo='Crear Habitacion')}">
-
+    <form action="#" th:action="@{/usuarios/new/save}" method="post">
+        <div th:replace="~{fragments/usuarioForm :: usuarioForm(titulo='Crear Usuario', usuario=${newUsuario})}">
         </div>
     </form>
 </body>

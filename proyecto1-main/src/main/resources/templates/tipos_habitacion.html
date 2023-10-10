@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tipos de Habitacion</title>
-    <link rel="stylesheet"type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
     <div>
@@ -15,30 +15,28 @@
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
-                    
+                    <th>Costo por Noche</th>
+                    <th>Capacidad</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
-            <th:block th:each="tipo_habitacion:${tipos_habitacion}">
-                <tr>
-                    <td th:text="${tipos_habitacion.id}"></td>
-                    <td th:text="${tipos_habitacion.nombre}"></td>
-                    <td th:text="${tipos_habitacion.costo_por_noche}"></td>
-                    <td th:text="${tipos_habitacion.capacidad}"></td>
+            <tbody>
+                <tr th:each="tipo_habitacion : ${tipos_habitacion}">
+                    <td th:text="${tipo_habitacion.id}"></td>
+                    <td th:text="${tipo_habitacion.nombre}"></td>
+                    <td th:text="${tipo_habitacion.costo_por_noche}"></td>
+                    <td th:text="${tipo_habitacion.capacidad}"></td>
                     <td>
-                        <a th:href="@{tipos_habitacion/{id}/edit(id=${tipos_habitacion.id})}">
-                            Editar
-                        </a>
-                        <a th:href="@{tipos_habitacion/{id}/delete(id=${tipos_habitacion.id})}"
-                        onclick="return confirm('¿Estas seguro de borrar este tipo de habitacion?')">
-                            Borrar
-                        </a>
+                        <a th:href="@{'/tipos_habitacion/' + ${tipo_habitacion.id} + '/edit'}">Editar</a>
+                        <a th:href="@{'/tipos_habitacion/' + ${tipo_habitacion.id} + '/delete'}"
+                            onclick="return confirm('¿Estás seguro de borrar este tipo de habitación?')">Borrar</a>
                     </td>
                 </tr>
-            </th:block>
+            </tbody>
         </table>
         <div>
-            <a th:href="@{/}"class="btn btn-primary">Volver atrás</a>
-            <a th:href="@{/tipos_habitacion/new}"class="btn btn-primary">Añadir Tipo de Habitacion</a>
+            <a th:href="@{/}" class="btn btn-primary">Volver atrás</a>
+            <a th:href="@{/tipos_habitacion/new}" class="btn btn-primary">Añadir Tipo de Habitacion</a>
         </div>
     </div>
 </body>

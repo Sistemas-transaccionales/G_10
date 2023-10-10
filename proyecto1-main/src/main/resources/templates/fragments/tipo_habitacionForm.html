@@ -7,24 +7,24 @@
     <title>Fragment</title>
 </head>
 <body>
-   <div th:fragment="tipos_habitacionForm(titulo)" class="container border boder-2 w-25">
+    <div th:fragment="tipos_habitacionForm(titulo)" class="container border boder-2 w-25"></div>
         <h1 class="text-center" th:text="${titulo}"></h1>
         <form>
             <label class="col-form.label">Id</label>
             <input class="form-control" type="number" id="id"
-            name="id" required th:value="${tipos_habitacion.id}"/>
+            name="id" required th:value="${tipo_habitacion.id}"/>
 
             <label class="col-form.label">Nombre</label>
             <input class="form-control" type="text" id="nombre"
-            name="nombree" required th:value="${tipos_habitacion.nombree}"/>
+            name="nombree" required th:value="${tipo_habitacion.nombre}"/>
 
             <label class="col-form.label">Costo por Noche</label>
             <input class="form-control" type="number" id="costo_por_noche"
-            name="costo_por_noche" required th:value="${tipos_habitacion.costo_por_noche}"/>
+            name="costo_por_noche" required th:value="${tipo_habitacion.costo_por_noche}"/>
 
             <label class="col-form.label">Capacidad</label>
             <input class="form-control" type="number" id="capacidad"
-            name="capacidad" required th:value="${tipos_habitacion.capacidad}"/>
+            name="capacidad" required th:value="${tipo_habitacion.capacidad}"/>
         
         <div class="text-center">
             <input type="submit" value="Guardar" class="btn btn-primary"/>
