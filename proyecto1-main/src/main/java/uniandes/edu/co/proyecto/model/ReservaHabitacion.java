@@ -7,7 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import uniandes.edu.co.proyecto.model.primaryKeys.ReservaHabitacionPK;
+import uniandes.edu.co.proyecto.model.PrimaryKeys.ReservaHabitacionPK;
 
 @Entity
 @Table(name = "reservas_habitacion")

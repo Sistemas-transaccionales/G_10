@@ -1,4 +1,4 @@
-package uniandes.edu.co.proyecto.model.primaryKeys;
+package uniandes.edu.co.proyecto.model.PrimaryKeys;
 
 import java.io.Serializable;
 import java.sql.Date;

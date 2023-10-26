@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import uniandes.edu.co.proyecto.model.Dotacion;
 import uniandes.edu.co.proyecto.model.Dotadas;
 import uniandes.edu.co.proyecto.model.TipoHabitacion;
-import uniandes.edu.co.proyecto.model.primaryKeys.DotadasPK;
+import uniandes.edu.co.proyecto.model.PrimaryKeys.DotadasPK;
 import uniandes.edu.co.proyecto.repository.DotacionRepository;
 import uniandes.edu.co.proyecto.repository.DotadasRepository;
 import uniandes.edu.co.proyecto.repository.TipoHabitacionRepository;

@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import uniandes.edu.co.proyecto.model.Usuario;
-import uniandes.edu.co.proyecto.model.primaryKeys.UsuarioPK;
+import uniandes.edu.co.proyecto.model.PrimaryKeys.UsuarioPK;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, UsuarioPK> {
 
@@ -22,9 +22,9 @@ public interface UsuarioRepository extends JpaRepository<Usuario, UsuarioPK> {
         // Método para insertar un nuevo usuario
         @Modifying
         @Transactional
-        @Query(value = "INSERT INTO usuarios (num_doc, tipo_doc, tipo_id, nombre, email, contrasenia) VALUES (:num_doc, :tipo_doc, :tipo, :nombre, :email, :contrasenia)", nativeQuery = true)
+        @Query(value = "INSERT INTO usuarios (num_doc, tipo_doc, tipo, nombre, email, contrasenia) VALUES (:num_doc, :tipo_doc, :tipo, :nombre, :email, :contrasenia)", nativeQuery = true)
         void insertarUsuario(@Param("num_doc") Integer numDoc, @Param("tipo_doc") String tipoDoc,
-                        @Param("tipo") Integer tipoId, @Param("nombre") String nombre, @Param("email") String email,
+                        @Param("tipo") Integer tipo, @Param("nombre") String nombre, @Param("email") String email,
                         @Param("contrasenia") String contrasenia);
 
         // Método para actualizar un usuario

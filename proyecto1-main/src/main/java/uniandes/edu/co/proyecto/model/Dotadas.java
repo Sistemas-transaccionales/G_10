@@ -3,7 +3,7 @@ package uniandes.edu.co.proyecto.model;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import uniandes.edu.co.proyecto.model.primaryKeys.DotadasPK;
+import uniandes.edu.co.proyecto.model.PrimaryKeys.DotadasPK;
 
 @Entity
 @Table(name = "dotadas")
