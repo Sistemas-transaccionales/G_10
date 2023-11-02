@@ -8,12 +8,9 @@
     <link rel="stylesheet"type="text/css" th:href="@{/css/bootstrap.min.css}"/>
 </head>
 <body>
-    <form th:action="@{'planes_consumo/'+${id}+'/edit/save'}" th:object="${plan_consumo}"
-    method="post">
+    <form th:action="@{'/planes_consumo/'+${plan_consumo.id}+'/edit/save'}" th:object="${plan_consumo}" method="post">
     <div th:replace="~{fragments/plan_consumoForm ::plan_consumoForm(titulo='Editar Plan de Consumo',plan_consumo=${plan_consumo})}">
-        
     </div>
-
 </form>
 </body>
 </html>

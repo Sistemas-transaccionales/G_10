@@ -7,32 +7,13 @@
     <title>Fragment</title>
 </head>
 <body>
-   <div th:fragment="tipos_usuarioForm(titulo)" class="container border boder-2 w-25">
+   <div th:fragment="tipo_usuarioForm(titulo, tipo_usuario)" class="container border boder-2 w-25">
         <h1 class="text-center" th:text="${titulo}"></h1>
         <form>
-            <label class="col-form.label">Id</label>
-            <input class="form-control" type="number" id="id"
-            name="id" required th:value="${tipo_usuario.id}"/>
-
             <label class="col-form.label">Nombre</label>
-            <select class="form-control" id="nombre"
-            name="nombre" required>
-            <option value="ADMIN" th:selected="${tipos_usuario eq 'ADMIN'}">
-                ADMIN
-            </option>
-            <option value="GERENTE" th:selected="${tipos_usuario eq 'GERENTE'}">
-                GERENTE
-            </option>
-            <option value="RECEPCIONISTA" th:selected="${tipos_usuario eq 'RECEPCIONISTA'}">
-                RECEPCIONISTA
-            </option>
-            <option value="EMPLEADO" th:selected="${tipos_usuario eq 'EMPLEADO'}">
-                EMPLEADO
-            </option>
-            <option value="CLIENTE" th:selected="${tipos_usuario eq 'CLIENTE'}">
-                CLIENTE
-            </option>
-        </select>
+            <input class="form-control" type="text" id="nombre"
+            name="nombre" required th:value="${tipo_usuario.nombre}"/>
+
         <div class="text-center">
             <input type="submit" value="Guardar" class="btn btn-primary"/>
             <a th:href="@{/tipos_usuario}" class="btn btn btn-primary">Cancelar</a>

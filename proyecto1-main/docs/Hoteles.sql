@@ -37,7 +37,7 @@ CREATE TABLE dotadas(
 
 CREATE TABLE tipos_usuario (
     id INTEGER,
-    nombre VARCHAR2(255) NOT NULL UNIQUE CHECK (nombre IN ('ADMIN', 'GERENTE', 'RECEPCIONISTA', 'EMPLEADO', 'CLIENTE')),
+    nombre VARCHAR2(255) NOT NULL UNIQUE,
     PRIMARY KEY (id)
 );
 

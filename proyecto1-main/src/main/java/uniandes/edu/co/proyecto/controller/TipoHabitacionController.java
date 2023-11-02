@@ -41,7 +41,7 @@ public class TipoHabitacionController {
         TipoHabitacion tipoHabitacion = tipoHabitacionRepository.buscarTipoHabitacionPorId(id);
         if (tipoHabitacion != null) {
             model.addAttribute(("tipo_habitacion"), tipoHabitacion);
-            return "habitacion_editar";
+            return "tipo_habitacion_editar";
         } else {
             return "redirect:/tipos_habitacion";
         }
