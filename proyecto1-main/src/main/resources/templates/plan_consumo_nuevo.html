@@ -7,8 +7,8 @@
     <title>Crear Plan de Consumo</title>
 </head>
 <body>
-    <form action="#" th:action="@/planes_consumo/new/save" method="post">
-        <div th:replace="~{fragments/plan_consumoForm :: plan_consumoForm(titulo='Crear Plan de Consumo')}">
+    <form action="#" th:action="@{/planes_consumo/new/save}" method="post">
+        <div th:replace="~{fragments/plan_consumoForm :: plan_consumoForm(titulo='Crear Plan de Consumo',plan_consumo=${plan_consumo})}">
 
         </div>
     </form>

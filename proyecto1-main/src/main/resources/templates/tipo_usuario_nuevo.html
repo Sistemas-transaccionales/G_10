@@ -8,7 +8,7 @@
 </head>
 <body>
     <form action="#" th:action="@{/tipos_usuario/new/save}" method="post">
-        <div th:replace="~{fragments/tipo_usuarioForm :: tipos_usuarioForm(titulo='Crear Tipo Usuario')}">
+        <div th:replace="fragments/tipo_usuarioForm :: tipo_usuarioForm('Crear Tipo Usuario', ${tipo_usuario})">
         </div>
     </form>
 </body>

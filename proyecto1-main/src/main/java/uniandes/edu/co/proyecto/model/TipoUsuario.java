@@ -1,9 +1,14 @@
 package uniandes.edu.co.proyecto.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -15,6 +20,9 @@ public class TipoUsuario {
     private Integer id;
 
     private String nombre;
+
+    @OneToMany(mappedBy = "tipo", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Usuario> usuarios = new ArrayList<>();
 
     public TipoUsuario() {
         ;
