@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import uniandes.edu.co.proyecto.model.ReservaHabitacion;
-import uniandes.edu.co.proyecto.model.PrimaryKeys.ReservaHabitacionPK;
+import uniandes.edu.co.proyecto.model.primaryKeys.ReservaHabitacionPK;
 
 public interface ReservaHabitacionRepository extends JpaRepository<ReservaHabitacion, ReservaHabitacionPK> {
 
