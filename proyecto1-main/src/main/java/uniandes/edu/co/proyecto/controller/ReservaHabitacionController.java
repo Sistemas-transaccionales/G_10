@@ -1,6 +1,6 @@
 package uniandes.edu.co.proyecto.controller;
 
-import java.sql.Date;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import uniandes.edu.co.proyecto.model.CuentaEstadia;
 import uniandes.edu.co.proyecto.model.Habitacion;
@@ -44,28 +45,35 @@ public class ReservaHabitacionController {
 
     @GetMapping("/reservas_habitacion/new")
     public String reservasHabitacionForm(Model model) {
-        model.addAttribute("reserva_habitacion", new ReservaHabitacion());
+        ReservaHabitacion reservaHabitacion = new ReservaHabitacion();
+        Usuario usuario = new Usuario();
+        usuario.setPk(new UsuarioPK()); // Initialize the UsuarioPK object
+        reservaHabitacion.setUsuario(usuario); // Set the initialized Usuario object
+        ReservaHabitacionPK reservaHabitacionPK = new ReservaHabitacionPK();
+        reservaHabitacion.setPk(reservaHabitacionPK);
+        model.addAttribute("reserva_habitacion", reservaHabitacion);
         return "reserva_habitacion_nuevo";
     }
 
     @PostMapping("/reservas_habitacion/new/save")
     public String reservasHabitacionGuardar(@ModelAttribute("id_habitacion") String id_habitacion,
             @ModelAttribute("id_usuario") UsuarioPK usuarioPK, @ModelAttribute("fecha_entrada") Date fecha_entrada,
-            @ModelAttribute("fecha_salida") Date fecha_salida, @ModelAttribute("id_plan_consumo") int id_plan_consumo,
-            @ModelAttribute("num_personas") int num_personas, @ModelAttribute("costo") int costo) {
-
+            @ModelAttribute("fecha_salida") Date fecha_salida, @RequestParam("id_plan_consumo") Integer id_plan_consumo,
+            @RequestParam("num_personas") Integer num_personas, @RequestParam("costo") Integer costo) {
+                
         Habitacion habitacion = habitacionRepository.buscarHabitacionPorId(id_habitacion);
         Usuario usuario = usuarioRepository.buscarUsuarioPorId(usuarioPK.getNum_doc(), usuarioPK.getTipo_doc());
-
+    
         ReservaHabitacionPK pk = new ReservaHabitacionPK(habitacion, usuario, fecha_entrada, fecha_salida);
         ReservaHabitacion reservaHabitacion = new ReservaHabitacion();
+        reservaHabitacion.setId_habitacion(habitacion); // Set id_habitacion
         CuentaEstadia cuenta = new CuentaEstadia(habitacion, 0, 0);
         // cuentaEstadiaRepository.insertarCuentaEstadia(id_habitacion, costo, false);
         reservaHabitacion.setPk(pk);
         reservaHabitacionRepository.insertarReservaHabitacion(id_habitacion, usuarioPK.getNum_doc(),
                 usuarioPK.getTipo_doc(), fecha_entrada, fecha_salida, id_plan_consumo, num_personas, costo,
                 cuenta.getId());
-
+    
         return "redirect:/reservas_habitacion";
     }
 

@@ -1,7 +1,9 @@
 package uniandes.edu.co.proyecto.model.PrimaryKeys;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
@@ -19,7 +21,10 @@ public class ReservaHabitacionPK implements Serializable {
     private Integer num_doc;
     private String tipo_doc;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fecha_entrada;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fecha_salida;
 
     public ReservaHabitacionPK() {
@@ -37,8 +42,8 @@ public class ReservaHabitacionPK implements Serializable {
         this.id_habitacion = id_habitacion;
         this.num_doc = cliente.getPk().getNum_doc();
         this.tipo_doc = cliente.getPk().getTipo_doc();
-        this.fecha_entrada = fecha_entrada;
-        this.fecha_salida = fecha_salida;
+        this.fecha_entrada = new Date(fecha_entrada.getTime());
+        this.fecha_salida = new Date(fecha_salida.getTime());
     }
 
     /**

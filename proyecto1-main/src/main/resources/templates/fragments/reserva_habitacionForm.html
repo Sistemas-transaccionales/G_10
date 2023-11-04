@@ -12,39 +12,43 @@
         <form>
             <label class="col-form.label">Id Habitacion</label>
             <input class="form-control" type="text" id="id_habitacion"
-            name="id_habitacion" required th:value="${reservas_habitacion.id_habitacion}"/>
+            name="id_habitacion" required th:value="${reserva_habitacion.id_habitacion}"/>
 
-            <label class="col-form.label">Id Usuario</label>
-            <input class="form-control" type="number" id="id_usuario"
-            name="id_usuario" required th:value="${reservas_habitacion.id_usuario}"/>
+            <label class="col-form.label">Tipo Doc Usuario</label>
+            <input class="form-control" type="text" id="tipo_doc"
+            name="usuario.pk.tipo_doc" required th:value="${reserva_habitacion.usuario.pk.tipo_doc}"/>
+
+            <label class="col-form.label">Num Doc Usuario</label>
+            <input class="form-control" type="number" id="num_doc"
+            name="usuario.pk.num_doc" required th:value="${reserva_habitacion.usuario.pk.num_doc}"/>
 
             <label class="col-form.label">Fecha Entrada</label>
-            <input class="form-control" type="text" id="fecha_entrada"
-            name="fecha_entrada" required th:value="${reservas_habitacion.fecha_entrada}"/>
+            <input class="form-control" type="date" id="fecha_entrada"
+            name="pk.fecha_entrada" required th:value="${#dates.format(reserva_habitacion.pk.fecha_entrada, 'yyyy-MM-dd')}"/>
 
             <label class="col-form.label">Fecha Salida</label>
-            <input class="form-control" type="text" id="fecha_salida"
-            name="fecha_salida" required th:value="${reservas_habitacion.fecha_salida}"/>
+            <input class="form-control" type="date" id="fecha_salida"
+            name="pk.fecha_salida" required th:value="${#dates.format(reserva_habitacion.pk.fecha_salida, 'yyyy-MM-dd')}"/>
 
             <label class="col-form.label">Plan Consumo</label>
             <input class="form-control" type="number" id="plan_consumo"
-            name="plan_consumo" required th:value="${reservas_habitacion.plan_consumo}"/>
+            name="id_plan_consumo" required th:value="${reserva_habitacion.plan_consumo}"/>
 
             <label class="col-form.label">Numero de Personas</label>
             <input class="form-control" type="number" id="num_personas"
-            name="num_personas" required th:value="${reservas_habitacion.num_personas}"/>
+            name="num_personas" required th:value="${reserva_habitacion.num_personas}"/>
 
             <label class="col-form.label">Costo</label>
             <input class="form-control" type="number" id="costo"
-            name="costo" required th:value="${reservas_habitacion.costo}"/>
+            name="costo" required th:value="${reserva_habitacion.costo}"/>
 
             <label class="col-form.label">Id Cuenta</label>
             <input class="form-control" type="number" id="id_cuenta"
-            name="id_cuenta" required th:value="${reservas_habitacion.id_cuenta}"/>
+            name="id_cuenta" required th:value="${reserva_habitacion.id_cuenta}"/>
 
             <div class="text-center">
                 <input type="submit" value="Guardar" class="btn btn-primary"/>
-                <a th:href="@{/reservas_servicioo}" class="btn btn btn-primary">Cancelar</a>
+                <a th:href="@{/reservas_habitacion}" class="btn btn btn-primary">Cancelar</a>
             </div>
 
 

@@ -7,7 +7,7 @@
     <title>Crear Reserva Habitacion</title>
 </head>
 <body>
-    <form action="#" th:action="@/reservas_habitacion/new/save" method="post">
+    <form th:action="@{/reservas_habitacion/new/save}" th:object="${reserva_habitacion}" method="post">
         <div th:replace="~{fragments/reserva_habitacionForm :: reserva_habitacionForm(titulo='Crear Reserva Habitacion')}">
 
         </div>
