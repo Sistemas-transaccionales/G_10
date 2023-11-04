@@ -14,7 +14,8 @@
             <thead class="thead-dark">
                 <tr>
                     <th>Id Habitacion</th>
-                    <th>Id Usuario</th>
+                    <th>Tipo Doc Usuario</th>
+                    <th>Num Doc Usuario</th>
                     <th>Fecha Entrada</th>
                     <th>Fecha Salida</th>
                     <th>Plan Consumo</th>
@@ -26,14 +27,15 @@
             </thead>
             <th:block th:each="reservas_habitacion:${reservas_habitacion}">
                 <tr>
-                    <td th:text="${reservas_habitacion.id_habitacion}"></td>
-                    <td th:text="${reservas_habitacion.id_usuario}"></td>
-                    <td th:text="${reservas_habitacion.fecha_entrada}"></td>
-                    <td th:text="${reservas_habitacion.fecha_salida}"></td>
-                    <td th:text="${reservas_habitacion.plan_consumo}"></td>
+                    <td th:text="${reservas_habitacion.id_habitacion.id}"></td>
+                    <td th:text="${reservas_habitacion.usuario.pk.tipo_doc}"></td>
+                    <td th:text="${reservas_habitacion.usuario.pk.num_doc}"></td>
+                    <td th:text="${#dates.format(reservas_habitacion.pk.fecha_entrada, 'yyyy-MM-dd')}"></td>
+                    <td th:text="${#dates.format(reservas_habitacion.pk.fecha_salida, 'yyyy-MM-dd')}"></td>
+                    <td th:text="${reservas_habitacion.plan_consumo.id}"></td>
                     <td th:text="${reservas_habitacion.num_personas}"></td>
                     <td th:text="${reservas_habitacion.costo}"></td>
-                    <td th:text="${reservas_habitacion.id_cuenta}"></td>
+                    <td th:text="${reservas_habitacion.id_cuenta.id}"></td>
                     <td>
                         <a th:href="@{reservas_habitacion/{id_habitacion}/edit(id_habitacion=${reservas_habitacion.id_habitacion})}">
                             Editar
