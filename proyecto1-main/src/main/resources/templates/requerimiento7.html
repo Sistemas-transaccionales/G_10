@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buenos Clientes del Hotel</title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+    <style>
+        .title-container {
+            background-color: #007BFF; 
+            color: white; 
+            padding: 20px;
+            text-transform: capitalize;
+        }
+
+        .user-list {
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto">
+        <div class="title-container">
+            <h1 class="text-center">Buenos Clientes del Hotel</h1>
+        </div>
+        <p>
+            Los buenos clientes del hotel por durar dos semanas o más en el último año son:
+            <span th:each="cliente : ${clientesBuenos}">
+                <span th:text="${cliente.nombre_cliente}"></span>
+            </span>
+        </p>
+
+        <div>
+            <a href="/" class="btn btn-primary">Volver atrás</a>
+        </div>
+    </div>
+</body>
+</html>
