@@ -31,7 +31,7 @@ public class GimnasioController {
 
     @PostMapping("/gimnasios/new/save")
     public String gimnasioGuardar(@ModelAttribute Gimnasio gimnasio) {
-        gimnasioRepository.insertarGimnasio(gimnasio.getTipo().getId(), gimnasio.getNombre(),
+        gimnasioRepository.insertarGimnasio(gimnasio.getId(), gimnasio.getTipo().getId(), gimnasio.getNombre(),
                 gimnasio.getHora_apertura(), gimnasio.getHora_clausura(), gimnasio.getCapacidad());
         return "redirect:/gimnasios";
     }

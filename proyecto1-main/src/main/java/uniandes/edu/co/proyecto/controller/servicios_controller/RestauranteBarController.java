@@ -30,7 +30,7 @@ public class RestauranteBarController {
 
     @PostMapping("/restaurantes_bares/new/save")
     public String restaurantesBaresGuardar(@ModelAttribute RestauranteBar restauranteBar) {
-        restauranteBarRepository.insertarRestauranteBar(restauranteBar.getTipo().getId(),
+        restauranteBarRepository.insertarRestauranteBar(restauranteBar.getId(), restauranteBar.getTipo().getId(),
                 restauranteBar.getNombre(), restauranteBar.getEstilo(), restauranteBar.getEs_bar(),
                 restauranteBar.getHorario(), restauranteBar.getCapacidad());
         return "redirect:/restaurantes_bares";

@@ -31,7 +31,7 @@ public class TipoServicioController {
 
     @PostMapping("/tipos_servicio/new/save")
     public String tipoServicioGuardar(@ModelAttribute TipoServicio tipoServicio) {
-        tipoServicioRepository.insertarTipoServicio(tipoServicio.getNombre());
+        tipoServicioRepository.insertarTipoServicio(tipoServicio.getId(), tipoServicio.getNombre());
         return "redirect:/tipos_servicio";
     }
 

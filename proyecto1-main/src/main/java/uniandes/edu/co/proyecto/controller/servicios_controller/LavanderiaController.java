@@ -31,7 +31,8 @@ public class LavanderiaController {
 
     @PostMapping("/lavanderia/new/save")
     public String lavanderiaGuardar(@ModelAttribute Lavanderia lavanderia) {
-        lavanderiaRepository.insertarServicioLavanderia(lavanderia.getId(), lavanderia.getNombre(),
+        lavanderiaRepository.insertarServicioLavanderia(lavanderia.getId(), lavanderia.getTipo().getId(),
+                lavanderia.getNombre(),
                 lavanderia.getTipo_prenda(), lavanderia.getNum_prendas(), lavanderia.getCosto());
         return "redirect:/lavanderia";
     }

@@ -31,7 +31,7 @@ public class ProductoMenuController {
 
     @PostMapping("/productos_menu/new/save")
     public String productoMenuGuardar(@ModelAttribute ProductoMenu productoMenu) {
-        productoMenuRepository.insertarProductoMenu(productoMenu.getNombre(),
+        productoMenuRepository.insertarProductoMenu(productoMenu.getId(), productoMenu.getNombre(),
                 productoMenu.getCosto());
         return "redirect:/productos_menu";
     }

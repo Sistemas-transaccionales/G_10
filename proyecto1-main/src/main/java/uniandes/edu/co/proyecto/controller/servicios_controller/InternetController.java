@@ -30,7 +30,8 @@ public class InternetController {
 
     @PostMapping("/internet/new/save")
     public String internetGuardar(Internet internet) {
-        internetRepository.insertarServicioInternet(internet.getId(), internet.getNombre(), internet.getCapacidad());
+        internetRepository.insertarServicioInternet(internet.getId(), internet.getTipo().getId(), internet.getNombre(),
+                internet.getCapacidad());
         return "redirect:/internet";
     }
 

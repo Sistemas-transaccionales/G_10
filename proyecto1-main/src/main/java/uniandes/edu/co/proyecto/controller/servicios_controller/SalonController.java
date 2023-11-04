@@ -30,7 +30,7 @@ public class SalonController {
 
     @PostMapping("/salones/new/save")
     public String salonGuardar(Salon salon) {
-        salonRepository.insertarSalon(salon.getTipo().getId(), salon.getNombre(), salon.getTipo_salon(),
+        salonRepository.insertarSalon(salon.getId(), salon.getTipo().getId(), salon.getNombre(), salon.getTipo_salon(),
                 salon.getCapacidad(),
                 salon.getCosto_por_hora(), salon.getCosto_extra());
         return "redirect:/salones";

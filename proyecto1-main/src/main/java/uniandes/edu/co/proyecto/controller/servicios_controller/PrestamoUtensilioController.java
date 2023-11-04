@@ -30,7 +30,8 @@ public class PrestamoUtensilioController {
 
     @PostMapping("/prestamos_utensilio/new/save")
     public String prestamoUtensilioGuardar(PrestamoUtensilio prestamoUtensilio) {
-        prestamoUtensilioRepository.insertarPrestamoUtensilio(prestamoUtensilio.getId(), prestamoUtensilio.getNombre(),
+        prestamoUtensilioRepository.insertarPrestamoUtensilio(prestamoUtensilio.getId(),
+                prestamoUtensilio.getTipo().getId(), prestamoUtensilio.getNombre(),
                 prestamoUtensilio.getUtensilio(), prestamoUtensilio.getCosto_danio());
         return "redirect:/prestamos_utensilio";
     }

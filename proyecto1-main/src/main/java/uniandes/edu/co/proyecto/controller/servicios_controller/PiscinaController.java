@@ -31,8 +31,8 @@ public class PiscinaController {
 
     @PostMapping("/piscinas/new/save")
     public String piscinaGuardar(@ModelAttribute Piscina piscina) {
-        piscinaRepository.insertarPiscina(piscina.getId(), piscina.getNombre(), piscina.getCapacidad(),
-                piscina.getArea(), piscina.getProfundidad());
+        piscinaRepository.insertarPiscina(piscina.getId(), piscina.getTipo().getId(), piscina.getNombre(),
+                piscina.getCapacidad(), piscina.getArea(), piscina.getProfundidad());
         return "redirect:/piscinas";
     }
 
