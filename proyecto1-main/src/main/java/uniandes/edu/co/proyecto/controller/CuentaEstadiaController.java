@@ -25,7 +25,8 @@ public class CuentaEstadiaController {
     @PostMapping("/cuentas_estadia/new/save")
     public String cuentaEstadiaGuardar(@ModelAttribute CuentaEstadia cuentaEstadia) {
         String id_hab = cuentaEstadia.getId_habitacion().getId();
-        cuentaEstadioRepository.insertarCuentaEstadia(id_hab, cuentaEstadia.getMonto(), cuentaEstadia.getAbierta());
+        cuentaEstadioRepository.insertarCuentaEstadia(cuentaEstadia.getId(), id_hab, cuentaEstadia.getMonto(),
+                cuentaEstadia.getAbierta());
         return "redirect:/cuentas_estadia";
     }
 

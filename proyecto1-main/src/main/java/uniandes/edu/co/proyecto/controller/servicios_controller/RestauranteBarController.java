@@ -38,8 +38,9 @@ public class RestauranteBarController {
 
     @GetMapping("/restaurantes_bares/{id}/edit")
     public String restaurantesBaresEditarForm(@ModelAttribute RestauranteBar restauranteBar) {
-        restauranteBarRepository.actualizarRestauranteBar(restauranteBar.getTipo().getId(),
-                restauranteBar.getNombre(), restauranteBar.getEstilo(), restauranteBar.getEs_bar(),
+        restauranteBarRepository.actualizarRestauranteBar(restauranteBar.getId(),
+                restauranteBar.getNombre(), restauranteBar.getTipo().getId(), restauranteBar.getEstilo(),
+                restauranteBar.getEs_bar(),
                 restauranteBar.getHorario(), restauranteBar.getCapacidad());
         return "redirect:/restaurantes_bares";
     }
@@ -47,7 +48,8 @@ public class RestauranteBarController {
     @PostMapping("/restaurantes_bares/{id}/edit/save")
     public String restaurantesBaresActualizar(@ModelAttribute RestauranteBar restauranteBar) {
         restauranteBarRepository.actualizarRestauranteBar(restauranteBar.getId(),
-                restauranteBar.getNombre(), restauranteBar.getEstilo(), restauranteBar.getEs_bar(),
+                restauranteBar.getNombre(), restauranteBar.getTipo().getId(), restauranteBar.getEstilo(),
+                restauranteBar.getEs_bar(),
                 restauranteBar.getHorario(), restauranteBar.getCapacidad());
         return "redirect:/restaurantes_bares";
     }

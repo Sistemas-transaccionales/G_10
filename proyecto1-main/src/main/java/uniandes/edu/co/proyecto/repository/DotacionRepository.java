@@ -20,8 +20,8 @@ public interface DotacionRepository extends JpaRepository<Dotacion, Integer> {
     // Método para insertar una dotación:
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO dotaciones (id, nombre) VALUES(id_dotaciones.NEXTVAL, :nombre)", nativeQuery = true)
-    void insertarDotacion(@Param("nombre") String nombre);
+    @Query(value = "INSERT INTO dotaciones (id, nombre) VALUES(:id, :nombre)", nativeQuery = true)
+    void insertarDotacion(@Param("id") int id, @Param("nombre") String nombre);
 
     // Método para actualizar una dotación:
     @Modifying

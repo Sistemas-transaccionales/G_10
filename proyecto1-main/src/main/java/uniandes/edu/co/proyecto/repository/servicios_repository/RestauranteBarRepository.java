@@ -30,8 +30,8 @@ public interface RestauranteBarRepository extends JpaRepository<RestauranteBar, 
         // Método para actualizar un restaurante/bar
         @Modifying
         @Transactional
-        @Query("UPDATE restaurantes_bares SET nombre = :nombre, estilo = :estilo, es_bar = :esBar, horario = :horario, capacidad = :capacidad WHERE id = :id")
-        void actualizarRestauranteBar(@Param("id") Integer id, @Param("nombre") String nombre,
+        @Query("UPDATE restaurantes_bares SET nombre = :nombre, tipo=:tipo, estilo = :estilo, es_bar = :esBar, horario = :horario, capacidad = :capacidad WHERE id = :id")
+        void actualizarRestauranteBar(@Param("id") Integer id, @Param("nombre") String nombre, @Param("tipo") int tipo,
                         @Param("estilo") String estilo, @Param("esBar") int esBar,
                         @Param("horario") String horario, @Param("capacidad") Integer capacidad);
 

@@ -21,8 +21,8 @@ public interface TipoUsuarioRepository extends JpaRepository<TipoUsuario, Intege
     // Método para insertar un nuevo tipo de usuario
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO tipos_usuario (id, nombre) VALUES (id_tipos_usuario.NEXTVAL, :nombre)", nativeQuery = true)
-    void insertarTipoUsuario(@Param("nombre") String nombre);
+    @Query(value = "INSERT INTO tipos_usuario (id, nombre) VALUES (:id, :nombre)", nativeQuery = true)
+    void insertarTipoUsuario(@Param("id") int id, @Param("nombre") String nombre);
 
     // Método para actualizar un tipo de usuario
     @Modifying

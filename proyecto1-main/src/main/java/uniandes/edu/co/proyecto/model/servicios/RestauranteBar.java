@@ -1,8 +1,10 @@
 package uniandes.edu.co.proyecto.model.servicios;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "restaurantes_bares")
 public class RestauranteBar extends Servicio {
 
     private String estilo;

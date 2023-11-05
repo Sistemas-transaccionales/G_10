@@ -24,7 +24,7 @@ public class DotacionController {
 
     @PostMapping("/dotaciones/new/save")
     public String dotacionGuardar(@ModelAttribute Dotacion dotacion) {
-        dotacionRepository.insertarDotacion(dotacion.getNombre());
+        dotacionRepository.insertarDotacion(dotacion.getId(), dotacion.getNombre());
         return "redirect:/dotaciones";
     }
 }

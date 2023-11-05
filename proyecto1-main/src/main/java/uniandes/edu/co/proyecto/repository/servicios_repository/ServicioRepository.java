@@ -22,7 +22,8 @@ public interface ServicioRepository extends JpaRepository<Servicio, Integer> {
     // // Método para insertar un nuevo servicio
     // @Modifying
     // @Transactional
-    // @Query("INSERT INTO Servicio (id, tipo, nombre) VALUES ( id_servicios.nextval
+    // @Query("INSERT INTO Servicios (id, tipo, nombre) VALUES (
+    // id_servicios.nextval
     // , :tipo, :nombre)")
     // void insertarServicio(@Param("tipo") int tipo, @Param("nombre") String
     // nombre);
@@ -30,12 +31,12 @@ public interface ServicioRepository extends JpaRepository<Servicio, Integer> {
     // Método para actualizar un servicio
     @Modifying
     @Transactional
-    @Query("UPDATE Servicio SET tipo = :tipo, nombre = :nombre WHERE id = :id")
+    @Query("UPDATE Servicios SET tipo = :tipo, nombre = :nombre WHERE id = :id")
     void actualizarServicio(@Param("id") Integer id, @Param("tipo") int tipo, @Param("nombre") String nombre);
 
     // Método para eliminar un servicio por su ID
     @Modifying
     @Transactional
-    @Query("DELETE FROM Servicio WHERE id = :id")
+    @Query("DELETE FROM Servicios WHERE id = :id")
     void eliminarServicioPorID(@Param("id") Integer id);
 }

@@ -23,8 +23,9 @@ public interface CheckInRepository extends JpaRepository<CheckIn, ReservaHabitac
     // Método para insertar un nuevo check-in
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO check_ins (id, id_habitacion, num_doc, tipo_doc, fecha, hora) VALUES (id_check_ins.NEXTVAL, :id_habitacion, :num_doc, :tipo_doc, :fecha, :hora)", nativeQuery = true)
-    public void insertarCheckIn(@Param("id_habitacion") int idHabitacion, @Param("num_doc") int numDoc,
+    @Query(value = "INSERT INTO check_ins (id, id_habitacion, num_doc, tipo_doc, fecha, hora) VALUES (:id, :id_habitacion, :num_doc, :tipo_doc, :fecha, :hora)", nativeQuery = true)
+    public void insertarCheckIn(@Param("id") int id, @Param("id_habitacion") int idHabitacion,
+            @Param("num_doc") int numDoc,
             @Param("tipo_doc") String tipoDoc, @Param("fecha") Date fecha, @Param("hora") String hora);
 
     // Método para actualizar un check-in

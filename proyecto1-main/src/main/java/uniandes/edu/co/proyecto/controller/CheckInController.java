@@ -33,11 +33,12 @@ public class CheckInController {
     }
 
     @PostMapping("/check_ins/new/save")
-    public String checkInGuardar(@ModelAttribute("id_habitacion") int id_habitacion,
+    public String checkInGuardar(@ModelAttribute("id") int id, @ModelAttribute("id_habitacion") int id_habitacion,
             @ModelAttribute("id_usuario") Usuario usuario, @ModelAttribute("fecha") Date fecha,
             @ModelAttribute("hora") String hora_salida) {
 
-        checkInRepository.insertarCheckIn(id_habitacion, usuario.getPk().getNum_doc(), usuario.getPk().getTipo_doc(),
+        checkInRepository.insertarCheckIn(id, id_habitacion, usuario.getPk().getNum_doc(),
+                usuario.getPk().getTipo_doc(),
                 fecha, hora_salida);
 
         return "redirect:/check_ins";
