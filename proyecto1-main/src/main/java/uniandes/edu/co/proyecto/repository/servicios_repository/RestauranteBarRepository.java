@@ -12,17 +12,17 @@ import uniandes.edu.co.proyecto.model.servicios.RestauranteBar;
 public interface RestauranteBarRepository extends JpaRepository<RestauranteBar, Integer> {
 
         // Método para listar todos los restaurantes/bares
-        @Query("SELECT * FROM RestauranteBar")
+        @Query("SELECT * FROM restaurantes_bares")
         Collection<RestauranteBar> listarRestaurantesBares();
 
         // Método para buscar un restaurante/bar por su ID
-        @Query("SELECT * FROM RestauranteBar WHERE id = :id")
+        @Query("SELECT * FROM restaurantes_bares WHERE id = :id")
         RestauranteBar buscarRestauranteBarPorID(@Param("id") Integer id);
 
         // Método para insertar un nuevo restaurante/bar
         @Modifying
         @Transactional
-        @Query("INSERT INTO RestauranteBar (id, tipo, estilo, es_bar, horario, capacidad) VALUES (:id, :tipo, :estilo, :esBar, :horario, :capacidad)")
+        @Query("INSERT INTO restaurantes_bares (id, tipo, nombre, estilo, es_bar, horario, capacidad) VALUES (:id, :tipo, :nombre, :estilo, :esBar, :horario, :capacidad)")
         void insertarRestauranteBar(@Param("id") int id, @Param("tipo") int tipo, @Param("nombre") String nombre,
                         @Param("estilo") String estilo, @Param("esBar") int esBar, @Param("horario") String horario,
                         @Param("capacidad") Integer capacidad);
@@ -30,7 +30,7 @@ public interface RestauranteBarRepository extends JpaRepository<RestauranteBar, 
         // Método para actualizar un restaurante/bar
         @Modifying
         @Transactional
-        @Query("UPDATE RestauranteBar SET nombre = :nombre, estilo = :estilo, es_bar = :esBar, horario = :horario, capacidad = :capacidad WHERE id = :id")
+        @Query("UPDATE restaurantes_bares SET nombre = :nombre, estilo = :estilo, es_bar = :esBar, horario = :horario, capacidad = :capacidad WHERE id = :id")
         void actualizarRestauranteBar(@Param("id") Integer id, @Param("nombre") String nombre,
                         @Param("estilo") String estilo, @Param("esBar") int esBar,
                         @Param("horario") String horario, @Param("capacidad") Integer capacidad);
@@ -38,6 +38,6 @@ public interface RestauranteBarRepository extends JpaRepository<RestauranteBar, 
         // Método para eliminar un restaurante/bar por su ID
         @Modifying
         @Transactional
-        @Query("DELETE FROM RestauranteBar WHERE id = :id")
+        @Query("DELETE FROM restaurantes_bares WHERE id = :id")
         void eliminarRestauranteBarPorID(@Param("id") Integer id);
 }
