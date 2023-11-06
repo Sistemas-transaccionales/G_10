@@ -6,8 +6,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HotelesController {
 
-    @RequestMapping("/")
-    public String index() {
-        return "index";
+    @RequestMapping("/hoteles")
+    public String hoteles() {
+        return "hoteles";
     }
+
+    @RequestMapping("/estadisticas")
+    public String estadisticas() {
+        return "estadisticas";
+    }
+
+    @RequestMapping("/requerimiento7")
+    public String requerimiento7() {
+        return "requerimiento7";
+    }
+
 }
