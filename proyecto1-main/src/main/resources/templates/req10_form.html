@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Requerimiento 10 Form</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+    <div>
+        <h1>Ingrese los datos para buscar consumo</h1>
+        <form th:action="@{/requerimiento10}" method="post">
+            <div class="form-group">
+                <label for="service_id">ID del Servicio:</label>
+                <input type="text" id="service_id" name="service_id" required>
+            </div>
+            <div class="form-group">
+                <label for="start_date">Fecha incial:</label>
+                <input type="date" id="start_date" name="start_date" required>
+            </div>
+            <div class="form-group">
+                <label for="end_date">Fecha final:</label>
+                <input type="date" id="end_date" name="end_date" required>
+            </div>
+            <div class="form-group">
+                <label for="order_by">Ordenar por:</label>
+                <select id="order_by" name="order_by" required>
+                    <option value="num_doc">Número de Documento</option>
+                    <option value="nombre">Nombre</option>
+                    <option value="fecha">Fecha</option>
+                    <option value="cantidad">Cantidad</option>
+                </select>
+            </div>
+            <input type="submit" value="Buscar">
+        </form>
+    </div>
+</body>
+</html>

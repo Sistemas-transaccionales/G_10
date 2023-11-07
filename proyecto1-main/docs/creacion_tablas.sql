@@ -237,7 +237,7 @@ CREATE TABLE check_outs (
     hora VARCHAR2(255) NOT NULL,
     ingresos_totales NUMERIC NOT NULL CHECK (ingresos_totales >= 0),
     CONSTRAINT check_outs_PK PRIMARY KEY (id_check_in),
-    CONSTRAINT check_outs_FK FOREIGN KEY (id_check_in) REFERENCES check_ins(id)
+    CONSTRAINT check_outs_FK FOREIGN KEY (id_check_in) REFERENCES check_ins(id) ON DELETE CASCADE
 );
 
 --BEGIN
