@@ -25,13 +25,13 @@
             <th:block th:each="check_ins:${check_ins}">
                 <tr>
                     <td th:text="${check_ins.id}"></td>
-                    <td th:text="${check_ins.id_habitacion}"></td>
+                    <td th:text="${check_ins.id_habitacion.id}"></td>
                     <td th:text="${check_ins.num_doc}"></td>
                     <td th:text="${check_ins.tipo_doc}"></td>
                     <td th:text="${check_ins.fecha}"></td>
                     <td th:text="${check_ins.hora}"></td>
                     <td>
-                        <a th:href="@{check_ins/{id}/edit(id=${check.ins.id})}">
+                        <a th:href="@{check_ins/{id}/edit(id=${check_ins.id})}">
                             Editar
                         </a>
                         <a th:href="@{check_ins/{id}/delete(id=${check_ins.id})}"

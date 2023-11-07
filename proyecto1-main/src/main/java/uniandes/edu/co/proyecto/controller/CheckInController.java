@@ -28,7 +28,7 @@ public class CheckInController {
 
     @GetMapping("/check_ins/new")
     public String checkInForm(Model model) {
-        model.addAttribute("check_in", new CheckIn());
+        model.addAttribute("check_ins", new CheckIn());
         return "check_in_nuevo";
     }
 
