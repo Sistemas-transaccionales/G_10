@@ -27,7 +27,7 @@ public interface ReservaHabitacionRepository extends JpaRepository<ReservaHabita
         // Método para insertar una nueva reserva de habitación
         @Modifying
         @Transactional
-        @Query(value = "INSERT INTO reservas_habitacion (id_habitacion, num_doc, tipo_doc, fecha_entrada, fecha_salida, plan_consumo, num_personas, costo, id_cuenta) VALUES (:idHabitacion, :numDoc, :tipoDoc :fechaEntrada, :fechaSalida, :planConsumoId, :numPersonas, :costo, :idCuenta)", nativeQuery = true)
+        @Query(value = "INSERT INTO reservas_habitacion (id_habitacion, num_doc, tipo_doc, fecha_entrada, fecha_salida, plan_consumo, num_personas, costo, id_cuenta) VALUES (:idHabitacion, :numDoc, :tipoDoc, :fechaEntrada, :fechaSalida, :planConsumoId, :numPersonas, :costo, :idCuenta)", nativeQuery = true)
         void insertarReservaHabitacion(@Param("idHabitacion") String idHabitacion, @Param("numDoc") int numDoc,
                         @Param("tipoDoc") String tipoDoc,
                         @Param("fechaEntrada") Date fechaEntrada, @Param("fechaSalida") Date fechaSalida,
