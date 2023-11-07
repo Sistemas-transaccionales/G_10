@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "requerimiento4")
+@Table(name = "resultados")
 public class Requerimiento4 {
 
     @Id
@@ -16,7 +16,7 @@ public class Requerimiento4 {
     private String nombre;
 
     @Column(name = "capacidadTotal")
-    private int capacidadTotal;
+    private Integer capacidadTotal;
 
     @Column(name = "costoDelServicio")
     private BigDecimal costoDelServicio;
@@ -29,11 +29,11 @@ public class Requerimiento4 {
         this.nombre = nombre;
     }
 
-    public int getCapacidadTotal() {
+    public Integer getCapacidadTotal() {
         return capacidadTotal;
     }
 
-    public void setCapacidadTotal(int capacidadTotal) {
+    public void setCapacidadTotal(Integer capacidadTotal) {
         this.capacidadTotal = capacidadTotal;
     }
 

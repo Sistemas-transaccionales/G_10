@@ -11,22 +11,22 @@
     <div>
         <h1>Filtrar Servicios</h1>
         <p>Ingrese los siguientes criterios para filtrar servicios:</p>
-        <form action="/requerimiento4" method="post">
+        <form th:action="@{/requerimiento4}" method="post">
             <div>
                 <label for="costoMinimo">Costo Mínimo:</label>
-                <input type="text" id="costoMinimo" name="costoMinimo">
+                <input type="number" id="costoMinimo" name="costoMinimo">
             </div>
             <div>
                 <label for="costoMaximo">Costo Máximo:</label>
-                <input type="text" id="costoMaximo" name="costoMaximo">
+                <input type="number" id="costoMaximo" name="costoMaximo">
             </div>
             <div>
                 <label for="capacidadMinima">Capacidad Mínima:</label>
-                <input type="text" id="capacidadMinima" name="capacidadMinima">
+                <input type="number" id="capacidadMinima" name="capacidadMinima">
             </div>
             <div>
                 <label for="capacidadMaxima">Capacidad Máxima:</label>
-                <input type="text" id="capacidadMaxima" name="capacidadMaxima">
+                <input type="number" id="capacidadMaxima" name="capacidadMaxima">
             </div>
             <div>
             
