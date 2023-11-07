@@ -9,25 +9,27 @@
 </head>
 <body>
     <div>
-        <h1>Servicios Filtrados</h1>
-        <table class="table table-hover table-bordered">
-            <thead class="thead-dark">
-                <tr>
-                    <th>Nombre del Servicio</th>
-                    <th>Capacidad Total</th>
-                    <th>Costo del Servicio</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="resultado : ${resultados}">
-                    <td th:text="${resultado.nombre}"></td>
-                    <td th:text="${resultado.capacidadTotal}"></td>
-                    <td th:text="${resultado.costoDelServicio}"></td>
-                </tr>
-            </tbody>
-        </table>
         <div>
-            <a th:href="@{/}" class="btn btn-primary">Volver atrás</a>
+            <h1>Resultados del Requerimiento 4</h1>
+            <table class="table table-hover table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Nombre del Servicio</th>
+                        <th>Capacidad Total</th>
+                        <th>Costo del Servicio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="resultado : ${resultados}">
+                        <td th:text="${resultado.nombre}"></td>
+                        <td th:text="${resultado.capacidadTotal}"></td>
+                        <td th:text="${resultado.costoDelServicio}"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div>
+                <a th:href="@{/}" class="btn btn-primary">Volver atrás</a>
+            </div>
         </div>
     </div>
 </body>
