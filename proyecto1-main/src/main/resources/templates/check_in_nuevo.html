@@ -7,9 +7,8 @@
     <title>Crear CheckIn</title>
 </head>
 <body>
-    <form action="#" th:action="@/check_ins/new/save" method="post">
+    <form action="#" th:action="@{/check_ins/new/save}" method="post">
         <div th:replace="~{fragments/check_in_Form :: check_inForm(titulo='Crear CheckIn')}">
-
         </div>
     </form>
 </body>
