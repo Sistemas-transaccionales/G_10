@@ -1,7 +1,5 @@
 package uniandes.edu.co.proyecto.model.requerimientos;
 
-import java.math.BigDecimal;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -33,8 +31,8 @@ public class Requerimiento1 {
         return nombre;
     }
 
-    public void setNombre(String Nombre) {
-        this.nombre = nombre;
+    public void setNombre(String nombre_habitacion) {
+        this.nombre = nombre_habitacion;
     }
 
     public int getTotalGanancia() {
