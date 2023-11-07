@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Requerimiento 4 - Formulario</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+    <div>
+        <h1>Filtrar Servicios</h1>
+        <p>Ingrese los siguientes criterios para filtrar servicios:</p>
+        <form action="/requerimiento4" method="post">
+            <div>
+                <label for="costoMinimo">Costo Mínimo:</label>
+                <input type="text" id="costoMinimo" name="costoMinimo">
+            </div>
+            <div>
+                <label for="costoMaximo">Costo Máximo:</label>
+                <input type="text" id="costoMaximo" name="costoMaximo">
+            </div>
+            <div>
+                <label for="capacidadMinima">Capacidad Mínima:</label>
+                <input type="text" id="capacidadMinima" name="capacidadMinima">
+            </div>
+            <div>
+                <label for="capacidadMaxima">Capacidad Máxima:</label>
+                <input type="text" id="capacidadMaxima" name="capacidadMaxima">
+            </div>
+            <div>
+                <a th:href="@{/requerimiento4}" class="btn btn-light btn-lg">Filtrar Servicios</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
