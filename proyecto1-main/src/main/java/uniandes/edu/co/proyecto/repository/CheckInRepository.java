@@ -8,9 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import uniandes.edu.co.proyecto.model.CheckIn;
-import uniandes.edu.co.proyecto.model.ReservaHabitacion;
 
-public interface CheckInRepository extends JpaRepository<CheckIn, ReservaHabitacion> {
+public interface CheckInRepository extends JpaRepository<CheckIn, Integer> {
 
     // Método para listar todos los check-ins
     @Query(value = "SELECT * FROM check_ins", nativeQuery = true)

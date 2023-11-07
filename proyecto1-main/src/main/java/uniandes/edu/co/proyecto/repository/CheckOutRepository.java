@@ -8,9 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import uniandes.edu.co.proyecto.model.CheckOut;
-import uniandes.edu.co.proyecto.model.ReservaHabitacion;
 
-public interface CheckOutRepository extends JpaRepository<CheckOut, ReservaHabitacion> {
+public interface CheckOutRepository extends JpaRepository<CheckOut, Integer> {
 
         // Método para listar todos los check-outs
         @Query(value = "SELECT * FROM check_outs", nativeQuery = true)

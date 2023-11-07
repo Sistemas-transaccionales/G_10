@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import uniandes.edu.co.proyecto.model.Habitacion;
 
-public interface HabitacionRepository extends JpaRepository<Habitacion, Integer> {
+public interface HabitacionRepository extends JpaRepository<Habitacion, String> {
 
     // Método para listar todas las habitaciones
     @Query(value = "SELECT * FROM habitaciones", nativeQuery = true)
