@@ -1,4 +1,16 @@
 /*
+RF1: MOSTRAR EL DINEERO RECOLECTADO POR CADA HABITACIÓN 
+*/
+SELECT reservas_servicio.id_habitacion, servicios.nombre,'$' || TO_CHAR(SUM(reservas_servicio.costo), 'FM999,999,999.99') AS total_ganancias
+FROM reservas_servicio
+INNER JOIN servicios ON servicios.id = reservas_servicio.id_servicio
+WHERE EXTRACT(YEAR FROM reservas_servicio.fecha) = 2023
+GROUP BY reservas_servicio.id_habitacion, servicios.nombre
+ORDER BY reservas_servicio.id_habitacion;
+
+
+
+/*
 RF2: MOSTRAR LOS 20 SERVICIOS MÁS POPULARES.
 Los que fueron más consumidos en un período de tiempo dado.
 */
@@ -30,6 +42,45 @@ GROUP BY
 ORDER BY 
     Tasa_Ocupacion DESC;
 
+/*
+RF4: 
+*/
+SELECT servicios.nombre,
+    COALESCE(gimnasios.capacidad, piscinas.capacidad, salones.capacidad, restaurantes_bares.capacidad) AS capacidad_total,
+    CASE
+        WHEN lavanderias.costo IS NOT NULL THEN lavanderias.costo
+        WHEN prestamos_utensilios.costo_danio IS NOT NULL THEN prestamos_utensilios.costo_danio
+        WHEN salones.costo_por_hora IS NOT NULL THEN salones.costo_por_hora
+        WHEN spas.costo IS NOT NULL THEN spas.costo
+        ELSE 0
+    END AS costo_del_servicio
+FROM servicios
+LEFT JOIN gimnasios ON gimnasios.id = servicios.id
+LEFT JOIN piscinas ON piscinas.id = servicios.id
+LEFT JOIN salones ON salones.id = servicios.id
+LEFT JOIN restaurantes_bares ON restaurantes_bares.id = servicios.id
+LEFT JOIN lavanderias ON lavanderias.id = servicios.id
+LEFT JOIN prestamos_utensilios ON prestamos_utensilios.id = servicios.id
+LEFT JOIN spas ON spas.id = servicios.id
+
+WHERE (CASE
+        WHEN lavanderias.costo IS NOT NULL THEN lavanderias.costo
+        WHEN prestamos_utensilios.costo_danio IS NOT NULL THEN prestamos_utensilios.costo_danio
+        WHEN salones.costo_por_hora IS NOT NULL THEN salones.costo_por_hora
+        WHEN spas.costo IS NOT NULL THEN spas.costo
+        ELSE 0
+    END >= :costo_minimo AND
+    CASE
+        WHEN lavanderias.costo IS NOT NULL THEN lavanderias.costo
+        WHEN prestamos_utensilios.costo_danio IS NOT NULL THEN prestamos_utensilios.costo_danio
+        WHEN salones.costo_por_hora IS NOT NULL THEN salones.costo_por_hora
+        WHEN spas.costo IS NOT NULL THEN spas.costo
+        ELSE 0
+    END <= :costo_maximo)
+    OR
+    (COALESCE(gimnasios.capacidad, piscinas.capacidad, salones.capacidad, restaurantes_bares.capacidad) >= :capacidad_minima AND
+    COALESCE(gimnasios.capacidad, piscinas.capacidad, salones.capacidad, restaurantes_bares.capacidad) <= :capacidad_maxima);
+  
 
 /*
 RF5: MOSTRAR EL CONSUMO EN HOTELANDES POR UN USUARIO DADO, EN UN RANGO DE FECHAS INDICADO.
@@ -74,6 +125,27 @@ ORDER BY Ocupacion ASC
 FETCH FIRST 3 ROWS ONLY;
 
 /*
+RF7:
+*/
+WITH DatosCliente AS (
+    SELECT
+        usuarios.num_doc AS num_documento,
+        usuarios.nombre AS clientes_buenos,
+        SUM(rh.fecha_salida - rh.fecha_entrada) AS dias_hospedado,
+        SUM(COALESCE(rh.costo, 0) + COALESCE(rs.costo, 0)) AS costo_total
+    FROM usuarios 
+    LEFT JOIN reservas_habitacion rh ON usuarios.num_doc = rh.num_doc
+    LEFT JOIN reservas_servicio rs ON usuarios.num_doc = rs.id_consumidor
+    WHERE EXTRACT(YEAR FROM rh.fecha_salida) = 2023 OR EXTRACT(YEAR FROM rs.fecha) = 2023
+    GROUP BY usuarios.num_doc, usuarios.nombre
+)
+SELECT num_documento, clientes_buenos, dias_hospedado, costo_total
+FROM DatosCliente
+WHERE costo_total > 15000000 OR dias_hospedado > 14
+ORDER BY costo_total DESC;
+
+
+/*
 RF8: ENCONTRAR LOS SERVICIOS QUE NO TIENEN MUCHA DEMANDA
 Encontrar los servicios que hayan sido solicitados menos de 3 veces semanales,
 durante el último año de operación de HotelAndes.
@@ -105,6 +177,20 @@ JOIN reservas_servicio r ON u.num_doc = r.id_consumidor AND u.tipo_doc = r.tipo_
 WHERE r.id_servicio = :service_id AND r.fecha BETWEEN :start_date AND :end_date
 GROUP BY u.num_doc, u.tipo_doc, u.nombre, r.fecha
 ORDER BY :order_by;
+
+/*
+RF10 
+*/
+SELECT u.num_doc, u.tipo_doc, u.nombre
+FROM usuarios u
+WHERE (u.num_doc, u.tipo_doc) NOT IN (
+    SELECT r.id_consumidor, r.tipo_id_consumidor
+    FROM reservas_servicio r
+    WHERE r.id_servicio = :service_id
+    AND r.fecha BETWEEN :start_date AND :end_date
+)
+ORDER BY :order_by;
+
 
 /*
 RF11: CONSULTAR FUNCIONAMIENTO
