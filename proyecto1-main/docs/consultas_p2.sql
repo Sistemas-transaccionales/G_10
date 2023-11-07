@@ -53,3 +53,75 @@ menos solicitadas. Las respuestas deben ser sustentadas por el detalle de las
 reservas y consumos correspondiente. Esta operación es realizada por el gerente 
 general de HotelAndes.
 */
+
+/*
+Servicios más consumidos
+*/
+SELECT semana,
+    nombre AS servicio_mas_consumido,
+    consumos
+FROM (
+    SELECT TO_CHAR(rs.fecha, 'IW') AS semana,
+           s.nombre,
+           COUNT(*) AS consumos,
+           ROW_NUMBER() OVER (PARTITION BY TO_CHAR(rs.fecha, 'IW') ORDER BY COUNT(*) DESC) AS rn
+    FROM reservas_servicio rs
+    JOIN servicios s ON rs.id_servicio = s.id
+    WHERE rs.fecha BETWEEN TRUNC(SYSDATE, 'YEAR') - INTERVAL '1' YEAR AND TRUNC(SYSDATE)
+    GROUP BY TO_CHAR(rs.fecha, 'IW'), s.nombre
+)
+WHERE rn = 1;
+
+/*
+Servicios menos consumidos
+*/
+SELECT semana,
+    nombre AS servicio_menos_consumido,
+    consumos
+FROM (
+    SELECT TO_CHAR(rs.fecha, 'IW') AS semana,
+           s.nombre,
+           COUNT(*) AS consumos,
+           ROW_NUMBER() OVER (PARTITION BY TO_CHAR(rs.fecha, 'IW') ORDER BY COUNT(*)) AS rn
+    FROM reservas_servicio rs
+    JOIN servicios s ON rs.id_servicio = s.id
+    WHERE rs.fecha BETWEEN TRUNC(SYSDATE, 'YEAR') - INTERVAL '1' YEAR AND TRUNC(SYSDATE)
+    GROUP BY TO_CHAR(rs.fecha, 'IW'), s.nombre
+)
+WHERE rn = 1;
+
+/*
+Habitaciones más solicitadas
+*/
+SELECT semana,
+    id AS habitacion_mas_solicitada,
+    reservaciones
+FROM (
+    SELECT TO_CHAR(rh.fecha_entrada, 'IW') AS semana,
+           h.id,
+           COUNT(*) AS reservaciones,
+           ROW_NUMBER() OVER (PARTITION BY TO_CHAR(rh.fecha_entrada, 'IW') ORDER BY COUNT(*) DESC) AS rn
+    FROM reservas_habitacion rh
+    JOIN habitaciones h ON rh.id_habitacion = h.id
+    WHERE rh.fecha_entrada BETWEEN TRUNC(SYSDATE, 'YEAR') - INTERVAL '1' YEAR AND TRUNC(SYSDATE)
+    GROUP BY TO_CHAR(rh.fecha_entrada, 'IW'), h.id
+)
+WHERE rn = 1;
+
+/*
+Habitaciones menos solicitadas
+*/
+SELECT semana,
+    id AS habitacion_menos_solicitada,
+    reservaciones
+FROM (
+    SELECT TO_CHAR(rh.fecha_entrada, 'IW') AS semana,
+           h.id,
+           COUNT(*) AS reservaciones,
+           ROW_NUMBER() OVER (PARTITION BY TO_CHAR(rh.fecha_entrada, 'IW') ORDER BY COUNT(*)) AS rn
+    FROM reservas_habitacion rh
+    JOIN habitaciones h ON rh.id_habitacion = h.id
+    WHERE rh.fecha_entrada BETWEEN TRUNC(SYSDATE, 'YEAR') - INTERVAL '1' YEAR AND TRUNC(SYSDATE)
+    GROUP BY TO_CHAR(rh.fecha_entrada, 'IW'), h.id
+)
+WHERE rn = 1;
