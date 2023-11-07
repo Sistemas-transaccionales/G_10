@@ -114,49 +114,6 @@ menos solicitadas. Las respuestas deben ser sustentadas por el detalle de las
 reservas y consumos correspondiente. Esta operación es realizada por el gerente 
 general de HotelAndes.
 */
-
-/*
-RF12: CONSULTAR LOS CLIENTES EXCELENTES
-Los clientes excelentes son de tres tipos: aquellos que realizan estancias (las estancias están delimitadas por
-un check in y su respectivo check out) en HotelAndes al menos una vez por trimestre, aquellos que siempre
-consumen por lo menos un servicio costoso (Entiéndase como costoso, por ejemplo, con un precio mayor a
-$300.000.oo) y aquellos que en cada estancia consumen servicios de SPA o de salones de reuniones con
-duración mayor a 4 horas. Esta consulta retorna toda la información de dichos clientes, incluyendo aquella que
-justifica su calificación como clientes excelentes. Esta operación es realizada únicamente por el gerente general
-de HotelAndes
-*/
-
-WITH
-trimester_stays AS (
-  SELECT num_doc, tipo_doc
-  FROM check_ins
-  GROUP BY num_doc, tipo_doc, EXTRACT(YEAR FROM fecha), TRUNC((EXTRACT(MONTH FROM fecha) - 1) / 3)
-  HAVING COUNT(DISTINCT fecha) >= 1
-),
-expensive_services AS (
-  SELECT id_consumidor, tipo_id_consumidor
-  FROM reservas_servicio
-  WHERE costo > 300000
-  GROUP BY id_consumidor, tipo_id_consumidor
-  HAVING COUNT(DISTINCT id_servicio) >= 1
-),
-long_services AS (
-  SELECT id_consumidor, tipo_id_consumidor
-  FROM reservas_servicio
-  JOIN servicios ON reservas_servicio.id_servicio = servicios.id
-  WHERE (LOWER(nombre) LIKE '%spa%' OR LOWER(nombre) LIKE '%salones%') AND (TO_DATE(hora_fin, 'HH24:MI:SS') - TO_DATE(hora_inicio, 'HH24:MI:SS')) * 24 > 4
-  GROUP BY id_consumidor, tipo_id_consumidor
-  HAVING COUNT(DISTINCT id_servicio) >= 1
-)
-SELECT num_doc, tipo_doc, 'Estancia Trimestral' AS categoria
-FROM trimester_stays
-UNION
-SELECT id_consumidor, tipo_id_consumidor, 'Servicios Costosos'
-FROM expensive_services
-UNION
-SELECT id_consumidor, tipo_id_consumidor, 'Servicios Largo'
-FROM long_services;
-
 /*
 Servicios más consumidos
 */
@@ -228,3 +185,45 @@ FROM (
     GROUP BY TO_CHAR(rh.fecha_entrada, 'IW'), h.id
 )
 WHERE rn = 1;
+
+/*
+RF12: CONSULTAR LOS CLIENTES EXCELENTES
+Los clientes excelentes son de tres tipos: aquellos que realizan estancias (las estancias están delimitadas por
+un check in y su respectivo check out) en HotelAndes al menos una vez por trimestre, aquellos que siempre
+consumen por lo menos un servicio costoso (Entiéndase como costoso, por ejemplo, con un precio mayor a
+$300.000.oo) y aquellos que en cada estancia consumen servicios de SPA o de salones de reuniones con
+duración mayor a 4 horas. Esta consulta retorna toda la información de dichos clientes, incluyendo aquella que
+justifica su calificación como clientes excelentes. Esta operación es realizada únicamente por el gerente general
+de HotelAndes
+*/
+
+WITH
+trimester_stays AS (
+  SELECT num_doc, tipo_doc
+  FROM check_ins
+  GROUP BY num_doc, tipo_doc, EXTRACT(YEAR FROM fecha), TRUNC((EXTRACT(MONTH FROM fecha) - 1) / 3)
+  HAVING COUNT(DISTINCT fecha) >= 1
+),
+expensive_services AS (
+  SELECT id_consumidor, tipo_id_consumidor
+  FROM reservas_servicio
+  WHERE costo > 300000
+  GROUP BY id_consumidor, tipo_id_consumidor
+  HAVING COUNT(DISTINCT id_servicio) >= 1
+),
+long_services AS (
+  SELECT id_consumidor, tipo_id_consumidor
+  FROM reservas_servicio
+  JOIN servicios ON reservas_servicio.id_servicio = servicios.id
+  WHERE (LOWER(nombre) LIKE '%spa%' OR LOWER(nombre) LIKE '%salones%') AND (TO_DATE(hora_fin, 'HH24:MI:SS') - TO_DATE(hora_inicio, 'HH24:MI:SS')) * 24 > 4
+  GROUP BY id_consumidor, tipo_id_consumidor
+  HAVING COUNT(DISTINCT id_servicio) >= 1
+)
+SELECT num_doc, tipo_doc, 'Estancia Trimestral' AS categoria
+FROM trimester_stays
+UNION
+SELECT id_consumidor, tipo_id_consumidor, 'Servicios Costosos'
+FROM expensive_services
+UNION
+SELECT id_consumidor, tipo_id_consumidor, 'Servicios Largo'
+FROM long_services;
