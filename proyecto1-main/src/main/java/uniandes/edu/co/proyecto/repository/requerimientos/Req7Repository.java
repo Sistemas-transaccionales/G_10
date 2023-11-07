@@ -15,6 +15,6 @@ public interface Req7Repository extends JpaRepository<Usuario, UsuarioPK> {
      * Los que fueron más consumidos en un período de tiempo dado.
      */
     @Query(value = "SELECT * FROM usuarios", nativeQuery = true)
-    Collection<Usuario> usuarios();
+    Collection<Usuario> mostrarusuarios();
 
 }

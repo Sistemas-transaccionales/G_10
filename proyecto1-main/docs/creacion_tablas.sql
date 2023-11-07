@@ -180,14 +180,17 @@ CREATE TABLE sirven (
 CREATE TABLE reservas_servicio (
     id_habitacion VARCHAR2(255) NOT NULL,
     id_servicio INTEGER NOT NULL,
+    id_consumidor INTEGER NOT NULL,
+    tipo_id_consumidor VARCHAR2(255) NOT NULL,
     fecha DATE NOT NULL,
     hora_inicio VARCHAR2(255) NOT NULL,
     hora_fin VARCHAR2(255) NOT NULL,
-    costo NUMERIC NOT NULL CHECK (costo > 0),
-    CONSTRAINT reservas_servicio_PK PRIMARY KEY (id_habitacion, id_servicio, fecha, hora_inicio, hora_fin, costo),
+    costo NUMERIC NOT NULL CHECK (costo >= 0),
+    CONSTRAINT reservas_servicio_PK PRIMARY KEY (id_habitacion, id_servicio, id_consumidor,tipo_id_consumidor,fecha, hora_inicio, hora_fin, costo),
     CONSTRAINT reservas_servicio_FK1 FOREIGN KEY (id_habitacion) REFERENCES habitaciones(id),
-    CONSTRAINT reservas_servicio_FK2 FOREIGN KEY (id_servicio) REFERENCES servicios(id)
-);
+    CONSTRAINT reservas_servicio_FK2 FOREIGN KEY (id_servicio) REFERENCES servicios(id),
+    CONSTRAINT reservas_servicio_FK3 FOREIGN KEY (id_consumidor,tipo_id_consumidor) REFERENCES usuarios(num_doc, tipo_doc)
+)
 
 
 CREATE TABLE cuentas_estadia (

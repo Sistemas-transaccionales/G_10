@@ -15,9 +15,8 @@ public class Req7Controller {
     private Req7Repository req7Repository;
 
     @GetMapping("/requerimiento7")
-    public String requerimiento7(Model model) {
-        Collection<Usuario> ClientesBuenos = req7Repository.usuarios();
-        model.addAttribute("clientesBuenos", ClientesBuenos); // Usar "clientesBuenos" en el modelo
+    public String getrequerimiento7(Model model) {
+        model.addAttribute("clientesBuenos", req7Repository.mostrarusuarios()); // Usar "clientesBuenos" en el modelo
         return "requerimiento7";
     }
 
