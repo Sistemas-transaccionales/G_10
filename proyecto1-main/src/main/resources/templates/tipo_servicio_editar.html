@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Tipo de Servicio</title>
+    <link rel="stylesheet"type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+    <form th:action="@{'/tipos_servicio/'+${tipo_servicio.id}+'/edit/save'}" th:object="${tipo_servicio}"
+    method="post">
+    <div th:replace="fragments/tipo_servicioForm :: tipo_servicioForm(titulo='Editar tipo_servicio',tipo_servicio=${tipo_servicio})">   
+    </div>
+
+</form>
+</body>
+</html>
