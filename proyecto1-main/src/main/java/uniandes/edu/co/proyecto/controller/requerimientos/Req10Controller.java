@@ -10,7 +10,7 @@ import uniandes.edu.co.proyecto.model.requerimientos.Requerimiento10;
 import uniandes.edu.co.proyecto.repository.requerimientos.Req10Repository;
 
 import java.util.Collection;
-import java.util.Date;
+import java.sql.Date;
 
 @Controller
 public class Req10Controller {
@@ -25,8 +25,8 @@ public class Req10Controller {
 
     @PostMapping("/requerimiento10")
     public String requerimiento10(@RequestParam String service_id, @RequestParam Date start_date, @RequestParam Date end_date, @RequestParam String order_by, Model model) {
-    Collection<Requerimiento10> clientesNoConsumidores = req10Repository.findClientesNoConsumidores(service_id, start_date, end_date, order_by);
-    model.addAttribute("clientes_no_consumidores", clientesNoConsumidores);
+    Collection<Requerimiento10> clientes_no_consumidores = req10Repository.findClientesNoConsumidores(service_id, start_date, end_date, order_by);
+    model.addAttribute("clientes_no_consumidores", clientes_no_consumidores);
     return "requerimiento10";
     }
 
