@@ -5,6 +5,8 @@ import java.util.Collection;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
 import uniandes.edu.co.proyecto.model.requerimientos.Requerimiento4;
 
 public interface Req4Repository extends JpaRepository<Requerimiento4, String> {
@@ -44,5 +46,5 @@ public interface Req4Repository extends JpaRepository<Requerimiento4, String> {
             "(COALESCE(gimnasios.capacidad, piscinas.capacidad, salones.capacidad, restaurantes_bares.capacidad) >= :capacidadMinima AND " +
             "COALESCE(gimnasios.capacidad, piscinas.capacidad, salones.capacidad, restaurantes_bares.capacidad) <= :capacidadMaxima)",
             nativeQuery = true)
-    Collection<Requerimiento4> serviciosFiltrados(BigDecimal costoMinimo, BigDecimal costoMaximo, int capacidadMinima, int capacidadMaxima);
+    Collection<Requerimiento4> serviciosFiltrados(@Param("costoMinimo") BigDecimal costoMinimo, @Param("costoMaximo") BigDecimal costoMaximo, @Param("capacidadMinima") int capacidadMinima, @Param("capacidadMaxima") int capacidadMaxima);
 }
