@@ -1,45 +1,47 @@
 package uniandes.edu.co.proyecto.model.requerimientos;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import uniandes.edu.co.proyecto.model.primaryKeys.Req1PK;
 
 @Entity
 @Table(name = "recoleccion")
 public class Requerimiento1 {
 
-    @Id
-    @Column(name = "ID_Habitacion")
-    private String idHabitacion;
-
-    @Column(name = "Nombre")
-    private String nombre;
+    @EmbeddedId
+    private Req1PK pk;
 
     @Column(name = "Total_Ganancia")
     private int totalGanancia;
 
-    public String getIdHabitacion() {
-        return idHabitacion;
+    /**
+     * @return the pk
+     */
+    public Req1PK getPk() {
+        return pk;
     }
 
-    public void setIdHabitacion(String idHabitacion) {
-        this.idHabitacion = idHabitacion;
+    /**
+     * @param pk the pk to set
+     */
+    public void setPk(Req1PK pk) {
+        this.pk = pk;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre_habitacion) {
-        this.nombre = nombre_habitacion;
-    }
-
+    /**
+     * @return the totalGanancia
+     */
     public int getTotalGanancia() {
         return totalGanancia;
     }
 
+    /**
+     * @param totalGanancia the totalGanancia to set
+     */
     public void setTotalGanancia(int totalGanancia) {
         this.totalGanancia = totalGanancia;
     }
+
 }

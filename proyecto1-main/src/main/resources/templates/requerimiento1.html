@@ -21,8 +21,8 @@
             </thead>
             <tbody>
                 <tr th:each="dinero_recolectado:${recoleccion}">
-                    <td th:text="${dinero_recolectado.idHabitacion}"></td>
-                    <td th:text="${dinero_recolectado.nombre}"></td>
+                    <td th:text="${dinero_recolectado.pk.idHabitacion.id}"></td>
+                    <td th:text="${dinero_recolectado.pk.nombreServicio}"></td>
                     <td th:text="${dinero_recolectado.totalGanancia}"></td>
                 </tr>
             </tbody>
