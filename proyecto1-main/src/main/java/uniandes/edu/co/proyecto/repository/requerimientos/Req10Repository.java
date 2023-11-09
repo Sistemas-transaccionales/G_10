@@ -6,7 +6,7 @@ import org.springframework.data.repository.query.Param;
 import uniandes.edu.co.proyecto.model.requerimientos.Requerimiento10;
 
 import java.util.Collection;
-import java.util.Date;
+import java.sql.Date;
 
 public interface Req10Repository extends JpaRepository<Requerimiento10, Integer> {
 

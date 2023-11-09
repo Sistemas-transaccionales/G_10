@@ -46,6 +46,7 @@
                         <option value="cliente">Cliente</option>
                         <option value="recepcionista">Recepcionista</option>
                         <option value="empleado">Empleado</option>
+                        <option value="gerente">Gerente General</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -75,7 +76,15 @@
             </div>
             <div class="btn-container" id="recepcionista-buttons">
                 <a th:href="@{/check_ins}" class="btn btn-primary">Consultar llegada de Clientes</a>
+                <a th:href="@{/check_outs}" class="btn btn-primary">Consultar salida de Clientes</a>
+                <a th:href="@{/req9_form}" class="btn btn-primary">Consultar consumo en HotelAndes</a>
+                <a th:href="@{/req10_form}" class="btn btn-primary">Consultar consumo en HotelAndes (2)</a>
             </div>
+            <div class="btn-container" id="gerente-buttons">
+                <a th:href="@{/req9_form}" class="btn btn-primary">Consultar consumo en HotelAndes</a>
+                <a th:href="@{/req10_form}" class="btn btn-primary">Consultar consumo en HotelAndes (2)</a>
+                <a th:href="@{/requerimiento11}" class="btn btn-primary">Consultar funcionamiento</a>
+                <a th:href="@{/requerimiento12}" class="btn btn-primary">Consultar los clientes excelentes</a>
         </div>
     </div>
     <script>
@@ -85,10 +94,12 @@
             var adminButtons = document.getElementById("admin-buttons");
             var clienteButtons = document.getElementById("cliente-buttons");
             var recepcionistaButtons = document.getElementById("recepcionista-buttons");
+            var gerenteButtons = document.getElementById("gerente-buttons");
 
             adminButtons.style.display = "none";
             clienteButtons.style.display = "none";
             recepcionistaButtons.style.display = "none";
+            gerenteButtons.style.display = "none";
 
             if (rolSeleccionado === "administrador") {
                 adminButtons.style.display = "flex";
@@ -96,7 +107,10 @@
                 clienteButtons.style.display = "flex";
             } else if (rolSeleccionado === "recepcionista") {
                 recepcionistaButtons.style.display = "flex";
+            }  else if (rolSeleccionado === "gerente") {
+                gerenteButtons.style.display = "flex";
             }
+            
         }
     </script>
 </body>
