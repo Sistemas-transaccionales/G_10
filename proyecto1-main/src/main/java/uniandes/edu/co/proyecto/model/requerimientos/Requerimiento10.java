@@ -1,5 +1,6 @@
 package uniandes.edu.co.proyecto.model.requerimientos;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -9,26 +10,29 @@ import jakarta.persistence.Table;
 public class Requerimiento10 {
 
     @Id
-    private Integer num_doc;
+    @Column(name = "num_doc")
+    private Integer numDoc;
 
-    private String tipo_doc;
+    @Column(name = "tipo_doc")
+    private String tipoDoc;
 
+    @Column(name = "nombre")
     private String nombre;
 
     public Integer getNum_doc() {
-        return num_doc;
+        return numDoc;
     }
 
-    public void setNum_doc(Integer num_doc) {
-        this.num_doc = num_doc;
+    public void setNum_doc(Integer numDoc) {
+        this.numDoc = numDoc;
     }
 
     public String getTipo_doc() {
-        return tipo_doc;
+        return tipoDoc;
     }
 
-    public void setTipo_doc(String tipo_doc) {
-        this.tipo_doc = tipo_doc;
+    public void setTipo_doc(String tipoDoc) {
+        this.tipoDoc = tipoDoc;
     }
 
     public String getNombre() {
