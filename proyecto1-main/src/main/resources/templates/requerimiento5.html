@@ -25,8 +25,8 @@
             </thead>
             <tbody>
                 <tr th:each="consumo:${consumos_usuario}">
-                    <td th:text="${consumo.numDoc}"></td>
-                    <td th:text="${consumo.tipoDoc}"></td>
+                    <td th:text="${consumo.pk.num_doc}"></td>
+                    <td th:text="${consumo.pk.tipo_doc}"></td>
                     <td th:text="${consumo.nombreCliente}"></td>
                     <td th:text="${consumo.idServicio}"></td>
                     <td th:text="${consumo.nombreServicio}"></td>
