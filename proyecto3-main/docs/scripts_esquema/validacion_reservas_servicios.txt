@@ -1,0 +1,41 @@
+{
+  $jsonSchema: {
+    bsonType: 'object',
+    required: [
+      'id_servicio',
+      'id_reserva_habitacion',
+      'usuario',
+      'fecha',
+      'costo'
+    ],
+    properties: {
+      id_servicio: {
+        bsonType: 'objectId'
+      },
+      id_reserva_habitacion: {
+        bsonType: 'objectId'
+      },
+      usuario: {
+        bsonType: 'object',
+        required: [
+          'tipo_doc',
+          'num_doc'
+        ],
+        properties: {
+          tipo_doc: {
+            bsonType: 'string'
+          },
+          num_doc: {
+            bsonType: 'number'
+          }
+        }
+      },
+      fecha: {
+        bsonType: 'date'
+      },
+      costo: {
+        bsonType: 'number'
+      }
+    }
+  }
+}

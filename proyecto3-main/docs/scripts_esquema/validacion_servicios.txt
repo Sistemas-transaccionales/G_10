@@ -1,0 +1,20 @@
+{
+  $jsonSchema: {
+    bsonType: 'object',
+    required: [
+      'nombre',
+      'reservas'
+    ],
+    properties: {
+      nombre: {
+        bsonType: 'string'
+      },
+      reservas: {
+        bsonType: 'array',
+        items: {
+          bsonType: 'objectId'
+        }
+      }
+    }
+  }
+}

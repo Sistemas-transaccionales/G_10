@@ -1,0 +1,54 @@
+{
+  $jsonSchema: {
+    bsonType: 'object',
+    required: [
+      'tipo_doc',
+      'num_doc',
+      'tipo',
+      'nombre',
+      'email',
+      'password',
+      'reservas_habitaciones',
+      'reservas_servicios'
+    ],
+    properties: {
+      tipo_doc: {
+        bsonType: 'string'
+      },
+      num_doc: {
+        bsonType: 'number'
+      },
+      tipo: {
+        bsonType: 'string',
+        'enum': [
+          'admin',
+          'cliente',
+          'empleado',
+          'gerente',
+          'recepcionista'
+        ]
+      },
+      nombre: {
+        bsonType: 'string'
+      },
+      email: {
+        bsonType: 'string'
+      },
+      password: {
+        bsonType: 'string'
+      },
+      reservas_habitaciones: {
+        bsonType: 'array',
+        items: {
+          bsonType: 'objectId'
+        }
+      },
+      reservas_servicios: {
+        bsonType: 'array',
+        items: {
+          bsonType: 'objectId'
+        }
+      }
+    }
+  }
+}

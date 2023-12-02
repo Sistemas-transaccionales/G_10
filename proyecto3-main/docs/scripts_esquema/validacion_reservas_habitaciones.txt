@@ -1,0 +1,87 @@
+{
+  $jsonSchema: {
+    bsonType: 'object',
+    required: [
+      'id_habitacion',
+      'usuario',
+      'fecha_inicio',
+      'fecha_fin',
+      'num_personas',
+      'plan_consumo',
+      'costo_reserva',
+      'costo_consumos',
+      'cuenta_abierta'
+    ],
+    properties: {
+      id_habitacion: {
+        bsonType: 'string'
+      },
+      usuario: {
+        bsonType: 'object',
+        required: [
+          'tipo_doc',
+          'num_doc'
+        ],
+        properties: {
+          tipo_doc: {
+            bsonType: 'string'
+          },
+          num_doc: {
+            bsonType: 'number'
+          }
+        }
+      },
+      fecha_inicio: {
+        bsonType: 'date'
+      },
+      fecha_fin: {
+        bsonType: 'date'
+      },
+      num_personas: {
+        bsonType: 'number',
+        minimum: 0
+      },
+      plan_consumo: {
+        bsonType: 'object',
+        required: [
+          'nombre',
+          'tasa',
+          'min_noches',
+          'max_noches'
+        ],
+        properties: {
+          nombre: {
+            bsonType: 'string'
+          },
+          tasa: {
+            bsonType: 'double'
+          },
+          min_noches: {
+            bsonType: 'number',
+            minimum: 0
+          },
+          max_noches: {
+            bsonType: 'number'
+          }
+        }
+      },
+      costo_reserva: {
+        bsonType: 'number',
+        minimum: 0
+      },
+      costo_consumos: {
+        bsonType: 'number',
+        minimum: 0
+      },
+      cuenta_abierta: {
+        bsonType: 'bool'
+      },
+      fecha_check_in: {
+        bsonType: 'date'
+      },
+      fecha_check_out: {
+        bsonType: 'date'
+      }
+    }
+  }
+}
