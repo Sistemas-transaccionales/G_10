@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Requerimiento 11</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+    <div>
+        <h1>Los servicios menos consumidos cada semana del último año</h1>
+        <p>:</p>
+        <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Semana</th>
+                    <th>Servicio menos consumido</th>
+                    <th>Consumos en la semana</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="servicio:${servicios_menos_consumidos}">
+                    <td th:text="${servicio.semana}"></td>
+                    <td th:text="${servicio.nombreServicio}"></td>
+                    <td th:text="${servicio.consumos}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <a th:href="@{/requerimiento11}" class="btn btn-primary">Volver atrás</a>
+        </div>
+    </div>
+</body>
+</html>

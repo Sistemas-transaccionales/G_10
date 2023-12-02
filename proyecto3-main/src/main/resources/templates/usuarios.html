@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+    <div>
+        <h1>Lista de Usuarios</h1>
+        <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Numero Documento</th>
+                    <th>Tipo Documento</th>
+                    <th>Tipo</th>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Contrasenia</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="usuario : ${usuarios}">
+                    <td th:text="${usuario.pk.num_doc}"></td>
+                    <td th:text="${usuario.pk.tipo_doc}"></td>
+                    <td th:text="${usuario.tipo.nombre}"></td>
+                    <td th:text="${usuario.nombre}"></td>
+                    <td th:text="${usuario.email}"></td>
+                    <td th:text="${usuario.password}"></td>
+                    <td>
+                        <a th:href="@{/usuarios/{num_doc}/{tipo_doc}/edit(num_doc=${usuario.pk.num_doc}, tipo_doc=${usuario.pk.tipo_doc})}" class="btn btn-primary">Editar</a>
+                        <a th:href="@{/usuarios/{num_doc}/{tipo_doc}/delete(num_doc=${usuario.pk.num_doc}, tipo_doc=${usuario.pk.tipo_doc})}" onclick="return confirm('¿Estás seguro de borrar este usuario?')" class="btn btn-primary">Borrar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <a th:href="@{/}" class="btn btn-primary">Volver atrás</a>
+            <a th:href="@{/usuarios/new}" class="btn btn-primary">Añadir Usuario</a>
+        </div>
+    </div>
+</body>
+</html>

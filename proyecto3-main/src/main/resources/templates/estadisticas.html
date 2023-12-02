@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estadísticas del Hotel</title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+    <style>
+        /* Estilo para el título */
+        .title-container {
+            background-color: #007BFF; /* Fondo azul oscuro */
+            color: white; /* Texto blanco */
+            padding: 20px;
+            text-transform: capitalize; /* Transforma la primera letra en mayúscula */
+        }
+
+        /* Estilo para los botones de requerimientos */
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn-container a {
+            background-color: #87CEEB; /* Fondo azul claro */
+            color: black; /* Texto negro */
+            display: block;
+            padding: 10px;
+            margin: 10px auto;
+            text-align: center;
+            border: 1px solid #007BFF;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto">
+        <div class="title-container">
+            <h1 class="text-center">Estadísticas del Hotel</h1>
+        </div>
+        <p>A continuación, puede seleccionar qué desea consultar:</p>
+        <div class="btn-container">
+            <a th:href="@{/requerimiento1}" class="btn btn-light btn-lg">Mostrar el dinero recolectado por servicios en cada habitación en el último año corrido.</a>
+            <a th:href="@{/req2_form}" class="btn btn-light btn-lg">Mostrar los 20 servicios más populares. Los que fueron más consumidos en un período de tiempo dado.</a>
+            <a th:href="@{/requerimiento3}" class="btn btn-light btn-lg">Mostrar el índice de ocupación de cada una de las habitaciones del hotel</a>
+            <a th:href="@{/req4_form}" class="btn btn-light btn-lg">Mostrar los servicios que cumplen con cierta característica.</a>
+            <a th:href="@{/req5_form}" class="btn btn-light btn-lg">Mostrar el consumo en HotelAndes por un usuario dado, en un rango de fechas indicado</a>
+            <a th:href="@{/requerimiento6}" class="btn btn-light btn-lg">Analizar la operación de HotelAndes</a>
+            <a th:href="@{/requerimiento7}" class="btn btn-light btn-lg">Encontrar los buenos clientes</a>
+            <a th:href="@{/requerimiento8}" class="btn btn-light btn-lg">Encontrar los servicios que no tienen mucha demanda</a>
+            <!--        
+            <a th:href="@{/req9_form}" class="btn btn-light btn-lg">Consultar consumo en HotelAndes</a>
+            <a th:href="@{/req10_form}" class="btn btn-light btn-lg">Consultar consumo en HotelAndes (2)</a>
+            <a th:href="@{/requerimiento11}" class="btn btn-light btn-lg">Consultar funcionamiento</a>
+            <a th:href="@{/requerimiento12}" class="btn btn-light btn-lg">Consultar los clientes excelentes</a>
+            -->
+        </div>
+    </div>
+</body>
+</html>

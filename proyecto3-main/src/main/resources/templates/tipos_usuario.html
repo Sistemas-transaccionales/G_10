@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipos de Usuario</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+    <div>
+        <h1>Lista de Tipos de Usuario</h1>
+        <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="tipo_usuario : ${tipos_usuario}">
+                    <td th:text="${tipo_usuario.id}"></td>
+                    <td th:text="${tipo_usuario.nombre}"></td>
+                    <td>
+                        <a th:href="@{'/tipos_usuario/' + ${tipo_usuario.id} + '/edit'}">Editar</a>
+                        <a th:href="@{'/tipos_usuario/' + ${tipo_usuario.id} + '/delete'}"
+                            onclick="return confirm('¿Estás seguro de borrar este tipo de usuario?')">Borrar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <a th:href="@{/}" class="btn btn-primary">Volver atrás</a>
+            <a th:href="@{/tipos_usuario/new}" class="btn btn-primary">Añadir Tipo de Usuario</a>
+        </div>
+    </div>
+</body>
+</html>

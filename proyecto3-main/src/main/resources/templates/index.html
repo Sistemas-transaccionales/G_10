@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido al Hotel de los Andes</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+    <style>
+        .btn-primary {
+            background-color: #87CEEB;
+            border-color: #87CEEB;
+            color: white;
+        }
+
+        .btn-container {
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .login-form {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn-continue {
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto">
+        <h1 class="text-center">Bienvenido al Hotel de los Andes</h1>
+
+        <div class="login-form">
+            <p>Antes de continuar, por favor selecciona tu rol dentro del hotel:</p>
+            <form>
+                <div class="form-group">
+                    <select class="form-select" id="rol">
+                        <option value="administrador">Administrador</option>
+                        <option value="cliente">Cliente</option>
+                        <option value="recepcionista">Recepcionista</option>
+                        <option value="empleado">Empleado</option>
+                        <option value="gerente">Gerente General</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" id="correo" placeholder="Correo">
+                </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control" id="contrasena" placeholder="Contraseña">
+                </div>
+                <button type="button" class="btn btn-primary btn-continue" onclick="continuar()">Continuar</button>
+            </form>
+        </div>
+        <div id="botones">
+            <div class="btn-container" id="admin-buttons">
+                <a th:href="@{/estadisticas}" class="btn btn-primary">Mostrar Estadísticas del Hotel</a>
+
+                <a th:href="@{/tipos_usuario}" class="btn btn-primary">Consultar Tipos de Usuario</a>
+                <a th:href="@{/usuarios}" class="btn btn-primary">Consultar Usuarios</a>
+                <a th:href="@{/tipos_habitacion}" class="btn btn-primary">Consultar Tipos de Habitacion</a>
+                <a th:href="@{/habitaciones}" class="btn btn-primary">Consultar Habitaciones</a>
+                <a th:href="@{/servicios}" class="btn btn-primary">Consultar Servicios</a>
+                <a th:href="@{/tipos_servicio}" class="btn btn-primary">Consultar Tipos de Servicio</a>
+                <a th:href="@{/planes_consumo}" class="btn btn-primary">Consultar Planes de Consumo</a>
+            </div>
+            <div class="btn-container" id="cliente-buttons">
+                <a th:href="@{/reservas_servicio}" class="btn btn-primary">Consultar Reservas de Servicio</a>
+                <a th:href="@{/reservas_habitacion}" class="btn btn-primary">Consultar Reservas de Habitacion</a>
+            </div>
+            <div class="btn-container" id="recepcionista-buttons">
+                <a th:href="@{/check_ins}" class="btn btn-primary">Consultar llegada de Clientes</a>
+                <a th:href="@{/check_outs}" class="btn btn-primary">Consultar salida de Clientes</a>
+                <a th:href="@{/req9_form}" class="btn btn-primary">Consultar consumo en HotelAndes</a>
+                <a th:href="@{/req10_form}" class="btn btn-primary">Consultar consumo en HotelAndes (2)</a>
+            </div>
+            <div class="btn-container" id="gerente-buttons">
+                <a th:href="@{/req9_form}" class="btn btn-primary">Consultar consumo en HotelAndes</a>
+                <a th:href="@{/req10_form}" class="btn btn-primary">Consultar consumo en HotelAndes (2)</a>
+                <a th:href="@{/requerimiento11}" class="btn btn-primary">Consultar funcionamiento</a>
+                <a th:href="@{/requerimiento12}" class="btn btn-primary">Consultar los clientes excelentes</a>
+        </div>
+    </div>
+    <script>
+        function continuar() {
+            var rolSeleccionado = document.getElementById("rol").value;
+            var botones = document.getElementById("botones");
+            var adminButtons = document.getElementById("admin-buttons");
+            var clienteButtons = document.getElementById("cliente-buttons");
+            var recepcionistaButtons = document.getElementById("recepcionista-buttons");
+            var gerenteButtons = document.getElementById("gerente-buttons");
+
+            adminButtons.style.display = "none";
+            clienteButtons.style.display = "none";
+            recepcionistaButtons.style.display = "none";
+            gerenteButtons.style.display = "none";
+
+            if (rolSeleccionado === "administrador") {
+                adminButtons.style.display = "flex";
+            } else if (rolSeleccionado === "cliente") {
+                clienteButtons.style.display = "flex";
+            } else if (rolSeleccionado === "recepcionista") {
+                recepcionistaButtons.style.display = "flex";
+            }  else if (rolSeleccionado === "gerente") {
+                gerenteButtons.style.display = "flex";
+            }
+            
+        }
+    </script>
+</body>

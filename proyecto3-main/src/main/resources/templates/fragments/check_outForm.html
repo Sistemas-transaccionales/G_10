@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fragment</title>
+</head>
+<body>
+   <div th:fragment="check_outForm(titulo)" class="container border boder-2 w-25">
+        <h1 class="text-center" th:text="${titulo"></h1>
+        <form>
+            <label class="col-form.label">Id</label>
+            <input class="form-control" type="number" id="id_check_in"
+            name="id_check_in" required th:value="${check_outs.id_check_in}"/>
+            <label class="col-form.label">Numero Documento</label>
+            <input class="form-control" type="number" id="fecha"
+            name="fecha" required th:value="${check_outs.fecha}"/>
+            <label class="col-form.label">Tipo Documento</label>
+            <input class="form-control" type="text" id="hora"
+            name="hora" required th:value="${check_outs.hora}"/>
+
+            <label class="col-form.label">Tipo Documento</label>
+            <input class="form-control" type="text" id="ingresos_totales"
+            name="hora" required th:value="${check_outs.ingresos_totales}"/>
+            
+        </form>
+   </div>
+</body>
+</html>

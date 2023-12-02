@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Tipo de Usuario</title>
+    <link rel="stylesheet"type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+    <form th:action="@{'/tipos_usuario/'+${tipo_usuario.id}+'/edit/save'}" th:object="${tipo_usuario}"
+    method="post">
+    <div th:replace="fragments/tipo_usuarioForm :: tipo_usuarioForm(titulo='Editar tipo_usuario',tipo_usuario=${tipo_usuario})">
+        
+    </div>
+
+</form>
+</body>
+</html>

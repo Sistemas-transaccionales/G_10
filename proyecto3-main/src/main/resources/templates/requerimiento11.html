@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estadísticas del Hotel</title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+    <style>
+        /* Estilo para el título */
+        .title-container {
+            background-color: #007BFF; /* Fondo azul oscuro */
+            color: white; /* Texto blanco */
+            padding: 20px;
+            text-transform: capitalize; /* Transforma la primera letra en mayúscula */
+        }
+
+        /* Estilo para los botones de requerimientos */
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn-container a {
+            background-color: #87CEEB; /* Fondo azul claro */
+            color: black; /* Texto negro */
+            display: block;
+            padding: 10px;
+            margin: 10px auto;
+            text-align: center;
+            border: 1px solid #007BFF;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto">
+        <div class="title-container">
+            <h1 class="text-center">Estadísticas del Hotel</h1>
+        </div>
+        <p>A continuación, puede seleccionar qué desea consultar:</p>
+        <div class="btn-container">
+            <a th:href="@{/requerimiento11Q1}" class="btn btn-light btn-lg">Mostrar los servicios más consumidos por semana en el último año.</a>
+            <a th:href="@{/requerimiento11Q2}" class="btn btn-light btn-lg">Mostrar los servicios menos consumidos por semana en el último año.</a>
+            <a th:href="@{/requerimiento11Q3}" class="btn btn-light btn-lg">Mostrar las habitaciones más solicitadas por semana en el último año</a>
+            <a th:href="@{/requerimiento11Q4}" class="btn btn-light btn-lg">Mostrar las habitaciones menos solicitadas por semana en el último año.</a>
+        </div>
+    </div>
+</body>
+</html>
