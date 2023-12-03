@@ -24,13 +24,14 @@ public class TipoHabitacion {
     private List<String> dotaciones;
 
     @DBRef
-    private List<Habitacion> habitaciones;
+    @Field("habitaciones")
+    private List<String> habitaciones;
 
     public TipoHabitacion() {
     }
 
     public TipoHabitacion(String tipo, int costo_por_noche, int capacidad, List<String> dotaciones,
-            List<Habitacion> habitaciones) {
+            List<String> habitaciones) {
         this.tipo = tipo;
         this.costo_por_noche = costo_por_noche;
         this.capacidad = capacidad;
@@ -43,7 +44,7 @@ public class TipoHabitacion {
         this.costo_por_noche = costo_por_noche;
         this.capacidad = capacidad;
         this.dotaciones = dotaciones;
-        this.habitaciones = new ArrayList<Habitacion>();
+        this.habitaciones = new ArrayList<String>();
     }
 
     /**
@@ -105,21 +106,21 @@ public class TipoHabitacion {
     /**
      * @return the habitaciones
      */
-    public List<Habitacion> getHabitaciones() {
+    public List<String> getHabitaciones() {
         return habitaciones;
     }
 
     /**
      * @param habitaciones the habitaciones to set
      */
-    public void setHabitaciones(List<Habitacion> habitaciones) {
+    public void setHabitaciones(List<String> habitaciones) {
         this.habitaciones = habitaciones;
     }
 
     /**
      * @param habitacion the habitacion to add
      */
-    public void addHabitacion(Habitacion habitacion) {
+    public void addHabitacion(String habitacion) {
         this.habitaciones.add(habitacion);
     }
 

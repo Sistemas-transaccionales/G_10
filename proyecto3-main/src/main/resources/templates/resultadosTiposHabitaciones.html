@@ -17,8 +17,11 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Nombre Tipo de Bebida </th>
-                <th>Bebidas</th>
+                <th>Nombre tipo de habitacion</th>
+                <th>Costo por noche</th>
+                <th>Capacidad</th>
+                <th>Dotaciones</th>
+                <th>Habitaciones</th>
             </tr>
         </thead>
         <tbody>
@@ -33,12 +36,7 @@
                 </td>
                 <td>
                     <ul>
-                        <li th:each="habitacion : ${tipoHabitacion.habitaciones}" th:text="${habitacion.id}"></li>
-                    </ul>
-                </td>
-                <td>
-                    <ul>
-                        <li th:each="bebida : ${tipoBebida.bebidas}" th:text="${bebida.nombre} + ' (grado alcohol: ' + ${bebida.gradoAlcohol} +')'"></li>
+                        <li th:each="habitacion : ${tipoHabitacion.habitaciones}" th:text="${habitacion}"></li>
                     </ul>
                 </td>
             </tr>

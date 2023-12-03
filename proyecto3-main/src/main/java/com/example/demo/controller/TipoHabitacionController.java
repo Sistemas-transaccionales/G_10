@@ -37,13 +37,20 @@ public class TipoHabitacionController {
                                 .push("_id").as("habitaciones");
 
                 ProjectionOperation projectOperation = Aggregation.project()
-                                .andExclude("_id")
-                                .andInclude("tipo", "dotaciones", "costo_por_noche", "capacidad", "habitaciones");
+                                .andInclude("dotaciones", "costo_por_noche", "capacidad", "habitaciones").and("_id")
+                                .as("tipo");
 
                 Aggregation aggregation = Aggregation.newAggregation(groupOperation, projectOperation);
 
                 List<TipoHabitacion> tiposHabitacion = mongoTemplate
-                                .aggregate(aggregation, "tipos_habitaciones", TipoHabitacion.class).getMappedResults();
+                                .aggregate(aggregation, "habitaciones", TipoHabitacion.class).getMappedResults();
+
+                // System.out.println("Tipos habitación");
+
+                // for (TipoHabitacion tipoHabitacion : tiposHabitacion) {
+                // System.out.println(tipoHabitacion.toString());
+                // }
+
                 model.addAttribute("tiposHabitaciones", tiposHabitacion);
 
                 return "resultadosTiposHabitaciones";
