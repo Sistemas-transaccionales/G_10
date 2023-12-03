@@ -45,12 +45,6 @@ public class TipoHabitacionController {
                 List<TipoHabitacion> tiposHabitacion = mongoTemplate
                                 .aggregate(aggregation, "habitaciones", TipoHabitacion.class).getMappedResults();
 
-                // System.out.println("Tipos habitación");
-
-                // for (TipoHabitacion tipoHabitacion : tiposHabitacion) {
-                // System.out.println(tipoHabitacion.toString());
-                // }
-
                 model.addAttribute("tiposHabitaciones", tiposHabitacion);
 
                 return "resultadosTiposHabitaciones";
