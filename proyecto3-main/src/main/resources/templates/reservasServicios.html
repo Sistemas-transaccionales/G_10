@@ -13,6 +13,9 @@
 
     <div class="container mt-3">
         <h1>Reservas de Servicios</h1>
+            
+         <!-- Botón para redirigir al formulario de creación de reserva de servicio -->
+         <a th:href="@{/reservaServicioForm}" class="btn btn-primary" style="margin-bottom: 38px;">Crear Nueva Reserva de Servicio</a>
         
         <table class="table">
             <thead>
@@ -37,9 +40,6 @@
                 </tr>
             </tbody>
         </table>
-    
-         <!-- Botón para redirigir al formulario de creación de reserva de servicio -->
-         <a th:href="@{/reservaServicioForm}" class="btn btn-primary" style="margin-bottom: 38px;">Crear Nueva Reserva de Servicio</a>
     
     </div>
 
