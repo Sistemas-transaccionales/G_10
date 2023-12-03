@@ -85,4 +85,24 @@ public class TipoHabitacionController {
                 return "actualizarTipoHabitacionForm";
         }
 
+        @PostMapping("/actualizarTipoHabitacion")
+        public String actualizarTipoHabitacion(@ModelAttribute("tipoHabitacion") TipoHabitacion tipoHabitacion) {
+
+                tipoHabitacion.getDotaciones().removeIf(String::isEmpty);
+
+                List<Habitacion> habitaciones = habitacionRepository
+                                .findByTipoTipo(tipoHabitacion.getTipo());
+
+                TipoHabitacionEmbedded tipoHabitacionEmbedded = new TipoHabitacionEmbedded(tipoHabitacion.getTipo(),
+                                tipoHabitacion.getCosto_por_noche(), tipoHabitacion.getCapacidad(),
+                                tipoHabitacion.getDotaciones());
+
+                for (Habitacion habitacion : habitaciones) {
+                        habitacion.setTipo(tipoHabitacionEmbedded);
+                        habitacionRepository.save(habitacion);
+                }
+
+                return "redirect:/tiposHabitaciones";
+        }
+
 }
