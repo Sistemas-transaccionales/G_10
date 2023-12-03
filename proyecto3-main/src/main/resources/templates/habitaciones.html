@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habitaciones</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+    <div th:replace="navbar :: navbar"></div>
+    <div class="container mt-3"></div>
+        <h1>Lista de Habitaciones</h1>
+        <div>
+            <a th:href="@{/}" class="btn btn-primary">Volver atrás</a>
+            <a th:href="@{/habitacionForm}" class="btn btn-primary" style="margin-bottom: 38px;">Añadir Habitación</a>
+        </div>
+        <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Tipo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="habitacion : ${habitaciones}">
+                    <td th:text="${habitacion.id}"></td>
+                    <td th:text="${habitacion.tipo.tipo}"></td>
+                    <td>
+                        <a th:href="@{/habitaciones/{id}/edit(id=${habitacion.id})}" class="btn btn-primary">Editar</a>
+                        <a th:href="@{/habitaciones/{id}/delete(id=${habitacion.id})}" onclick="return confirm('¿Estás seguro de borrar esta habitación?')" class="btn btn-primary">Borrar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+<script src="/webjars/bootstrap/4.5.3/js/bootstrap.min.js"></script>
+</body>
+</html>

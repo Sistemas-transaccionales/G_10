@@ -1,13 +1,13 @@
 package com.example.demo.repositorio;
 
+import com.example.demo.modelo.Habitacion;
+import com.example.demo.modelo.TipoHabitacionEmbedded;
+
 import java.util.List;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import com.example.demo.modelo.Habitacion;
-
 public interface HabitacionRepository extends MongoRepository<Habitacion, String> {
 
-    public List<Habitacion> findByTipoTipo(String tipo);
-
+    List<Habitacion> findByTipo(TipoHabitacionEmbedded tipo);
 }

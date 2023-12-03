@@ -2,6 +2,7 @@ package com.example.demo.modelo;
 
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -18,12 +19,12 @@ public class Habitacion {
 
     @Field("reservas")
     @DBRef
-    private List<ReservaHabitacion> reservas;
+    private List<ObjectId> reservas;
 
     public Habitacion() {
     }
 
-    public Habitacion(String id, TipoHabitacionEmbedded tipo, List<ReservaHabitacion> reservas) {
+    public Habitacion(String id, TipoHabitacionEmbedded tipo, List<ObjectId> reservas) {
 
         this.id = id;
         this.tipo = tipo;
@@ -61,21 +62,21 @@ public class Habitacion {
     /**
      * @return the reservas
      */
-    public List<ReservaHabitacion> getReservas() {
+    public List<ObjectId> getReservas() {
         return reservas;
     }
 
     /**
      * @param reservas the reservas to set
      */
-    public void setReservas(List<ReservaHabitacion> reservas) {
+    public void setReservas(List<ObjectId> reservas) {
         this.reservas = reservas;
     }
 
     /**
      * @param reserva the reserva to add
      */
-    public void addReserva(ReservaHabitacion reserva) {
+    public void addReserva(ObjectId reserva) {
         this.reservas.add(reserva);
     }
 

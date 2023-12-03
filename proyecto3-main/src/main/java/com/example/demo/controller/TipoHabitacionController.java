@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
@@ -74,7 +75,7 @@ public class TipoHabitacionController {
                                                 nuevoTipoHabitacion.getCosto_por_noche(),
                                                 nuevoTipoHabitacion.getCapacidad(),
                                                 nuevoTipoHabitacion.getDotaciones()),
-                                new ArrayList<ReservaHabitacion>());
+                                new ArrayList<ObjectId>());
 
                 habitacionRepository.save(habitacion);
 
@@ -98,9 +99,7 @@ public class TipoHabitacionController {
                 List<TipoHabitacion> tiposHabitaciones = mongoTemplate
                                 .aggregate(aggregation, "habitaciones", TipoHabitacion.class).getMappedResults();
 
-                System.out.println("TIPO HABITACION");
                 TipoHabitacion tipoHabitacion = tiposHabitaciones.get(0);
-                System.out.println(tipoHabitacion);
 
                 model.addAttribute("tipoHabitacion", tipoHabitacion);
 
@@ -113,12 +112,11 @@ public class TipoHabitacionController {
 
                 tipoHabitacion.getDotaciones().removeIf(String::isEmpty);
 
-                List<Habitacion> habitaciones = habitacionRepository
-                                .findByTipoTipo(tipoHabitacion.getTipo());
-
                 TipoHabitacionEmbedded tipoHabitacionEmbedded = new TipoHabitacionEmbedded(tipo,
                                 tipoHabitacion.getCosto_por_noche(), tipoHabitacion.getCapacidad(),
                                 tipoHabitacion.getDotaciones());
+
+                List<Habitacion> habitaciones = habitacionRepository.findByTipo(tipoHabitacionEmbedded);
 
                 for (Habitacion habitacion : habitaciones) {
                         habitacion.setTipo(tipoHabitacionEmbedded);
@@ -131,8 +129,28 @@ public class TipoHabitacionController {
         @GetMapping("/tipoHabitacion/{tipo}/delete")
         public String eliminarTipoHabitacion(@PathVariable("tipo") String tipo) {
 
-                List<Habitacion> habitaciones = habitacionRepository
-                                .findByTipoTipo(tipo);
+                GroupOperation groupOperation = Aggregation.group("tipo.tipo")
+                                .first("tipo.costo_por_noche").as("costo_por_noche")
+                                .first("tipo.capacidad").as("capacidad")
+                                .first("tipo.dotaciones").as("dotaciones")
+                                .push("_id").as("habitaciones");
+
+                Aggregation aggregation = Aggregation.newAggregation(groupOperation,
+                                Aggregation.match(Criteria.where("_id").is(tipo)),
+                                Aggregation.project().andInclude("dotaciones", "costo_por_noche", "capacidad",
+                                                "habitaciones").and("_id").as("tipo"));
+
+                List<TipoHabitacion> tiposHabitaciones = mongoTemplate
+                                .aggregate(aggregation, "habitaciones", TipoHabitacion.class).getMappedResults();
+
+                TipoHabitacion tipoHabitacionEliminar = tiposHabitaciones.get(0);
+
+                TipoHabitacionEmbedded tipoHabitacionEmbedded = new TipoHabitacionEmbedded(
+                                tipoHabitacionEliminar.getTipo(),
+                                tipoHabitacionEliminar.getCosto_por_noche(), tipoHabitacionEliminar.getCapacidad(),
+                                tipoHabitacionEliminar.getDotaciones());
+
+                List<Habitacion> habitaciones = habitacionRepository.findByTipo(tipoHabitacionEmbedded);
 
                 TipoHabitacionEmbedded tipoHabitacionNulo = new TipoHabitacionEmbedded("Nulo", 0, 0,
                                 new ArrayList<String>());
