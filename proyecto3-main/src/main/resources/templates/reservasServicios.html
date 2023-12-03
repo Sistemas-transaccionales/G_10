@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservas de Servicios</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.3/css/bootstrap.min.css" />
+</head>
+<body>
+
+    <!-- Incluye el navbar -->
+    <div th:replace="navbar :: navbar"></div>
+
+    <div class="container mt-3">
+        <h1>Reservas de Servicios</h1>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID Servicio</th>
+                    <th>ID Reserva Habitación</th>
+                    <th>Tipo Documento Usuario</th>
+                    <th>Número Documento Usuario</th>
+                    <th>Fecha</th>
+                    <th>Costo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Iteramos sobre la lista de reservas de servicios y mostramos los detalles -->
+                <tr th:each="reserva : ${reservasServicios}">
+                    <td th:text="${reserva.idServicio}"></td>
+                    <td th:text="${reserva.idReservaHabitacion}"></td>
+                    <td th:text="${reserva.usuario.tipoDoc}"></td>
+                    <td th:text="${reserva.usuario.numDoc}"></td>
+                    <td th:text="${reserva.fecha}"></td>
+                    <td th:text="${reserva.costo}"></td>
+                </tr>
+            </tbody>
+        </table>
+    
+         <!-- Botón para redirigir al formulario de creación de reserva de servicio -->
+         <a th:href="@{/reservaServicioForm}" class="btn btn-primary" style="margin-bottom: 38px;">Crear Nueva Reserva de Servicio</a>
+    
+    </div>
+
+    <hr>
+
+<script src="/webjars/bootstrap/4.5.3/js/bootstrap.min.js"></script>
+</body>
+</html>

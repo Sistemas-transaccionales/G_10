@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo Tipo de habitacion</title>
+</head>
+<body>
+
+    <!-- Incluye el navbar -->
+    <div th:replace="navbar :: navbar"></div>
+
+<div class="container mt-3">
+    <h1>Nuevo Tipo de Habitacion</h1>
+
+    <!-- Formulario de creación -->
+    <form th:action="@{/crearTipoHabitacion}" th:object="${nuevoTipoHabitacion}" method="post">
+
+        <label for="habitaciones"> Id de la nueva habitacion:</label>
+        <input type="text" id="habitaciones" name="habitaciones[0]" th:field="*{habitaciones[0]}" required />
+
+        <label for="tipo">Nombre del tipo de Habitacion:</label>
+        <input type="text" id="tipo" name="tipo" th:field="*{tipo}" required />
+
+        <label for="costo_por_noche">Costo por noche:</label>
+        <input type="text" id="costo_por_noche" name="costo_por_noche" th:field="*{costo_por_noche}" required />
+
+        <label for="capacidad">Capacidad:</label>
+        <input type="text" id="capacidad" name="capacidad" th:field="*{capacidad}" required />
+
+        <label for="dotaciones">Dotacion 1:</label>
+        <input type="text" id="dotacion1" name="dotaciones[0]" th:field="*{dotaciones[0]}" required />
+
+        <label for="dotaciones">Dotacion 2:</label>
+        <input type="text" id="dotacion2" name="dotaciones[1]" th:field="*{dotaciones[1]}" />
+
+        <label for="dotaciones">Dotacion 3:</label>
+        <input type="text" id="dotacion3" name="dotaciones[2]" th:field="*{dotaciones[2]}" />
+
+        <label for="dotaciones">Dotacion 4:</label>
+        <input type="text" id="dotacion4" name="dotaciones[3]" th:field="*{dotaciones[3]}" />
+
+        <label for="dotaciones">Dotacion 5:</label>
+        <input type="text" id="dotacion5" name="dotaciones[4]" th:field="*{dotaciones[4]}" />
+
+        <label for="dotaciones">Dotacion 6:</label>
+        <input type="text" id="dotacion6" name="dotaciones[5]" th:field="*{dotaciones[5]}" />
+
+        <label for="dotaciones">Dotacion 7:</label>
+        <input type="text" id="dotacion7" name="dotaciones[6]" th:field="*{dotaciones[6]}" />
+
+        <label for="dotaciones">Dotacion 8:</label>
+        <input type="text" id="dotacion8" name="dotaciones[7]" th:field="*{dotaciones[7]}" />
+
+        <label for="dotaciones">Dotacion 9:</label>
+        <input type="text" id="dotacion9" name="dotaciones[8]" th:field="*{dotaciones[8]}" />
+
+        <label for="dotaciones">Dotacion 10:</label>
+        <input type="text" id="dotacion10" name="dotaciones[9]" th:field="*{dotaciones[9]}" />
+
+        <button type="submit" class="btn btn-success">Crear Tipo de Habitacion</button>
+    </form>
+
+</div>
+
+</body>
+</html>

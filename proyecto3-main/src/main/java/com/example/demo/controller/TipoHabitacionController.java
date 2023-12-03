@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,13 @@ import org.springframework.data.mongodb.core.aggregation.ProjectionOperation;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.demo.modelo.Habitacion;
+import com.example.demo.modelo.ReservaHabitacion;
 import com.example.demo.modelo.TipoHabitacion;
+import com.example.demo.modelo.TipoHabitacionEmbedded;
 import com.example.demo.repositorio.HabitacionRepository;
 import com.example.demo.repositorio.TipoHabitacionRepository;
 
@@ -48,6 +54,35 @@ public class TipoHabitacionController {
                 model.addAttribute("tiposHabitaciones", tiposHabitacion);
 
                 return "resultadosTiposHabitaciones";
+        }
+
+        @GetMapping("/startCrearTipoHabitacion")
+        public String mostrarFormularioCrear(Model model) {
+                model.addAttribute("nuevoTipoHabitacion", new TipoHabitacion());
+                return "crearTipoHabitacionForm";
+        }
+
+        @PostMapping("/crearTipoHabitacion")
+        public String crearTipoHabitacion(@ModelAttribute("nuevoTipoHabitacion") TipoHabitacion nuevoTipoHabitacion) {
+
+                nuevoTipoHabitacion.getDotaciones().removeIf(String::isEmpty);
+
+                Habitacion habitacion = new Habitacion(nuevoTipoHabitacion.getHabitaciones().get(0),
+                                new TipoHabitacionEmbedded(nuevoTipoHabitacion.getTipo(),
+                                                nuevoTipoHabitacion.getCosto_por_noche(),
+                                                nuevoTipoHabitacion.getCapacidad(),
+                                                nuevoTipoHabitacion.getDotaciones()),
+                                new ArrayList<ReservaHabitacion>());
+
+                habitacionRepository.save(habitacion);
+
+                return "redirect:/tiposHabitaciones";
+        }
+
+        @GetMapping("/startActualizarTipoHabitacion")
+        public String mostrarFormularioActualizar(Model model) {
+                model.addAttribute("tipoHabitacion", new TipoHabitacion());
+                return "actualizarTipoHabitacionForm";
         }
 
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resultados de la Consulta</title>
+    <title>Tipos de habitaciones</title>
     <link rel="stylesheet" href="/webjars/bootstrap/4.5.3/css/bootstrap.min.css" />
 </head>
 <body>
@@ -12,7 +12,16 @@
     <div th:replace="navbar :: navbar"></div>
 
 <div class="container mt-3">
-    <h1>Resultados de la Consulta</h1>
+    <h1>Tipos de habitaiciones</h1>
+
+    <!-- Botón para redirigir al formulario de creación de tipo de habitacion -->
+    <a th:href="@{/startCrearTipoHabitacion}" class="btn btn-primary" style="margin-bottom: 38px;">Crear Nuevo Tipo de Habitacion</a>
+
+    <!-- Botón para redirigir al formulario de creación de tipo de habitacion -->
+    <a th:href="@{/startActualizarTipoHabitacion}" class="btn btn-primary" style="margin-bottom: 38px;">Actualizar Tipo de Habitacion</a>
+
+    <!-- Botón para redirigir al formulario de creación de tipo de habitacion -->
+    <a th:href="@{/startEliminarTipoHabitacion}" class="btn btn-primary" style="margin-bottom: 38px;">Eliminar Tipo de Habitacion</a>
 
     <table class="table">
         <thead>
