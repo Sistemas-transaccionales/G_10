@@ -17,12 +17,6 @@
     <!-- Botón para redirigir al formulario de creación de tipo de habitacion -->
     <a th:href="@{/startCrearTipoHabitacion}" class="btn btn-primary" style="margin-bottom: 38px;">Crear Nuevo Tipo de Habitacion</a>
 
-    <!-- Botón para redirigir al formulario de creación de tipo de habitacion -->
-    <a th:href="@{/startActualizarTipoHabitacion}" class="btn btn-primary" style="margin-bottom: 38px;">Actualizar Tipo de Habitacion</a>
-
-    <!-- Botón para redirigir al formulario de creación de tipo de habitacion -->
-    <a th:href="@{/startEliminarTipoHabitacion}" class="btn btn-primary" style="margin-bottom: 38px;">Eliminar Tipo de Habitacion</a>
-
     <table class="table">
         <thead>
             <tr>
@@ -31,6 +25,7 @@
                 <th>Capacidad</th>
                 <th>Dotaciones</th>
                 <th>Habitaciones</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -47,6 +42,10 @@
                     <ul>
                         <li th:each="habitacion : ${tipoHabitacion.habitaciones}" th:text="${habitacion}"></li>
                     </ul>
+                </td>
+                <td>
+                    <a th:href="@{'/tipoHabitacion/' + ${tipoHabitacion.tipo} + '/edit'}" class="btn btn-primary">Editar</a>
+                    <a th:href="@{'/tipoHabitacion/' + ${tipoHabitacion.tipo} + '/delete'}" onclick="return confirm('¿Estás seguro de borrar este Tipo Habitacion?')" class="btn btn-primary">Borrar</a>
                 </td>
             </tr>
         </tbody>
