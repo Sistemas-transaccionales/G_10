@@ -1,0 +1,21 @@
+db.habitaciones.aggregate([
+  {
+    $group: {
+      _id: "$tipo.tipo",
+			costo_por_noche: {$first: '$tipo.costo_por_noche'},
+			capacidad: {$first: '$tipo.capacidad'},
+			dotaciones: {$first: '$tipo.dotaciones'},
+      habitaciones: { $push: "$_id" }
+    }
+  },
+  {
+    $project: {
+      tipo: "$_id",
+      _id: 0,
+			dotaciones: 1,
+      costo_por_noche: 1,
+			capacidad: 1,
+      habitaciones: 1
+    }
+  }
+])
