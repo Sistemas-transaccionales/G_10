@@ -4,6 +4,13 @@
             "type": "java",
             "name": "Proyecto3Application",
             "request": "launch",
+            "mainClass": "com.example.demo.Proyecto3Application",
+            "projectName": "demo"
+        },
+        {
+            "type": "java",
+            "name": "Proyecto3Application",
+            "request": "launch",
             "mainClass": "uniandes.edu.co.proyecto3.Proyecto3Application"
         },
         {
