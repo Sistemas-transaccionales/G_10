@@ -2,115 +2,102 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienvenido al Hotel de los Andes</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+    <title>Parranderos MongoDB</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.3/css/bootstrap.min.css" />
     <style>
-        .btn-primary {
-            background-color: #87CEEB;
-            border-color: #87CEEB;
-            color: white;
+        body {
+            margin: 0;
+            font-family: 'Merriweather Sans', sans-serif;
         }
 
-        .btn-container {
-            display: none;
-            flex-direction: column;
-            gap: 10px;
+        nav {
+            background-color: #333;
+            overflow: hidden;
+            position: sticky;
+            top: 0;
+            z-index: 100; /* Asegura que el navbar esté por encima del contenido */
+            width:auto;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
         }
 
-        .login-form {
+        nav a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
             text-align: center;
-            margin-top: 20px;
+            padding: 14px 16px;
+            text-decoration: none;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
-        .btn-continue {
-            margin-top: 20px;
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
         }
 
-        .form-group {
-            margin-bottom: 10px;
+        @media screen and (max-width: 800px) {
+            nav a {
+                float: none;
+                display: block;
+                text-align: left;
+                width: 100%;
+                box-sizing: border-box;
+            }
         }
+
+        .contenido {
+            padding: 16px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            margin-top: 30px;
+            height: 160px;
+            box-shadow: 5px -5px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .footer-image {
+            display: block;
+            margin: 0 auto; /* Centra la imagen horizontalmente */
+            max-width: 100px;
+            height: auto;
+            float: left; /* Alinea la imagen a la izquierda */
+            margin-right: 20px; /* Agrega un margen a la derecha de la imagen para separar del texto */
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.8));
+            
+        }
+
+        .footer-image:hover {
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.8)) brightness(1.2); /* Brillo al hacer hover */
+        }
+        
     </style>
 </head>
 <body>
-    <div class="container mx-auto">
-        <h1 class="text-center">Bienvenido al Hotel de los Andes</h1>
+        <!-- Incluye el navbar -->
+    <div th:replace="navbar :: navbar"></div>
 
-        <div class="login-form">
-            <p>Antes de continuar, por favor selecciona tu rol dentro del hotel:</p>
-            <form>
-                <div class="form-group">
-                    <select class="form-select" id="rol">
-                        <option value="administrador">Administrador</option>
-                        <option value="cliente">Cliente</option>
-                        <option value="recepcionista">Recepcionista</option>
-                        <option value="empleado">Empleado</option>
-                        <option value="gerente">Gerente General</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <input type="email" class="form-control" id="correo" placeholder="Correo">
-                </div>
-                <div class="mb-3">
-                    <input type="password" class="form-control" id="contrasena" placeholder="Contraseña">
-                </div>
-                <button type="button" class="btn btn-primary btn-continue" onclick="continuar()">Continuar</button>
-            </form>
-        </div>
-        <div id="botones">
-            <div class="btn-container" id="admin-buttons">
-                <a th:href="@{/estadisticas}" class="btn btn-primary">Mostrar Estadísticas del Hotel</a>
+    <div class="row" style="margin-top: 40px;">
+        <label class="col-md-6 control-label">
+            <img src="https://github.com/JuanCoronel70/el-salvador-violencia/blob/main/DALL%C2%B7E%202023-11-14%2019.31.10%20-%203d%20render%20of%20a%20drink%20with%20a%20green%20leaf,%204k.png?raw=true&cache=1" alt="" style="height: 600px;width: 600px; margin-left: 10px;" loading="lazy">
+        </label>
 
-                <a th:href="@{/tipos_usuario}" class="btn btn-primary">Consultar Tipos de Usuario</a>
-                <a th:href="@{/usuarios}" class="btn btn-primary">Consultar Usuarios</a>
-                <a th:href="@{/tipos_habitacion}" class="btn btn-primary">Consultar Tipos de Habitacion</a>
-                <a th:href="@{/habitaciones}" class="btn btn-primary">Consultar Habitaciones</a>
-                <a th:href="@{/servicios}" class="btn btn-primary">Consultar Servicios</a>
-                <a th:href="@{/tipos_servicio}" class="btn btn-primary">Consultar Tipos de Servicio</a>
-                <a th:href="@{/planes_consumo}" class="btn btn-primary">Consultar Planes de Consumo</a>
-            </div>
-            <div class="btn-container" id="cliente-buttons">
-                <a th:href="@{/reservas_servicio}" class="btn btn-primary">Consultar Reservas de Servicio</a>
-                <a th:href="@{/reservas_habitacion}" class="btn btn-primary">Consultar Reservas de Habitacion</a>
-            </div>
-            <div class="btn-container" id="recepcionista-buttons">
-                <a th:href="@{/check_ins}" class="btn btn-primary">Consultar llegada de Clientes</a>
-                <a th:href="@{/check_outs}" class="btn btn-primary">Consultar salida de Clientes</a>
-                <a th:href="@{/req9_form}" class="btn btn-primary">Consultar consumo en HotelAndes</a>
-                <a th:href="@{/req10_form}" class="btn btn-primary">Consultar consumo en HotelAndes (2)</a>
-            </div>
-            <div class="btn-container" id="gerente-buttons">
-                <a th:href="@{/req9_form}" class="btn btn-primary">Consultar consumo en HotelAndes</a>
-                <a th:href="@{/req10_form}" class="btn btn-primary">Consultar consumo en HotelAndes (2)</a>
-                <a th:href="@{/requerimiento11}" class="btn btn-primary">Consultar funcionamiento</a>
-                <a th:href="@{/requerimiento12}" class="btn btn-primary">Consultar los clientes excelentes</a>
-        </div>
+        <label class="col-md-6 control-label">
+            <h1 style="font-size: 120px; text-align:start;"> Parranderos + MongoDB </h1>
+            <h1 style="font-size: 20px; text-align: start; letter-spacing: 5px; word-spacing: 22px;">Una aplicación demo que usa Spring Boot Data con MongoDB como ejemplo practico para el modulo NoSQL del curso Sistemas Transaccionales.</h1>
+        </label>
+        
     </div>
-    <script>
-        function continuar() {
-            var rolSeleccionado = document.getElementById("rol").value;
-            var botones = document.getElementById("botones");
-            var adminButtons = document.getElementById("admin-buttons");
-            var clienteButtons = document.getElementById("cliente-buttons");
-            var recepcionistaButtons = document.getElementById("recepcionista-buttons");
-            var gerenteButtons = document.getElementById("gerente-buttons");
 
-            adminButtons.style.display = "none";
-            clienteButtons.style.display = "none";
-            recepcionistaButtons.style.display = "none";
-            gerenteButtons.style.display = "none";
+    <footer>
+        <img src="https://github.com/JuanCoronel70/el-salvador-violencia/blob/main/79f258dcebe9f4539ec8a18928973e86-removebg-preview.png?raw=true&cache=1" alt="Logo" class="footer-image" loading="lazy">
+        <p style="text-align: right; margin-top: 100px;">@Universidad de los Andes - DISC - Sistemas Transaccionales (2023-02)</p>
+    </footer>
 
-            if (rolSeleccionado === "administrador") {
-                adminButtons.style.display = "flex";
-            } else if (rolSeleccionado === "cliente") {
-                clienteButtons.style.display = "flex";
-            } else if (rolSeleccionado === "recepcionista") {
-                recepcionistaButtons.style.display = "flex";
-            }  else if (rolSeleccionado === "gerente") {
-                gerenteButtons.style.display = "flex";
-            }
-            
-        }
-    </script>
+<script src="/webjars/bootstrap/4.5.3/js/bootstrap.min.js"></script>
 </body>
+</html>

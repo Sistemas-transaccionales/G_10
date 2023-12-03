@@ -2,6 +2,12 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Proyecto3Application",
+            "request": "launch",
+            "mainClass": "uniandes.edu.co.proyecto3.Proyecto3Application"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-ProyectoApplication<proyecto>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
