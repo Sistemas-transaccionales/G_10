@@ -40,6 +40,13 @@
                             <span th:text="${idReserva}"></span>
                         </span>
                     </td>
+                    <td>
+                        <!-- Formulario para la eliminación del servicio -->
+                        <form th:action="@{/eliminarServicio}" method="post">
+                            <input type="hidden" name="id" th:value="${servicio.id}" />
+                            <button type="submit" class="btn btn-primary" style="background-color: red; border-color: red; margin-top: 10px;">Eliminar Servicio</button>
+                        </form>
+                    </td>
                 </tr>
             </tbody>
         </table>

@@ -39,8 +39,8 @@ public class ServicioController {
         return "redirect:/servicios";
     }
 
-    @GetMapping("/eliminarServicio/{id}")
-    public String eliminarServicio(@PathVariable String id) {
+    @PostMapping("/eliminarServicio")
+    public String eliminarServicio(@RequestParam String id) {
         servicioRepository.deleteById(id);
         return "redirect:/servicios";
     }
