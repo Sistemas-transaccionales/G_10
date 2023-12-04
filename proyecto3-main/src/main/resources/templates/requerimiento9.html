@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumo del HotelAndes por Cliente</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.3/css/bootstrap.min.css" />
+</head>
+<body>
+
+    <!-- Incluye el navbar -->
+    <div th:replace="navbar :: navbar"></div>
+
+    <div class="container mt-3">
+        <h1>Mostrar el consumo en HotelAndes por un cliente, en un rango de fechas indicado</h1>
+
+        <form th:action="@{/requerimiento9}" method="post">
+            <div class="form-group">
+                <label for="numDoc">Número de Documento:</label>
+                <input type="text" id="numDoc" name="numDoc" required>
+            </div>
+            <div class="form-group">
+                <label for="tipoDoc">Tipo de Documento:</label>
+                <input type="text" id="tipoDoc" name="tipoDoc" required>
+            </div>
+            <div class="form-group">
+                <label for="fechaInicio">Fecha de Inicio:</label>
+                <input type="date" id="fechaInicio" name="fechaInicio" required>
+            </div>
+            <div class="form-group">
+                <label for="fechaFin">Fecha de Fin:</label>
+                <input type="date" id="fechaFin" name="fechaFin" required>
+            </div>
+            <input type="submit" value="Buscar">
+        </form>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Tipo de Doc</th>
+                    <th>Número de doc</th>
+                    <th>Servicio</th>
+                    <th>ID servicio consumido</th>
+                    <th>ID consumo</th>
+                    <th>Fecha</th>
+                    <th>Costo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="consumo:${consumos_usuario}">
+                    <td th:text="${consumo.tipoDoc}"></td>
+                    <td th:text="${consumo.numDoc}"></td>
+                    <td th:text="${consumo.nombreServicio}"></td>
+                    <td th:text="${consumo.idServicio}"></td>
+                    <td th:text="${consumo.id}"></td>
+                    <td th:text="${consumo.fecha}"></td>
+                    <td th:text="${consumo.costo}"></td>
+                </tr>   
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <a th:href="@{/}" class="btn btn-primary">Volver atrás</a>
+    </div>
+    <script src="/webjars/bootstrap/4.5.3/js/bootstrap.min.js"></script>
+</body>
+</html>

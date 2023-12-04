@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Requerimiento 9</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+    <div class="container mt-3">
+        <h2>Ingresa los identificadores del cliente y el rango de fechas</h2>
+        <form th:action="@{/requerimiento9}" method="post">
+            <div class="form-group">
+                <label for="numDoc">Número de documento:</label>
+                <input type="text" id="numDoc" name="numDoc" required>
+            </div>
+            <div class="form-group">
+                <label for="tipoDoc">Tipo de documento:</label>
+                <input type="text" id="tipoDoc" name="tipoDoc" required>
+            </div>
+            <div class="form-group">
+                <label for="fechaInicio">Fecha de Inicio:</label>
+                <input type="date" id="fechaInicio" name="fechaInicio" required>
+            </div>
+            <div class="form-group">
+                <label for="fechaFin">Fecha de Fin:</label>
+                <input type="date" id="fechaFin" name="fechaFin" required>
+            </div>
+            <input type="submit" value="Buscar">
+        </form>
+    </div>
+    <script src="/webjars/bootstrap/4.5.3/js/bootstrap.min.js"></script>
+</body>
+</html>
