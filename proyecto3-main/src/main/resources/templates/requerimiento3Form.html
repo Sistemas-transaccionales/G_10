@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Formulario de Requerimiento 5</title>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    </head>
+<body>
+    <h2>Ingresa los identificadores del cliente, la Fecha de Inicio y Fin</h2>
+    <form th:action="@{/requerimiento3}" method="post">
+        Número de documento: <input type="number" name="numDoc"><br>
+        Tipo de documento: <input type="text" name="tipoDoc"><br>
+        Fecha de Inicio (YYYY-MM-DD): <input type="text" name="fechaInicio"><br>
+        Fecha de Fin (YYYY-MM-DD): <input type="text" name="fechaFin"><br><br>
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+</html>

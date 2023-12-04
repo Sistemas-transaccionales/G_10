@@ -1,0 +1,33 @@
+db.reservas_servicios.aggregate([
+  {
+    $match: {
+      'usuario.tipo_doc': 'CC',
+      'usuario.num_doc': 27812231,
+      fecha: {
+        $gte: ISODate('2022-01-01'),
+        $lte: ISODate('2023-12-01')
+      }
+    }
+  },
+  {
+    $lookup: {
+      from: 'servicios',
+      localField: 'id_servicio',
+      foreignField: '_id',
+      as: 'serviceDetails'
+    }
+  },
+  {
+    $unwind: '$serviceDetails'
+  },
+  {
+    $project: {
+      'tipo_doc': '$usuario.tipo_doc',
+			'num_doc': '$usuario.num_doc',
+      'fecha': 1,
+      'costo': 1,
+      'nombre_servicio': '$serviceDetails.nombre',
+			'id_servicio': 1
+    }
+  }
+])

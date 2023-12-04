@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.3/css/bootstrap.min.css" />
+</head>
+<body>
+
+    <!-- Incluye el navbar -->
+    <div th:replace="navbar :: navbar"></div>
+
+    <div class="container mt-3">
+        <h1>Mostrar el consumo en HotelAndes por un cliente, en un rango de fechas indicado</h1>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Tipo de Doc</th>
+                    <th>Número de doc</th>
+                    <th>Servicio</th>
+                    <th>ID servicio consumido</th>
+                    <th>ID consumo</th>
+                    <th>Fecha</th>
+                    <th>Costo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="consumo:${consumos_usuario}">
+                    <td th:text="${consumo.tipoDoc}"></td>
+                    <td th:text="${consumo.numDoc}"></td>
+                    <td th:text="${consumo.nombreServicio}"></td>
+                    <td th:text="${consumo.idServicio}"></td>
+                    <td th:text="${consumo.id}"></td>
+                    <td th:text="${consumo.fecha}"></td>
+                    <td th:text="${consumo.costo}"></td>
+                </tr>   
+            </tbody>
+        </table>    
+    </div>
+    <div>
+        <a th:href="@{/}" class="btn btn-primary">Volver atrás</a>
+    </div>
+<script src="/webjars/bootstrap/4.5.3/js/bootstrap.min.js"></script>
+</body>
+</html>
