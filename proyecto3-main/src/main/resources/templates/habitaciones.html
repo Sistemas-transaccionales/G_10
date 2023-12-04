@@ -24,7 +24,7 @@
                     <td th:text="${habitacion.tipo.tipo}"></td>
                     <td>
                         <a th:href="@{/habitaciones/{id}/edit(id=${habitacion.id})}" class="btn btn-primary">Editar</a>
-                        <a th:href="@{/habitaciones/{id}/delete(id=${habitacion.id})}" onclick="return confirm('¿Estás seguro de borrar esta habitación?')" class="btn btn-primary">Borrar</a>
+                        <a th:href="@{/habitaciones/{id}/delete(id=${habitacion.id})}" th:id="'delete-' + ${habitacion.id}" onclick="return confirm('¿Estás seguro de borrar esta habitación?')" class="btn btn-primary">Borrar</a>
                     </td>
                 </tr>
             </tbody>
@@ -35,5 +35,17 @@
         </div>
     </div>
 <script src="/webjars/bootstrap/4.5.3/js/bootstrap.min.js"></script>
+<script>
+    document.querySelectorAll('a[id^="delete-"]').forEach(item => {
+        item.addEventListener('click', event => {
+            event.preventDefault();
+            fetch(event.target.href, {
+                method: 'DELETE',
+            })
+            .then(response => location.reload())
+            .catch(error => console.error('Error:', error));
+        });
+    });
+</script>
 </body>
 </html>
