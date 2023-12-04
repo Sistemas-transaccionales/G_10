@@ -1,5 +1,8 @@
 package com.example.demo.modelo;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
 public class Req2 {
 
     private String idHabitacion;

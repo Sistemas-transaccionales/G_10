@@ -2,6 +2,7 @@ package com.example.demo.modelo;
 
 import java.util.Date;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -10,7 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 public class ReservaServicio {
 
     @Id
-    private String id;
+    private ObjectId id;
 
     @Field("id_servicio")
     private String idServicio;
@@ -27,11 +28,11 @@ public class ReservaServicio {
     @Field("costo")
     private int costo;
 
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 

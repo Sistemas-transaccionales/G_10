@@ -1,7 +1,9 @@
 package com.example.demo.modelo;
 
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+@Document
 public class PlanConsumoEmbedded {
 
     @Field("nombre")

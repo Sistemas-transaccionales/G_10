@@ -17,7 +17,7 @@ public class Usuario {
     private String tipoDoc;
 
     @Field("num_doc")
-    private String numDoc;
+    private int numDoc;
 
     @Field("tipo")
     private String tipo;
@@ -32,17 +32,17 @@ public class Usuario {
     private String password;
 
     @Field("reservas_habitaciones")
-    private List<ReservaHabitacion> reservasHabitaciones;
+    private List<ObjectId> reservasHabitaciones;
 
     @Field("reservas_servicios")
-    private List<ReservaServicio> reservasServicios;
+    private List<ObjectId> reservasServicios;
 
     public Usuario() {
     }
 
-    public Usuario(ObjectId id, String tipo_doc, String num_doc, String tipo, String nombre, String email,
-            String password, List<ReservaHabitacion> reservasHabitaciones,
-            List<ReservaServicio> reservasServicios) {
+    public Usuario(ObjectId id, String tipo_doc, int num_doc, String tipo, String nombre, String email,
+            String password, List<ObjectId> reservasHabitaciones,
+            List<ObjectId> reservasServicios) {
         this.id = id;
         this.tipoDoc = tipo_doc;
         this.numDoc = num_doc;
@@ -85,14 +85,14 @@ public class Usuario {
     /**
      * @return the num_doc
      */
-    public String getNumDoc() {
+    public int getNumDoc() {
         return numDoc;
     }
 
     /**
      * @param num_doc the num_doc to set
      */
-    public void setNumDoc(String num_doc) {
+    public void setNumDoc(int num_doc) {
         this.numDoc = num_doc;
     }
 
@@ -155,28 +155,28 @@ public class Usuario {
     /**
      * @return the reservasHabitaciones
      */
-    public List<ReservaHabitacion> getReservasHabitaciones() {
+    public List<ObjectId> getReservasHabitaciones() {
         return reservasHabitaciones;
     }
 
     /**
      * @param reservasHabitaciones the reservasHabitaciones to set
      */
-    public void setReservasHabitaciones(List<ReservaHabitacion> reservasHabitaciones) {
+    public void setReservasHabitaciones(List<ObjectId> reservasHabitaciones) {
         this.reservasHabitaciones = reservasHabitaciones;
     }
 
     /**
      * @return the reservasServicios
      */
-    public List<ReservaServicio> getReservasServicios() {
+    public List<ObjectId> getReservasServicios() {
         return reservasServicios;
     }
 
     /**
      * @param reservasServicios the reservasServicios to set
      */
-    public void setReservasServicios(List<ReservaServicio> reservasServicios) {
+    public void setReservasServicios(List<ObjectId> reservasServicios) {
         this.reservasServicios = reservasServicios;
     }
 

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservas de Habitaciones</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.3/css/bootstrap.min.css" />
+</head>
+<body>
+
+    <!-- Incluye el navbar -->
+    <div th:replace="navbar :: navbar"></div>
+
+    <div class="container mt-3">
+        <h1>Reservas de Habitaciones</h1>
+            
+         <!-- Botón para redirigir al formulario de creación de reserva de servicio -->
+         <a th:href="@{/reservaServicioForm}" class="btn btn-primary" style="margin-bottom: 38px;">Crear Nueva Reserva de Habitación</a>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID Reserva</th>
+                    <th>Habitación</th>
+                    <th>Tipo Documento Cliente</th>
+                    <th>Número Documento Cliente</th>
+                    <th>Fecha Inicio</th>
+                    <th>Fecha Fin</th>
+                    <th>Num personas</th>
+                    <th>Plan Consumo</th>
+                    <th>Costo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="reserva : ${reservasHabitaciones}">
+                    <td th:text="${reserva.id}"></td>
+                    <td th:text="${reserva.idHabitacion}"></td>
+                    <td th:text="${reserva.usuario.tipoDoc}"></td>
+                    <td th:text="${reserva.usuario.numDoc}"></td>
+                    <td th:text="${reserva.fechaInicio}"></td>
+                    <td th:text="${reserva.fechaFin}"></td>
+                    <td th:text="${reserva.numPersonas}"></td>
+                    <td th:text="${reserva.planConsumo.nombre}"></td>
+                    <td th:text="${reserva.costoReserva}"></td>
+                    <td>
+                        <a th:href="@{'/reservaHabitacion/' + ${reserva.id} + '/edit'}" class="btn btn-primary">Editar</a>
+                        <a th:href="@{'/reservaHabitacion/' + ${reserva.id} + '/delete'}" onclick="return confirm('¿Estás seguro de borrar esta Reserva?')" class="btn btn-primary">Borrar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    
+    </div>
+
+    <hr>
+
+<script src="/webjars/bootstrap/4.5.3/js/bootstrap.min.js"></script>
+</body>
+</html>

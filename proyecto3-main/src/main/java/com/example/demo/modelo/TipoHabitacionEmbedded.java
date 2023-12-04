@@ -2,6 +2,9 @@ package com.example.demo.modelo;
 
 import java.util.List;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
 public class TipoHabitacionEmbedded {
 
     private String tipo;
