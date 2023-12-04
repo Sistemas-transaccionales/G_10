@@ -46,11 +46,14 @@ public class ReservaHabitacionController {
         return "crearReservaHabitacionForm";
     }
 
-    @GetMapping("/crearReservaHabitacion")
+    @PostMapping("/crearReservaHabitacion")
     public String crearReservaHabitacion(
             @ModelAttribute("nuevaReservaHabitacion") ReservaHabitacion reservaHabitacion) {
 
         Habitacion habitacion = habitacionRepository.findById(reservaHabitacion.getIdHabitacion()).get();
+
+        // generar un nuevo ObjectId:
+        reservaHabitacion.setId(new ObjectId());
 
         Usuario usuario = usuarioRepository.findByTipoDocAndNumDoc(reservaHabitacion.getUsuario().getTipoDoc(),
                 reservaHabitacion.getUsuario().getNumDoc()).get();
@@ -60,6 +63,11 @@ public class ReservaHabitacionController {
 
         usuario.addReservaHabitacion(reservaHabitacion.getId());
         usuarioRepository.save(usuario);
+
+        reservaHabitacion.setCuentaAbierta(false);
+        reservaHabitacion.setFechaCheckIn(null);
+        reservaHabitacion.setFechaCheckOut(null);
+        reservaHabitacion.setCostoConsumos(0);
 
         reservaHabitacionRepository.save(reservaHabitacion);
 

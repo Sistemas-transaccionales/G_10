@@ -83,6 +83,17 @@ public class ReservaHabitacion {
         this.fechaCheckOut = fechaCheckOut;
     }
 
+    public ReservaHabitacion(String idHabitacion, UsuarioEmbedded usuario, LocalDate fechaInicio,
+            LocalDate fechaFin, int numPersonas, PlanConsumoEmbedded planConsumo, double costoReserva) {
+        this.idHabitacion = idHabitacion;
+        this.usuario = usuario;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+        this.numPersonas = numPersonas;
+        this.planConsumo = planConsumo;
+        this.costoReserva = costoReserva;
+    }
+
     /**
      * @return the id
      */

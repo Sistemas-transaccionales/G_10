@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nueva reserva de habitación</title>
+</head>
+<body>
+
+    <!-- Incluye el navbar -->
+    <div th:replace="navbar :: navbar"></div>
+
+<div class="container mt-3">
+    <h1>Nueva reserva de habitación</h1>
+
+    <!-- Formulario de creación -->
+    <form th:action="@{/crearReservaHabitacion}" th:object="${nuevaReservaHabitacion}" method="post">
+
+        <label for="idHabitacion"> Habitación:</label>
+        <input type="text" id="idHabitacion" name="idHabitacion" th:field="${nuevaReservaHabitacion.idHabitacion}" required />
+
+        <label for="usuario.tipoDoc"> Tipo doc:</label>
+        <input type="text" id="usuario.tipoDoc" name="usuario.tipoDoc" th:field="${nuevaReservaHabitacion.usuario.tipoDoc}" required />
+
+        <label for="usuario.numDoc"> Num doc:</label>
+        <input type="number" id="usuario.numDoc" name="usuario.numDoc" th:field="${nuevaReservaHabitacion.usuario.numDoc}" required />
+
+        <label for="fechaInicio"> Fecha inicio:</label>
+        <input type="date" id="fechaInicio" name="fechaInicio" th:field="${nuevaReservaHabitacion.fechaInicio}" required />
+
+        <label for="fechaFin"> Fecha fin:</label>
+        <input type="date" id="fechaFin" name="fechaFin" th:field="${nuevaReservaHabitacion.fechaFin}" required />
+
+        <label for="numPersonas"> Num personas:</label>
+        <input type="number" id="numPersonas" name="numPersonas" th:field="${nuevaReservaHabitacion.numPersonas}" required />
+
+        <label for="planConsumo.nombre"> Plan consumo:</label>
+        <input type="text" id="planConsumo.nombre" name="planConsumo.nombre" th:field="${nuevaReservaHabitacion.planConsumo.nombre}" required />
+
+        <label for="planConsumo.tasa"> Tasa del plan:</label>
+        <input type="text" id="planConsumo.tasa" name="planConsumo.tasa" th:field="${nuevaReservaHabitacion.planConsumo.tasa}" required />
+
+        <label for="planConsumo.minNoches"> Minimo de noches:</label>
+        <input type="number" id="planConsumo.minNoches" name="planConsumo.minNoches" th:field="${nuevaReservaHabitacion.planConsumo.minNoches}" required />
+
+        <label for="planConsumo.maxNoches"> Maximo de noches:</label>
+        <input type="number" id="planConsumo.maxNoches" name="planConsumo.maxNoches" th:field="${nuevaReservaHabitacion.planConsumo.maxNoches}" required />
+
+        <label for="costoReserva"> Precio:</label>
+        <input type="number" id="costoReserva" name="costoReserva" th:field="${nuevaReservaHabitacion.costoReserva}" required />
+
+        <button type="submit" class="btn btn-success">Crear Reserva</button>
+    </form>
+
+</div>
+
+</body>
+</html>
