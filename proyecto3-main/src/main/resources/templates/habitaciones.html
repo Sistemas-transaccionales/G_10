@@ -5,16 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Habitaciones</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.3/css/bootstrap.min.css"/>
 </head>
 <body>
     <div th:replace="navbar :: navbar"></div>
     <div class="container mt-3"></div>
         <h1>Lista de Habitaciones</h1>
-        <div>
-            <a th:href="@{/}" class="btn btn-primary">Volver atrás</a>
-            <a th:href="@{/habitacionForm}" class="btn btn-primary" style="margin-bottom: 38px;">Añadir Habitación</a>
-        </div>
         <table class="table table-hover table-bordered">
             <thead class="thead-dark">
                 <tr>
@@ -33,7 +29,10 @@
                 </tr>
             </tbody>
         </table>
-
+        <div>
+            <a th:href="@{/}" class="btn btn-primary">Volver atrás</a>
+            <a th:href="@{/habitacionForm}" class="btn btn-primary">Añadir Habitación</a>
+        </div>
     </div>
 <script src="/webjars/bootstrap/4.5.3/js/bootstrap.min.js"></script>
 </body>
