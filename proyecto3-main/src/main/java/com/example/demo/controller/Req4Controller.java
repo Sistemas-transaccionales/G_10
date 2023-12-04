@@ -25,7 +25,7 @@ public class Req4Controller {
     @PostMapping("/requerimiento4")
     public String requerimiento9(
             @RequestParam String fecha_inicio,
-            @RequestParam String fecha_fin) {
+            @RequestParam String fecha_fin, Model model) {
 
         // Construir objetos y guardar en MongoDB
         // Asegúrate de convertir las fechas apropiadamente (puede necesitar

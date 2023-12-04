@@ -1,4 +1,4 @@
-package main.java.com.example.demo.repositorio;
+package com.example.demo.repositorio;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
