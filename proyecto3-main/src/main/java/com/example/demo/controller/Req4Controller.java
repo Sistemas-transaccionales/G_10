@@ -23,14 +23,9 @@ public class Req4Controller {
     }
 
     @PostMapping("/requerimiento4")
-    public String requerimiento9(@RequestParam String id_habitacion,
-            @RequestParam String tipo_doc,
-            @RequestParam String num_doc,
+    public String requerimiento9(
             @RequestParam String fecha_inicio,
-            @RequestParam String fecha_fin,
-            @RequestParam int num_personas,
-            @RequestParam String nombre_plan_consumo,
-            Model model) {
+            @RequestParam String fecha_fin) {
 
         // Construir objetos y guardar en MongoDB
         // Asegúrate de convertir las fechas apropiadamente (puede necesitar
