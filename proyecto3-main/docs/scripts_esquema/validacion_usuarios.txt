@@ -19,14 +19,7 @@
         bsonType: 'number'
       },
       tipo: {
-        bsonType: 'string',
-        'enum': [
-          'admin',
-          'cliente',
-          'empleado',
-          'gerente',
-          'recepcionista'
-        ]
+        bsonType: 'string'
       },
       nombre: {
         bsonType: 'string'

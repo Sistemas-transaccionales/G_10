@@ -20,14 +20,7 @@
         ],
         properties: {
           tipo: {
-            bsonType: 'string',
-            'enum': [
-              'doble',
-              'familiar',
-              'sencilla',
-              'suite',
-              'suite presidencial'
-            ]
+            bsonType: 'string'
           },
           capacidad: {
             bsonType: 'number',
