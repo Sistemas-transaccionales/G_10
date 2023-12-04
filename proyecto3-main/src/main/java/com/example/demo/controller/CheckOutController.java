@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
+import org.springframework.data.mongodb.core.aggregation.SortOperation;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,7 +45,8 @@ public class CheckOutController {
                         .and("fecha_check_out").as("fecha_check_out")
                         .and("costo_reserva").as("costo_reserva")
                         .and("costo_consumos").as("costo_consumos")
-                        .andExpression("costo_reserva + costo_consumos").as("ganancias_totales"));
+                        .andExpression("costo_reserva + costo_consumos").as("ganancias_totales"),
+                Aggregation.sort(Sort.Direction.ASC, "id_habitacion"));
 
         List<CheckOut> checkOuts = mongoTemplate.aggregate(aggregation, "reservas_habitaciones", CheckOut.class)
                 .getMappedResults();
@@ -76,8 +79,6 @@ public class CheckOutController {
 
         ReservaHabitacion reservaHabitacion = reservaHabitacionRepository.findById(objectId).get();
 
-        System.out.println(reservaHabitacion.getIdHabitacion());
-
         model.addAttribute("reservaHabitacion", reservaHabitacion);
 
         return "editarCheckOut";
@@ -86,6 +87,8 @@ public class CheckOutController {
     @PostMapping("/checkOut/{id}/edit/save")
     public String actualizarCheckOut(@PathVariable("id") String id,
             @ModelAttribute ReservaHabitacion reservaHabitacion) {
+
+        System.out.println(reservaHabitacion.getIdHabitacion());
 
         reservaHabitacionRepository.save(reservaHabitacion);
 
