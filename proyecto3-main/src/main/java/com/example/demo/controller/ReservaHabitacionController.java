@@ -75,10 +75,10 @@ public class ReservaHabitacionController {
     }
 
     @GetMapping("/reservaHabitacion/{id}/edit")
-    public String mostrarFormularioEditar(@PathVariable String id, Model model) {
+    public String mostrarFormularioEditar(@PathVariable("id") String id, Model model) {
         ReservaHabitacion reservaHabitacion = reservaHabitacionRepository.findById(new ObjectId(id)).get();
         model.addAttribute("reservaHabitacion", reservaHabitacion);
-        return "editarReservaHabitacionForm";
+        return "editarReservaHabitacion";
     }
 
     @PostMapping("/reservaHabitacion/{id}/edit/save")

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Reserva Habitacion</title>
+</head>
+<body>
+   <div th:fragment="editarReservaHabitacionForm(titulo, reservaHabitacion)" class="container border boder-2 w-25">
+        <h1 class="text-center" th:text="${titulo}"></h1>
+        <form>
+            <label class="col-form.label">Fecha Check Out:</label>
+            <input class="form-control" type="text" id="idHabitacion"
+            name="idHabitacion" required th:value="${reservaHabitacion.idHabitacion}"/>
+
+            <label class="col-form.label">Fecha inicio:</label>
+            <input class="form-control" type="text" id="fechaInicio"
+            name="fechaInicio" required th:value="${reservaHabitacion.fechaInicio}"/>
+
+            <label class="col-form.label">Fecha fin:</label>
+            <input class="form-control" type="text" id="fechaFin"
+            name="fechaFin" required th:value="${reservaHabitacion.fechaFin}"/>
+
+            <label class="col-form.label">Número de personas:</label>
+            <input class="form-control" type="text" id="numPersonas"
+            name="numPersonas" required th:value="${reservaHabitacion.numPersonas}"/>
+
+            <label class="col-form.label">Costo reserva:</label>
+            <input class="form-control" type="text" id="costoReserva"
+            name="costoReserva" required th:value="${reservaHabitacion.costoReserva}"/>
+
+        <div class="text-center">
+            <input type="submit" value="Guardar" class="btn btn-primary"/>
+            <a th:href="@{/checkOuts}" class="btn btn btn-primary">Cancelar</a>
+        </div>
+        
+        <input type="hidden" name="usuario.tipoDoc" th:value="${reservaHabitacion.usuario.tipoDoc}" />
+        <input type="hidden" name="usuario.numDoc" th:value="${reservaHabitacion.usuario.numDoc}" />
+        <input type="hidden" name="planConsumo.nombre" th:value="${reservaHabitacion.planConsumo.nombre}" />
+        <input type="hidden" name="planConsumo.tasa" th:value="${reservaHabitacion.planConsumo.tasa}" />
+        <input type="hidden" name="planConsumo.minNoches" th:value="${reservaHabitacion.planConsumo.minNoches}" />
+        <input type="hidden" name="planConsumo.maxNoches" th:value="${reservaHabitacion.planConsumo.maxNoches}" />
+        <input type="hidden" name="costoReserva" th:value="${reservaHabitacion.costoReserva}" />
+        <input type="hidden" name="costoConsumos" th:value="${reservaHabitacion.costoConsumos}" />
+        <input type="hidden" name="cuentaAbierta" th:value="${reservaHabitacion.cuentaAbierta}" />
+        <input type="hidden" name="fechaCheckIn" th:value="${reservaHabitacion.fechaCheckIn}" />
+        <input type="hidden" name="fechaCheckOut" th:value="${reservaHabitacion.fechaCheckOut}" />
+        </form>
+   </div>
+</body>
+</html>

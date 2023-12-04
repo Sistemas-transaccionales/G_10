@@ -44,7 +44,7 @@
                     <td th:text="${reserva.planConsumo.nombre}"></td>
                     <td th:text="${reserva.costoReserva}"></td>
                     <td>
-                        <a th:href="@{'/reservaHabitacion/' + ${reserva.id} + '/edit'}" class="btn btn-primary">Editar</a>
+                        <a th:href="@{'/reservaHabitacion/' + ${reserva.id} + '/edit'}"class="btn btn-primary">Editar</a>
                         <a th:href="@{'/reservaHabitacion/' + ${reserva.id} + '/delete'}" onclick="return confirm('¿Estás seguro de borrar esta Reserva?')" class="btn btn-primary">Borrar</a>
                     </td>
                 </tr>
