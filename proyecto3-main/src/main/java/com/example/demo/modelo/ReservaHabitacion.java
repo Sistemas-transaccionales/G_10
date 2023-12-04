@@ -1,5 +1,7 @@
 package com.example.demo.modelo;
 
+import java.time.LocalDate;
+
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -18,10 +20,10 @@ public class ReservaHabitacion {
     private UsuarioEmbedded usuario;
 
     @Field("fecha_inicio")
-    private String fechaInicio;
+    private LocalDate fechaInicio;
 
     @Field("fecha_fin")
-    private String fechaFin;
+    private LocalDate fechaFin;
 
     @Field("num_personas")
     private int numPersonas;
@@ -39,17 +41,17 @@ public class ReservaHabitacion {
     private boolean cuentaAbierta;
 
     @Field("fecha_check_in")
-    private String fechaCheckIn;
+    private LocalDate fechaCheckIn;
 
     @Field("fecha_check_out")
-    private String fechaCheckOut;
+    private LocalDate fechaCheckOut;
 
     public ReservaHabitacion() {
     }
 
-    public ReservaHabitacion(String idHabitacion, UsuarioEmbedded usuario, String fechaInicio,
-            String fechaFin, int numPersonas, PlanConsumoEmbedded planConsumo, double costoReserva,
-            double costoConsumos, boolean cuentaAbierta, String fechaCheckIn, String fechaCheckOut) {
+    public ReservaHabitacion(String idHabitacion, UsuarioEmbedded usuario, LocalDate fechaInicio,
+            LocalDate fechaFin, int numPersonas, PlanConsumoEmbedded planConsumo, double costoReserva,
+            double costoConsumos, boolean cuentaAbierta, LocalDate fechaCheckIn, LocalDate fechaCheckOut) {
 
         this.idHabitacion = idHabitacion;
         this.usuario = usuario;
@@ -109,28 +111,28 @@ public class ReservaHabitacion {
     /**
      * @return the fechaInicio
      */
-    public String getFechaInicio() {
+    public LocalDate getFechaInicio() {
         return fechaInicio;
     }
 
     /**
      * @param fechaInicio the fechaInicio to set
      */
-    public void setFechaInicio(String fechaInicio) {
+    public void setFechaInicio(LocalDate fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
     /**
      * @return the fechaFin
      */
-    public String getFechaFin() {
+    public LocalDate getFechaFin() {
         return fechaFin;
     }
 
     /**
      * @param fechaFin the fechaFin to set
      */
-    public void setFechaFin(String fechaFin) {
+    public void setFechaFin(LocalDate fechaFin) {
         this.fechaFin = fechaFin;
     }
 
@@ -207,28 +209,28 @@ public class ReservaHabitacion {
     /**
      * @return the fechaCheckIn
      */
-    public String getFechaCheckIn() {
+    public LocalDate getFechaCheckIn() {
         return fechaCheckIn;
     }
 
     /**
      * @param fechaCheckIn the fechaCheckIn to set
      */
-    public void setFechaCheckIn(String fechaCheckIn) {
+    public void setFechaCheckIn(LocalDate fechaCheckIn) {
         this.fechaCheckIn = fechaCheckIn;
     }
 
     /**
      * @return the fechaCheckOut
      */
-    public String getFechaCheckOut() {
+    public LocalDate getFechaCheckOut() {
         return fechaCheckOut;
     }
 
     /**
      * @param fechaCheckOut the fechaCheckOut to set
      */
-    public void setFechaCheckOut(String fechaCheckOut) {
+    public void setFechaCheckOut(LocalDate fechaCheckOut) {
         this.fechaCheckOut = fechaCheckOut;
     }
 

@@ -1,10 +1,19 @@
 package com.example.demo.modelo;
 
+import org.springframework.data.mongodb.core.mapping.Field;
+
 public class PlanConsumoEmbedded {
 
+    @Field("nombre")
     private String nombre;
+
+    @Field("tasa")
     private float tasa;
+
+    @Field("min_noches")
     private int minNoches;
+
+    @Field("max_noches")
     private int maxNoches;
 
     public PlanConsumoEmbedded() {

@@ -2,14 +2,20 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
+import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.modelo.CheckOut;
+import com.example.demo.modelo.ReservaHabitacion;
 import com.example.demo.repositorio.CheckOutRepository;
 import com.example.demo.repositorio.ReservaHabitacionRepository;
 
@@ -29,6 +35,7 @@ public class CheckOutController {
     public String checkOuts(Model model) {
 
         Aggregation aggregation = Aggregation.newAggregation(
+                Aggregation.match(Criteria.where("fecha_check_out").ne(null)),
                 Aggregation.project()
                         .and("id_habitacion").as("id_habitacion")
                         .and("usuario").as("usuario")
@@ -44,6 +51,57 @@ public class CheckOutController {
         model.addAttribute("checkOuts", checkOuts);
 
         return "checkOuts";
+    }
+
+    @GetMapping("/startCrearCheckOut")
+    public String startCrearCheckOut(Model model) {
+
+        model.addAttribute("checkOut", new CheckOut());
+
+        return "crearCheckOutForm";
+    }
+
+    @PostMapping("/crearCheckOut")
+    public String crearCheckOut(CheckOut checkOut) {
+
+        // checkOutRepository.save(checkOut);
+
+        return "redirect:/checkOuts";
+    }
+
+    @GetMapping("/checkOut/{id}/edit")
+    public String mostrarFormularioActualizar(@PathVariable("id") String id, Model model) {
+
+        ObjectId objectId = new ObjectId(id);
+
+        ReservaHabitacion reservaHabitacion = reservaHabitacionRepository.findById(objectId).get();
+
+        System.out.println(reservaHabitacion.getIdHabitacion());
+
+        model.addAttribute("reservaHabitacion", reservaHabitacion);
+
+        return "editarCheckOut";
+    }
+
+    @PostMapping("/checkOut/{id}/edit/save")
+    public String actualizarCheckOut(@PathVariable("id") String id,
+            @ModelAttribute ReservaHabitacion reservaHabitacion) {
+
+        reservaHabitacionRepository.save(reservaHabitacion);
+
+        return "redirect:/checkOuts";
+    }
+
+    @GetMapping("/checkOut/{id}/delete")
+    public String eliminarCheckOut(@PathVariable("id") String id) {
+
+        ObjectId objectId = new ObjectId(id);
+        ReservaHabitacion reservaHabitacion = reservaHabitacionRepository.findById(objectId).get();
+        reservaHabitacion.setFechaCheckOut(null);
+
+        reservaHabitacionRepository.save(reservaHabitacion);
+
+        return "redirect:/checkOuts";
     }
 
 }

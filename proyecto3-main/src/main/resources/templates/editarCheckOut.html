@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Check Out</title>
+    <link rel="stylesheet"type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+    <form th:action="@{'/checkOut/'+${reservaHabitacion.id}+'/edit/save'}" th:object="${reservaHabitacion}"
+    method="post">
+    <div th:replace="editarCheckOutForm :: editarCheckOutForm(titulo='Editar checkOut', reservaHabitacion=${reservaHabitacion})">
+        
+    </div>
+
+</form>
+</body>
+</html>

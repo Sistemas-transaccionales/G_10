@@ -29,6 +29,7 @@
                     <th>Num doc</th>
                     <th>Costo reserva</th>
                     <th>Costo consumos</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -42,6 +43,9 @@
                     <td th:text="${checkout.usuario.numDoc}"></td>
                     <td th:text="${checkout.costoReserva}"></td>
                     <td th:text="${checkout.costoConsumos}"></td>
+                    <td>
+                        <a th:href="@{'/checkOut/' + ${checkout.id} + '/edit'}" class="btn btn-primary">Editar</a>
+                        <a th:href="@{'/checkOut/' + ${checkout.id} + '/delete'}" onclick="return confirm('¿Estás seguro de borrar este Check Out?')" class="btn btn-primary">Borrar</a>
                 </tr>   
             </tbody>
         </table>    

@@ -10,12 +10,12 @@ public class UsuarioEmbedded {
     private String tipoDoc;
 
     @Field("num_doc")
-    private String numDoc;
+    private int numDoc;
 
     public UsuarioEmbedded() {
     }
 
-    public UsuarioEmbedded(String tipoDoc, String numDoc) {
+    public UsuarioEmbedded(String tipoDoc, int numDoc) {
 
         this.tipoDoc = tipoDoc;
         this.numDoc = numDoc;
@@ -38,14 +38,14 @@ public class UsuarioEmbedded {
     /**
      * @return the numDoc
      */
-    public String getNumDoc() {
+    public int getNumDoc() {
         return numDoc;
     }
 
     /**
      * @param numDoc the numDoc to set
      */
-    public void setNumDoc(String numDoc) {
+    public void setNumDoc(int numDoc) {
         this.numDoc = numDoc;
     }
 
