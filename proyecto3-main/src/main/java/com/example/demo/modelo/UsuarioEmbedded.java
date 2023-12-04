@@ -1,8 +1,15 @@
 package com.example.demo.modelo;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
+@Document
 public class UsuarioEmbedded {
 
+    @Field("tipo_doc")
     private String tipoDoc;
+
+    @Field("num_doc")
     private String numDoc;
 
     public UsuarioEmbedded() {

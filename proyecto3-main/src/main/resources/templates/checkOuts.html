@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.3/css/bootstrap.min.css" />
+</head>
+<body>
+
+    <!-- Incluye el navbar -->
+    <div th:replace="navbar :: navbar"></div>
+
+    <div class="container mt-3">
+        <h1>Check outs</h1>
+
+        <!-- Botón para redirigir al formulario de creación de tipo de habitacion -->
+        <a th:href="@{/startCrearCheckOut}" class="btn btn-primary" style="margin-bottom: 38px;">Nuevo Check Out</a>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Fecha Check Out</th>
+                    <th>Fecha Check In</th>
+                    <th>Ganancias totales</th>
+                    <th>Habitacion</th>
+                    <th>Tipo doc</th>
+                    <th>Num doc</th>
+                    <th>Costo reserva</th>
+                    <th>Costo consumos</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="checkout:${checkOuts}">
+                    <td th:text="${checkout.id}"></td>
+                    <td th:text="${checkout.fechaCheckOut}"></td>
+                    <td th:text="${checkout.fechaCheckIn}"></td>
+                    <td th:text="${checkout.gananciasTotales}"></td>
+                    <td th:text="${checkout.idHabitacion}"></td>
+                    <td th:text="${checkout.usuario.tipoDoc}"></td>
+                    <td th:text="${checkout.usuario.numDoc}"></td>
+                    <td th:text="${checkout.costoReserva}"></td>
+                    <td th:text="${checkout.costoConsumos}"></td>
+                </tr>   
+            </tbody>
+        </table>    
+    </div>
+    <div>
+        <a th:href="@{/}" class="btn btn-primary">Volver atrás</a>
+    </div>
+<script src="/webjars/bootstrap/4.5.3/js/bootstrap.min.js"></script>
+</body>
+</html>
