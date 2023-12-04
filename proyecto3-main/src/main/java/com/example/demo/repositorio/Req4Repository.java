@@ -6,6 +6,6 @@ import com.example.demo.modelo.Requerimiento4;
 
 public interface Req4Repository extends MongoRepository<Requerimiento4, ObjectId> {
 
-    // Puedes agregar consultas personalizadas si es necesario
+
 
 }

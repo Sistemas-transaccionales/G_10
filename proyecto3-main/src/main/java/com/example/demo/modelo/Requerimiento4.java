@@ -43,6 +43,16 @@ public class Requerimiento4 {
         this.cuenta_abierta = cuenta_abierta;
         this.fecha_check_in = fecha_check_in;
         this.fecha_check_out = fecha_check_out;
+
+    }
+     private String servicio;
+     
+     public String getServicio() {
+        return servicio;
+    }
+
+    public void setServicio(String servicio) {
+        this.servicio = servicio;
     }
 
     /**
