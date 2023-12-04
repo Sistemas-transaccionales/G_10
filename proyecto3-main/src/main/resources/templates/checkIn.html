@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.3/css/bootstrap.min.css" />
+</head>
+<body>
+
+    <!-- Incluye el navbar -->
+    <div th:replace="navbar :: navbar"></div>
+
+    <div class="container mt-3">
+        <h1>Check Ins</h1>
+
+        <!-- Botón para redirigir al formulario de creación de tipo de habitacion -->
+        <a th:href="@{/startCrearCheckIn}" class="btn btn-primary" style="margin-bottom: 38px;">Nuevo Check In</a>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Fecha Check Out</th>
+                    <th>Fecha Check In</th>
+                    <th>Ganancias totales</th>
+                    <th>Habitacion</th>
+                    <th>Tipo doc</th>
+                    <th>Num doc</th>
+                    <th>Costo reserva</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="checkin:${checkIns}">
+                    <td th:text="${checkin.id}"></td>
+                    <td th:text="${checkin.fechaCheckOut}"></td>
+                    <td th:text="${checkin.fechaCheckIn}"></td>
+                    <td th:text="${checkin.gananciasTotales}"></td>
+                    <td th:text="${checkin.idHabitacion}"></td>
+                    <td th:text="${checkin.usuario.tipoDoc}"></td>
+                    <td th:text="${checkin.usuario.numDoc}"></td>
+                    <td>
+                        <a th:href="@{'/checkIn/' + ${checkin.id} + '/edit'}" class="btn btn-primary">Editar</a>
+                        <a th:href="@{'/checkIn/' + ${checkin.id} + '/delete'}" onclick="return confirm('¿Estás seguro de borrar este Check In?')" class="btn btn-primary">Borrar</a>
+                </tr>   
+            </tbody>
+        </table>    
+    </div>
+    <div>
+        <a th:href="@{/}" class="btn btn-primary">Volver atrás</a>
+    </div>
+<script src="/webjars/bootstrap/4.5.3/js/bootstrap.min.js"></script>
+</body>
+</html>
