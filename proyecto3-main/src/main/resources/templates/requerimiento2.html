@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Req 2</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.3/css/bootstrap.min.css"/>
+</head>
+<body>
+    <div th:replace="navbar :: navbar"></div>
+    <div class="container mt-3"></div>
+        <h1> Índice de Ocupacion de las Habitaciones del Hotel</h1>
+        <p>Las habitaciones del hotel y su tasa de ocupación en el último año son:</p>
+        <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID Habitacion</th>
+                    <th>Tasa Ocupacion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="habitacion:${habitaciones}">
+                    <td th:text="${habitacion.idHabitacion}"></td>
+                    <td th:text="${habitacion.tasaOcupacion}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <a th:href="@{/}" class="btn btn-primary">Volver atrás</a>
+        </div>
+    </div>
+</body>
+</html>
