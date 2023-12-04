@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Date;
 
 @Document(collection = "consumo")
-public class Requerimiento9 {
+public class Requerimiento4 {
 
     @Id
     private ObjectId id;

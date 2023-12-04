@@ -1,11 +1,10 @@
 package com.example.demo.repositorio;
 
-
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import com.example.demo.modelo.Requerimiento9;
+import com.example.demo.modelo.Requerimiento4;
 
-public interface Req9Repository extends MongoRepository<Requerimiento9, ObjectId> {
+public interface Req4Repository extends MongoRepository<Requerimiento4, ObjectId> {
 
     // Puedes agregar consultas personalizadas si es necesario
 
