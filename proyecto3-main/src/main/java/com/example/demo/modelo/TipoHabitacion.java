@@ -23,7 +23,6 @@ public class TipoHabitacion {
     @Field("dotaciones")
     private List<String> dotaciones;
 
-    @DBRef
     @Field("habitaciones")
     private List<String> habitaciones;
 

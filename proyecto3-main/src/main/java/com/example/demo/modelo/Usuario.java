@@ -180,4 +180,12 @@ public class Usuario {
         this.reservasServicios = reservasServicios;
     }
 
+    public void addReservaHabitacion(ObjectId id) {
+        this.reservasHabitaciones.add(id);
+    }
+
+    public void addReservaServicio(ObjectId id) {
+        this.reservasServicios.add(id);
+    }
+
 }

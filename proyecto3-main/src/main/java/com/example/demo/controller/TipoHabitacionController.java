@@ -112,12 +112,12 @@ public class TipoHabitacionController {
 
                 tipoHabitacion.getDotaciones().removeIf(String::isEmpty);
 
-                TipoHabitacionEmbedded tipoHabitacionEmbedded = new TipoHabitacionEmbedded(tipo,
+                TipoHabitacionEmbedded tipoHabitacionEmbedded = new TipoHabitacionEmbedded(tipoHabitacion.getTipo(),
                                 tipoHabitacion.getCosto_por_noche(), tipoHabitacion.getCapacidad(),
                                 tipoHabitacion.getDotaciones());
 
-                List<Habitacion> habitaciones = habitacionRepository.findByTipo(tipoHabitacionEmbedded);
-
+                List<Habitacion> habitaciones = habitacionRepository.findByTipoTipo(tipoHabitacionEmbedded.getTipo());
+                System.out.println(habitaciones.size());
                 for (Habitacion habitacion : habitaciones) {
                         habitacion.setTipo(tipoHabitacionEmbedded);
                         habitacionRepository.save(habitacion);
